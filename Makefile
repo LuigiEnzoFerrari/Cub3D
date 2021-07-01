@@ -3,10 +3,10 @@ CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
 
-LIB_PATH = libx libft
+LIB_PATH = libx libft Libft2D
 LIB := $(foreach dir, $(LIB_PATH), $(wildcard $(dir)/*.a))
 
-INC_PATH := libft include gnl
+INC_PATH := libft include gnl Libft2D
 INC := $(addprefix -I , $(INC_PATH))
 
 SRC_PATH := srcs gnl
