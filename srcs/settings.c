@@ -29,13 +29,18 @@ void	free_all(t_sval *val)
 
 void	printall(t_sval *val)
 {
-	ft_putendl_fd(val->tex.south, 1);
-	ft_putendl_fd(val->tex.north, 1);
-	ft_putendl_fd(val->tex.east, 1);
-	ft_putendl_fd(val->tex.west, 1);
-	ft_putendl_fd(val->tex.sprit, 1);
-	fprintf(stderr,"%d %d %d\n", val->folor.r, val->folor.g, val->folor.b);
-	fprintf(stderr,"%d %d %d\n", val->color.r, val->color.g, val->color.b);
+	// ft_putendl_fd(val->tex.south, 1);
+	// ft_putendl_fd(val->tex.north, 1);
+	// ft_putendl_fd(val->tex.east, 1);
+	// ft_putendl_fd(val->tex.west, 1);
+	// ft_putendl_fd(val->tex.sprit, 1);
+	printf(":%s:\n", val->tex.south);
+	printf(":%s:\n", val->tex.north);
+	printf(":%s:\n", val->tex.east);
+	printf(":%s:\n", val->tex.west);
+	printf(":%s:\n", val->tex.sprit);
+	fprintf(stdout, "%d: %d: %d:\n", val->folor.r, val->folor.g, val->folor.b);
+	fprintf(stdout, "%d: %d: %d:\n", val->color.r, val->color.g, val->color.b);
 	ft_putnbr(val->resolution.w);
 	ft_putchar('\n');
 	ft_putnbr(val->resolution.h);

@@ -2,8 +2,7 @@
 
 static int	white_line(char *str)
 {
-	while (ft_isspace(*str))
-		str++;
+	str = ft_skipctype(str, ft_isspace, 1);
 	return (!(*str));
 }
 
@@ -13,15 +12,13 @@ static char	*rm_whitespace(char *str)
 	char	*ptr;
 
 	ptr = str;
-	while (ft_isspace(*ptr))
-		ptr++;
-	len = ft_strlen(str);
-	while (ft_isspace(str[len]))
+	ptr = ft_skipctype(ptr, ft_isspace, 1);
+	len = ft_strlen(ptr);
+	while (ft_isspace(ptr[len - 1]))
 		len--;
 	ptr = ft_strndup(ptr, len);
 	free(str);
-	str = ptr;
-	return (str);
+	return (ptr);
 }
 
 void	rm_whitelines(t_sval *val, int fd)
