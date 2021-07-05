@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 t_RGBA	get_RGB(char *str)
 {
@@ -32,6 +32,19 @@ t_RES	get_RES(char *str)
 	str = ft_skipctype(str, ft_isdigit, 1);
 	free(ptr);
 	return (res);
+}
+
+static void	set_tex(char **tex, char **ptr, bool *v_tex, t_inv *cvalues)
+{
+	if (!*v_tex)
+		*v_tex = true;
+	else
+	{
+		cvalues->dkey = true;
+		free(*ptr);
+		return ;
+	}
+	*tex = *ptr;
 }
 
 static char	*get_values(char *str)
@@ -72,7 +85,7 @@ static void	get_FC(t_sval *val)
 	}
 	else if (*val->str == 'F')
 	{
-		val->folor = get_RGB(str);
+		val->floor = get_RGB(str);
 		val->cvalues.floor = true;
 	}
 	else if (*val->str == 'C')
@@ -98,32 +111,16 @@ static void	get_TEX(t_sval *val)
 		free(ptr);
 	}
 	else if (*str == 'S' && *(str + 1) != 'O')
-	{
-		val->tex.sprit = ptr;
-		val->cvalues.sprit = true;
-	}
+		set_tex(&val->tex.sprit, &ptr, &val->cvalues.sprit, &val->cvalues.inv);
 	else if (*str == 'N' && *(str + 1) == 'O')
-	{
-		val->tex.north = ptr;
-		val->cvalues.north = true;
-	}
+		set_tex(&val->tex.north, &ptr, &val->cvalues.north, &val->cvalues.inv);
 	else if (*str == 'E' && *(str + 1) == 'A')
-	{
-		val->tex.east = ptr;
-		val->cvalues.east = true;
-	}
+		set_tex(&val->tex.east, &ptr, &val->cvalues.east, &val->cvalues.inv);
 	else if (*str == 'S' && *(str + 1) == 'O')
-	{
-		val->tex.south = ptr;
-		val->cvalues.south = true;
-	}
+		set_tex(&val->tex.south, &ptr, &val->cvalues.south, &val->cvalues.inv);
 	else if (*str == 'W' && *(str + 1) == 'E')
-	{
-		val->tex.west = ptr;	
-		val->cvalues.west = true;
-	}
+		set_tex(&val->tex.west, &ptr, &val->cvalues.west, &val->cvalues.inv);
 }
-
 
 void	save_configs(t_sval *val)
 {

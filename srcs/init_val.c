@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 static void	init_RES(t_RES *res)
 {
@@ -17,7 +17,6 @@ static void	init_TEX(t_TEX *tex)
 
 static void	init_checkv(t_check *cvalues)
 {
-	cvalues->all = false;
 	cvalues->south = false;
 	cvalues->north = false;
 	cvalues->west = false;
@@ -26,8 +25,8 @@ static void	init_checkv(t_check *cvalues)
 	cvalues->color = false;
 	cvalues->resol = false;
 	cvalues->inv.map = false;
+	cvalues->inv.dkey = false;
 	cvalues->inv.empty = false;
-	cvalues->inv.all = false;
 	cvalues->inv.rgb = false;
 	cvalues->inv.res = false;
 	cvalues->inv.tex = false;
@@ -47,6 +46,6 @@ void	init_val(t_sval *val)
 	init_checkv(&val->cvalues);
 	init_TEX(&val->tex);
 	init_RGBA(&val->color);
-	init_RGBA(&val->folor);
+	init_RGBA(&val->floor);
 	init_RES(&val->resolution);
 }

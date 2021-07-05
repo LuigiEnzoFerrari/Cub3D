@@ -1,5 +1,5 @@
-#ifndef CUBE_H
-# define CUBE_H
+#ifndef CUB_H
+# define CUB_H
 
 # include <stdbool.h>
 # include "libft.h"
@@ -15,7 +15,7 @@ typedef struct s_set_values
 	char 	**map;
 	t_TEX	tex;
 	t_RGBA	color;
-	t_RGBA	folor;
+	t_RGBA	floor;
 	t_RES	resolution;
 	t_check	cvalues;
 }	t_sval;
@@ -35,5 +35,6 @@ void	printall(t_sval *val);
 void	print_lst(t_list *lst);
 
 int		check_configs(t_sval *val);
+void	exit_cub_settings(t_sval *val, t_inv inv);
 
 #endif

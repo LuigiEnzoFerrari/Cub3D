@@ -9,7 +9,7 @@ typedef	struct s_invalid
 	bool	res;
 	bool	map;
 	bool	empty;
-	bool	all;
+	bool	dkey;
 }	t_inv;
 
 typedef struct s_check
@@ -22,7 +22,6 @@ typedef struct s_check
 	bool	floor;
 	bool	color;
 	bool	resol;
-	bool	all;
 	t_inv	inv;
 }	t_check;
 

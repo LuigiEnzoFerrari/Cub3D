@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 void	free_all(t_sval *val)
 {
@@ -36,7 +36,7 @@ void	printall(t_sval *val)
 		ft_putendl_fd("ok_sprite", 1);
 	else
 		ft_putendl_fd("ok_sprite", 1);
-	fprintf(stdout, "floor :%d: :%d: :%d:\n", val->folor.r, val->folor.g, val->folor.b);
+	fprintf(stdout, "floor :%d: :%d: :%d:\n", val->floor.r, val->floor.g, val->floor.b);
 	fprintf(stdout, "color :%d: :%d: :%d:\n", val->color.r, val->color.g, val->color.b);
 	ft_putnbr(val->resolution.w);
 	ft_putchar('\n');

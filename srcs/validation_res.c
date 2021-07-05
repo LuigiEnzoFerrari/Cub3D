@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 static int	n_numbers_res(char *str)
 {

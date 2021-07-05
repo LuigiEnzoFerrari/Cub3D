@@ -1,5 +1,4 @@
-#include "cube.h"
-
+#include "cub.h"
 
 void	init_all(void)
 {

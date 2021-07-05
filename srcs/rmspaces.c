@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 static int	white_line(char *str)
 {

@@ -1,17 +1,8 @@
-#include "cube.h"
+#include "cub.h"
 
-void	bibalit(t_inv *inv, t_sval *val)
+void	bibalit(t_sval *val)
 {
-	if (inv->ch)
-		ft_putendl_fd("\n\ninvalid command line\n\n", 1);
-	else if (inv->tex)
-		ft_putendl_fd("\n\ninvalid texture\n\n", 1);
-	else if (inv->res)
-		ft_putendl_fd("\n\ninvalid resolution\n\n", 1);
-	else if (inv->rgb)
-		ft_putendl_fd("\n\ninvalid rgb color\n\n", 1);
-	else if (inv->empty)
-		ft_putendl_fd("\n\nemptyfile\n\n", 1);
+
 	free_all(val);
 }
 

@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "cub.h"
 
 int	validate_TEX(char *str)
 {
