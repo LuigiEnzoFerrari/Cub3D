@@ -1,6 +1,6 @@
 #include "cube.h"
 
-t_RGBA	get_rgb(char *str)
+t_RGBA	get_RGB(char *str)
 {
 	t_RGBA	rgb;
 	char	*ptr;
@@ -18,7 +18,7 @@ t_RGBA	get_rgb(char *str)
 	return (rgb);
 }
 
-t_RES	get_res(char *str)
+t_RES	get_RES(char *str)
 {
 	char	*ptr;
 	t_RES	res;
@@ -52,10 +52,11 @@ static void	get_R(t_sval *val)
 	if (!validate_RES(str))
 	{
 		free(str);
-		printf("ojaijoj\n");
+		val->cvalues.inv.res = true;
 		return ;
 	}
-	val->resolution = get_res(str);
+	val->resolution = get_RES(str);
+	val->cvalues.resol = true;
 }
 
 static void	get_FC(t_sval *val)
@@ -66,14 +67,19 @@ static void	get_FC(t_sval *val)
 	str = get_values(val->str + 1);
 	if (!validate_RGB(str))
 	{
-		printf(":-:\n:-:\n:-:totalmenteinvalido\n:-:\n:-:\n:-:");
+		val->cvalues.inv.rgb = true;
 		free(str);
-		return ;
 	}
-	if (*val->str == 'F')
-		val->folor = get_rgb(str);
+	else if (*val->str == 'F')
+	{
+		val->folor = get_RGB(str);
+		val->cvalues.floor = true;
+	}
 	else if (*val->str == 'C')
-		val->color = get_rgb(str);
+	{
+		val->color = get_RGB(str);
+		val->cvalues.color = true;
+	}
 }
 
 static void	get_TEX(t_sval *val)
@@ -86,25 +92,40 @@ static void	get_TEX(t_sval *val)
 		ptr = get_values(str + 1);
 	else
 		ptr = get_values(str + 2);
-
 	if (!validate_TEX(ptr))
 	{
-		printf("pera\n");
+		val->cvalues.inv.tex = true;
+		free(ptr);
 	}
-	if (*str == 'S' && *(str + 1) != 'O')
+	else if (*str == 'S' && *(str + 1) != 'O')
+	{
 		val->tex.sprit = ptr;
+		val->cvalues.sprit = true;
+	}
 	else if (*str == 'N' && *(str + 1) == 'O')
+	{
 		val->tex.north = ptr;
+		val->cvalues.north = true;
+	}
 	else if (*str == 'E' && *(str + 1) == 'A')
+	{
 		val->tex.east = ptr;
+		val->cvalues.east = true;
+	}
 	else if (*str == 'S' && *(str + 1) == 'O')
+	{
 		val->tex.south = ptr;
+		val->cvalues.south = true;
+	}
 	else if (*str == 'W' && *(str + 1) == 'E')
-		val->tex.west = ptr;
-	
+	{
+		val->tex.west = ptr;	
+		val->cvalues.west = true;
+	}
 }
 
-static void	save_values(t_sval *val)
+
+void	save_configs(t_sval *val)
 {
 	char	*str;
 
@@ -120,12 +141,10 @@ static void	save_values(t_sval *val)
 		get_FC(val);
 	else if (*str == 'R')
 		get_R(val);
-	// else
-		// do someshit;
-}
-
-void	save_configs(t_sval *val)
-{
-	// if (isvalid(*val->str))
-	save_values(val);
+	else if (*str == '1')
+		val->cvalues.inv.map = true;
+	else if (*str == '\0')
+		val->cvalues.inv.empty = true;
+	else
+		val->cvalues.inv.ch = true;
 }

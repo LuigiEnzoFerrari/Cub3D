@@ -1,15 +1,18 @@
 
-        				  NO                 ./path_to_the_north_texture      a
-S ./path_to_the_sprite_atexture			
-R 		  1280         720        
+        				  NO                 ./path_to_the_north_texture      
+S ./path_to_the_sprite_texture			
                 EA ./path_to_the_east_texture
-              					        WE ./path_to_the_west_texture     n
+        					        	WE ./path_to_the_west_texture     
 SO ./path_to_the_south_texture        
+
 
 C      225     , 30, 22
 
-F 220  , 69        , 33
 
+R 		  1280         720        
+F 220  , 69      , 33
+
+a
 
 1111111111
 1111111111

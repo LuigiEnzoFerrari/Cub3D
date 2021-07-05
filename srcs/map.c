@@ -24,8 +24,11 @@ static void	get_map(t_list **map, t_sval *val, int fd)
 	t_list	*ptr;
 
 	r = 1;
-	*map = ft_lstnew(ft_strdup(val->str));
-	free(val->str);
+	if (!val->cvalues.all)
+	{
+		*map = ft_lstnew(ft_strdup(val->str));
+		free(val->str);
+	}
 	ptr = *map;
 	while (r > 0)
 	{

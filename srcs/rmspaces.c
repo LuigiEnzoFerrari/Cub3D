@@ -31,5 +31,6 @@ void	rm_whitelines(t_sval *val, int fd)
 		free(val->str);
 		r = get_next_line(fd, &val->str);
 	}
-	val->str = rm_whitespace(val->str);
+	if (*val->str)
+		val->str = rm_whitespace(val->str);
 }

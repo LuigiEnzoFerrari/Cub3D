@@ -22,6 +22,8 @@ typedef struct s_TEX
 	char	*west;
 	char	*east;
 	char	*sprit;
-} t_TEX;
+}	t_TEX;
+
+
 
 #endif

@@ -17,6 +17,7 @@ typedef struct s_set_values
 	t_RGBA	color;
 	t_RGBA	folor;
 	t_RES	resolution;
+	t_check	cvalues;
 }	t_sval;
 
 void	init_all(void);
@@ -25,5 +26,14 @@ void	rm_whitelines(t_sval *val, int fd);
 void	save_configs(t_sval *val);
 int		isvalid(int c);
 void	save_map(t_sval *val, int fd);
+
+void	init_val(t_sval *val);
+
+// temp
+void	free_all(t_sval *val);
+void	printall(t_sval *val);
+void	print_lst(t_list *lst);
+
+int		check_configs(t_sval *val);
 
 #endif
