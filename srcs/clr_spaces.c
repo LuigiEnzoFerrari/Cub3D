@@ -6,7 +6,7 @@ static int	white_line(char *str)
 	return (!(*str));
 }
 
-static char	*rm_whitespace(char *str)
+static char	*trim_spaces(char *str)
 {
 	size_t	len;
 	char	*ptr;
@@ -21,7 +21,7 @@ static char	*rm_whitespace(char *str)
 	return (ptr);
 }
 
-void	rm_whitelines(t_sval *val, int fd)
+void	clr_whitelines(t_sval *val, int fd)
 {
 	ssize_t	r;
 
@@ -31,6 +31,11 @@ void	rm_whitelines(t_sval *val, int fd)
 		free(val->str);
 		r = get_next_line(fd, &val->str);
 	}
+}
+
+void	clr_whitespaces(t_sval *val, int fd)
+{
+	clr_whitelines(val, fd);
 	if (*val->str)
-		val->str = rm_whitespace(val->str);
+		val->str = trim_spaces(val->str);
 }

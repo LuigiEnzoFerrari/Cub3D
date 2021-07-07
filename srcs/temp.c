@@ -1,39 +1,25 @@
 #include "cub.h"
 
-void	free_all(t_sval *val)
-{
-	if (val->cvalues.south)
-		free(val->tex.south);
-	if (val->cvalues.north)
-		free(val->tex.north);
-	if (val->cvalues.east)
-		free(val->tex.east);
-	if (val->cvalues.west)
-		free(val->tex.west);
-	if (val->cvalues.sprit)
-		free(val->tex.sprit);
-}
-
 void	printall(t_sval *val)
 {
 	if (val->cvalues.south)
-		ft_putendl_fd("ok_south", 1);
+		ft_putendl_fd(val->tex.south, 1);
 	else
 		ft_putendl_fd("ko_south", 1);
 	if (val->cvalues.north)
-		ft_putendl_fd("ok_north", 1);
+		ft_putendl_fd(val->tex.north, 1);
 	else
 		ft_putendl_fd("ko_north", 1);
 	if (val->cvalues.east)
-		ft_putendl_fd("ok_east", 1);
+		ft_putendl_fd(val->tex.east, 1);
 	else
 		ft_putendl_fd("ko_east", 1);
 	if (val->cvalues.west)
-		ft_putendl_fd("ok_west", 1);
+		ft_putendl_fd(val->tex.west, 1);
 	else
 		ft_putendl_fd("ko_west", 1);
 	if (val->cvalues.sprit)
-		ft_putendl_fd("ok_sprite", 1);
+		ft_putendl_fd(val->tex.sprit, 1);
 	else
 		ft_putendl_fd("ok_sprite", 1);
 	fprintf(stdout, "floor :%d: :%d: :%d:\n", val->floor.r, val->floor.g, val->floor.b);

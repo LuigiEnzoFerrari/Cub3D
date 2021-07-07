@@ -1,6 +1,9 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include <stdint.h>
+# include <stddef.h>
+
 typedef struct s_Resolution
 {
 	int	w;
@@ -24,6 +27,8 @@ typedef struct s_TEX
 	char	*sprit;
 }	t_TEX;
 
-
+void	init_RES(t_RES *res);
+void	init_TEX(t_TEX *tex);
+void	init_RGBA(t_RGBA *rgba);
 
 #endif

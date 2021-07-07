@@ -1,6 +1,6 @@
 #include "cub.h"
 
-void	exit_cub_settings(t_sval *val, t_inv inv)
+void	exit_cub_settings(t_sval *val, t_inv inv, int fd)
 {
 	if (inv.ch)
 		ft_putendl_fd("\n\ninvalid command line\n\n", 0);
@@ -15,5 +15,6 @@ void	exit_cub_settings(t_sval *val, t_inv inv)
 	else if (inv.dkey)
 		ft_putendl_fd("\n\ndouble command line\n\n", 0);
 	free_all(val);
+	close(fd);
 	exit(0);
 }

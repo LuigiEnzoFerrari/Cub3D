@@ -1,6 +1,13 @@
 #ifndef CUB_ERROR_H
 # define CUB_ERROR_H
 
+typedef struct s_map
+{
+	bool	top;
+	bool	player;
+	bool	bot;
+}	t_map;
+
 typedef	struct s_invalid
 {
 	bool	ch;
@@ -23,6 +30,7 @@ typedef struct s_check
 	bool	color;
 	bool	resol;
 	t_inv	inv;
+	t_map	cmap;
 }	t_check;
 
 

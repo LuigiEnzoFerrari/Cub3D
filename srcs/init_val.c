@@ -1,22 +1,8 @@
 #include "cub.h"
 
-static void	init_RES(t_RES *res)
-{
-	res->h = 0;
-	res->w = 0;
-}
-
-static void	init_TEX(t_TEX *tex)
-{
-	tex->east = NULL;
-	tex->south = NULL;
-	tex->sprit = NULL;
-	tex->west = NULL;
-	tex->north = NULL;
-}
-
 static void	init_checkv(t_check *cvalues)
 {
+	cvalues->sprit = false;
 	cvalues->south = false;
 	cvalues->north = false;
 	cvalues->west = false;
@@ -31,14 +17,9 @@ static void	init_checkv(t_check *cvalues)
 	cvalues->inv.res = false;
 	cvalues->inv.tex = false;
 	cvalues->inv.ch = false;
-}
-
-static void	init_RGBA(t_RGBA *rgba)
-{
-	rgba->r = 0;
-	rgba->g = 0;
-	rgba->b = 0;
-	rgba->a = 0;
+	cvalues->cmap.bot = false;
+	cvalues->cmap.top = false;
+	cvalues->cmap.player = false;
 }
 
 void	init_val(t_sval *val)

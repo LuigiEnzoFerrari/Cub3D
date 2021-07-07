@@ -1,6 +1,6 @@
 #include "cub.h"
 
-static char	**cpy_map(t_list *lst)
+char	**cpy_map(t_list *lst)
 {
 	size_t	len;
 	char	**str;
@@ -18,30 +18,24 @@ static char	**cpy_map(t_list *lst)
 	return (ptr);
 }
 
-static void	get_map(t_list **map, t_sval *val, int fd)
+void	get_map(t_list **map, t_sval *val, int fd)
 {
 	ssize_t	r;
 	t_list	*ptr;
 
 	r = 1;
-	*map = ft_lstnew(ft_strdup(val->str));
-	free(val->str);
+	*map = ft_lstnew(val->str);
+	check_line(map, val, fd);
 	ptr = *map;
 	while (r > 0)
 	{
 		r = get_next_line(fd, &val->str);
+		if (*val->str == '\0')
+			break ;
+		check_line(map, val, fd);
 		ptr = ft_lstnew(val->str);
 		ft_lstadd_back(&(*map), ptr);
 	}
-}
-
-void	save_map(t_sval *val, int fd)
-{
-	t_list	*map;
-
-	get_map(&map, val, fd);
-	val->map = cpy_map(map);
-	ft_lstclear(&map, free);
-	ft_putarraydelim_fd(val->map, '\n', 1);
-	ft_arrayfree(val->map);
+	if (*val->str == '\0')
+		free(val->str);
 }

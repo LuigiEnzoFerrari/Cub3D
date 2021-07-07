@@ -20,11 +20,11 @@ static int	check_invalid(t_inv inv)
 	return (0);
 }
 
-int	check_configs(t_sval *val)
+int	check_configs(t_sval *val, int fd)
 {
 	if (check_values(val->cvalues))
 		return (1);
 	else if (check_invalid(val->cvalues.inv))
-		exit_cub_settings(val, val->cvalues.inv);
+		exit_cub_settings(val, val->cvalues.inv, fd);
 	return (0);
 }

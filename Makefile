@@ -1,4 +1,4 @@
-NAME := pamonha
+NAME := cub
 CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
@@ -21,7 +21,7 @@ $(NAME):
 # 	clang main.c -g -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
 
 run: $(NAME)
-	@./pamonha
+	@./cub
 
 clean:
 	$(RM) *.out

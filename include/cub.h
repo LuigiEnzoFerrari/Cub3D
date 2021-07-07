@@ -13,6 +13,7 @@ typedef struct s_set_values
 {
 	char	*str;
 	char 	**map;
+	int		fd;
 	t_TEX	tex;
 	t_RGBA	color;
 	t_RGBA	floor;
@@ -22,19 +23,31 @@ typedef struct s_set_values
 
 void	init_all(void);
 void	settings(t_sval *val);
-void	rm_whitelines(t_sval *val, int fd);
+void	clr_whitespaces(t_sval *val, int fd);
+void	clr_whitelines(t_sval *val, int fd);
 void	save_configs(t_sval *val);
 int		isvalid(int c);
-void	save_map(t_sval *val, int fd);
 
 void	init_val(t_sval *val);
 
-// temp
 void	free_all(t_sval *val);
 void	printall(t_sval *val);
 void	print_lst(t_list *lst);
 
-int		check_configs(t_sval *val);
-void	exit_cub_settings(t_sval *val, t_inv inv);
+int		check_configs(t_sval *val, int fd);
+void	exit_cub_settings(t_sval *val, t_inv inv, int fd);
+void	get_TEX(t_sval *val);
+void	get_R(t_sval *val);
+void	get_FC(t_sval *val);
+char	*get_values(char *str);
+
+void	get_map(t_list **map, t_sval *val, int fd);
+char	**cpy_map(t_list *lst);
+
+void	check_line(t_list **map, t_sval *val, int fd);
+void	check_inv_end(t_sval *val, int fd, t_list **map);
+void	check_inv_ch(t_sval *val, int fd);
+int		istexture(char *str);
+
 
 #endif
