@@ -1,6 +1,7 @@
 #ifndef CUB_H
 # define CUB_H
 
+# include <mlx.h>
 # include <stdbool.h>
 # include "libft.h"
 # include "libft2d.h"
