@@ -4,7 +4,7 @@
 # include <stdint.h>
 # include <stddef.h>
 
-typedef struct s_Resolution
+typedef struct s_Resolution // to points later
 {
 	int	w;
 	int	h;

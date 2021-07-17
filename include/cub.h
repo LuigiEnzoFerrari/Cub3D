@@ -6,9 +6,10 @@
 # include "libft.h"
 # include "libft2d.h"
 # include "struct.h"
-# include "get_next_line.h"
 # include "validate.h"
 # include "cub_error.h"
+# include "mlx_extension.h"
+# include <fcntl.h>
 
 typedef struct s_set_values
 {
