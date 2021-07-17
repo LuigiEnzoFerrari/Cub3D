@@ -44,5 +44,5 @@ void	get_FC(t_sval *val)
 	else if (*val->str == 'F')
 		set_FC(str, &val->cvalues.floor, &val->floor, &val->cvalues);
 	else if (*val->str == 'C')
-		set_FC(str, &val->cvalues.color, &val->color, &val->cvalues);
+		set_FC(str, &val->cvalues.color, &val->cell, &val->cvalues);
 }

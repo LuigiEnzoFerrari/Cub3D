@@ -14,14 +14,21 @@
 typedef struct s_set_values
 {
 	char	*str;
-	char 	**map;
+	char	**map;
 	int		fd;
 	t_TEX	tex;
-	t_RGBA	color;
+	t_RGBA	cell;
 	t_RGBA	floor;
 	t_RES	resolution;
 	t_check	cvalues;
 }	t_sval;
+
+typedef struct s_vars
+{
+	void	*window;
+	void	*mlx;
+	t_data	img;
+}	t_vars;
 
 void	init_all(void);
 void	settings(t_sval *val);

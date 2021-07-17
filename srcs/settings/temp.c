@@ -22,8 +22,9 @@ void	printall(t_sval *val)
 		ft_putendl_fd(val->tex.sprit, 1);
 	else
 		ft_putendl_fd("ok_sprite", 1);
+
 	fprintf(stdout, "floor :%d: :%d: :%d:\n", val->floor.r, val->floor.g, val->floor.b);
-	fprintf(stdout, "color :%d: :%d: :%d:\n", val->color.r, val->color.g, val->color.b);
+	fprintf(stdout, "color :%d: :%d: :%d:\n", val->cell.r, val->cell.g, val->cell.b);
 	ft_putnbr(val->resolution.w);
 	ft_putchar('\n');
 	ft_putnbr(val->resolution.h);

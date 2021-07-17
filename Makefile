@@ -2,6 +2,7 @@ NAME := cub
 CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
+MLX_FLAGS := -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
 
 LIB_DIRS := libft Libft2D
 LIB_PATH = $(addprefix libs/, $(LIB_DIRS))
@@ -10,17 +11,18 @@ LIB := $(foreach dir, $(LIB_PATH), $(wildcard $(dir)/*.a))
 INC_PATH := $(LIB_PATH) include
 INC := $(addprefix -I , $(INC_PATH))
 
-SRC_DIR := settings
+SRC_DIR := settings mlx_extension
 SRC_PATH := $(addprefix srcs/, $(SRC_DIR)) srcs
 SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SANIT) main.c $(SRC) $(LIB) $(INC) -o $@
+	$(CC) $(CFLAGS) $(SANIT) main.c $(SRC) $(LIB) $(INC) $(MLX_FLAGS) -o $@
 
 # build:
 # 	clang main.c -g -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
+# clang main.c -g -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
 
 run: $(NAME)
 	@./cub

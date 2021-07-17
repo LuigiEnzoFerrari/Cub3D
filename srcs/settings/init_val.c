@@ -26,7 +26,7 @@ void	init_val(t_sval *val)
 {
 	init_checkv(&val->cvalues);
 	init_TEX(&val->tex);
-	init_RGBA(&val->color);
+	init_RGBA(&val->cell);
 	init_RGBA(&val->floor);
 	init_RES(&val->resolution);
 }
