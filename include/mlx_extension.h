@@ -48,6 +48,7 @@ typedef struct s_data
 	int		bpp;
 	int		s_line;
 	int		endian;
+	int		color;
 }	t_data;
 
 typedef struct s_Bresenham_line
