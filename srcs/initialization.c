@@ -1,95 +1,47 @@
 #include "cub.h"
 
-const int map[MAP_ROWS][MAP_COLS] = {
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
-
-t_player player;
-
-void	renderPlayer(t_data *img)
+void	renderPlayer(t_vars *vars)
 {
-	mlx_draw_fill_rect(img,
-	mlx_get_rect(player.x * MINIMAP_SCALE,
-				player.y * MINIMAP_SCALE,
-				player.w * MINIMAP_SCALE,
-				player.h * MINIMAP_SCALE),
+	mlx_draw_fill_rect(&vars->img,
+	mlx_get_rect(vars->player.x * MINIMAP_SCALE,
+				vars->player.y * MINIMAP_SCALE,
+				vars->player.w * MINIMAP_SCALE,
+				vars->player.h * MINIMAP_SCALE),
 	mlx_trgb_to_hex(0, 255, 0, 0));
 
-	mlx_draw_line(img,
-	mlx_get_line(MINIMAP_SCALE * player.x,
-				MINIMAP_SCALE * player.y,
-				MINIMAP_SCALE * player.x + cos(player.rotationAngle) * 40,
-				MINIMAP_SCALE * player.y + sin(player.rotationAngle) * 40),
+	mlx_draw_line(&vars->img,
+	mlx_get_line(MINIMAP_SCALE * vars->player.x,
+				MINIMAP_SCALE * vars->player.y,
+				MINIMAP_SCALE * vars->player.x + cos(vars->player.rotationAngle) * 40,
+				MINIMAP_SCALE * vars->player.y + sin(vars->player.rotationAngle) * 40),
 				0x00ff0000);
 }
 
-void	renderMap(t_data *img) {
-	int i;
-	int j;
-	int tileX;
-	int tileY;
-	int tileColor;
-
-	i = 0;
-	j = 0;
-	while (i < MAP_ROWS) {
-		while (j < MAP_COLS) {
-			tileX = j * TILE_SIZE;
-			tileY = i * TILE_SIZE;
-			if (map[i][j] != 0)
-				tileColor = 255;
-			else
-				tileColor = 0;
-			mlx_draw_fill_rect(img,
-			mlx_get_rect(tileX * MINIMAP_SCALE, 
-					tileY * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE),
-			mlx_trgb_to_hex(0, tileColor, tileColor, tileColor));
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-}
-
-void	render(t_data *img)
+void	render(t_vars *vars)
 {
-	renderMap(img);
-	renderPlayer(img);
+	renderMap(&vars->img, vars->set.map);
+	renderPlayer(vars);
 }
 
-int	hasWall(float x, float y)
+int	hasWall(char **map, float x, float y)
 {
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
 		return 1;
 	int indexGridX = floor(x / TILE_SIZE);
 	int indexGridY = floor(y / TILE_SIZE);
-	return map[indexGridY][indexGridX] != 0;
+	return map[indexGridY][indexGridX] != '0';
 }
 
-void	movePlayer()
+void	movePlayer(t_vars *vars)
 {
-	player.rotationAngle += player.turnDirection * player.turnSpeed;
-	float	moveStep = player.walkDirection * player.walkSpeed;
-	float	newPlayerX = player.x + cos(player.rotationAngle) * moveStep;
-	float	newPlayerY = player.y + sin(player.rotationAngle) * moveStep;
-	if (!hasWall(newPlayerX, newPlayerY))
+	vars->player.rotationAngle += vars->player.turnDirection * vars->player.turnSpeed;
+	float	moveStep = vars->player.walkDirection * vars->player.walkSpeed;
+	float	newPlayerX = vars->player.x + cos(vars->player.rotationAngle) * moveStep;
+	float	newPlayerY = vars->player.y + sin(vars->player.rotationAngle) * moveStep;
+	if (!hasWall(vars->set.map, newPlayerX, newPlayerY))
 	{
-		player.x = newPlayerX;
-		player.y = newPlayerY;
+		vars->player.x = newPlayerX;
+		vars->player.y = newPlayerY;
 	}
 
 }
@@ -168,9 +120,9 @@ void	movePlayer()
 // 	}
 // }
 
-void	update()
+void	update(t_vars *vars)
 {
-	movePlayer();
+	movePlayer(vars);
 	// castAllRays();
 }
 
@@ -183,15 +135,15 @@ static int	key_pressed(int event, t_vars *vars)
 		exit(0);
 	}
 	if (event == KEY_UP)
-		player.walkDirection = 1;
+		vars->player.walkDirection = 1;
 	if (event == KEY_DOWN)
-		player.walkDirection = -1;
+		vars->player.walkDirection = -1;
 	if (event == KEY_LEFT)
-		player.turnDirection = 1;
+		vars->player.turnDirection = 1;
 	if (event == KEY_RIGHT)
-		player.turnDirection = -1;
-	update();
-	render(&vars->img);
+		vars->player.turnDirection = -1;
+	update(vars);
+	render(vars);
 	mlx_put_image_to_window(vars->mlx,
 				vars->window,
 				vars->img.img,
@@ -202,13 +154,14 @@ static int	key_pressed(int event, t_vars *vars)
 static int key_released(int event, t_vars *vars)
 {
 	if (event == KEY_UP)
-		player.walkDirection = 0;
+		vars->player.walkDirection = 0;
 	if (event == KEY_DOWN)
-		player.walkDirection = 0;
+		vars->player.walkDirection = 0;
 	if (event == KEY_LEFT)
-		player.turnDirection = 0;
+		vars->player.turnDirection = 0;
 	if (event == KEY_RIGHT)
-		player.turnDirection = 0;
+		vars->player.turnDirection = 0;
+	vars->set.cell.a = 0;
 	return (0);
 }
 
@@ -218,17 +171,17 @@ void	input(t_vars *vars)
 	mlx_hook(vars->window, 3, 1l << 1, key_released, vars);	
 }
 
-void	setup()
+void	setup(t_P1 *player)
 {
-	player.x = WINDOW_WIDTH / 2;
-	player.y = WINDOW_HEIGHT / 2;
-	player.w = 20;
-	player.h = 20;
-	player.walkDirection = 0;
-	player.turnDirection = 0;
-	player.turnSpeed = 30 * (PI / 180);
-	player.walkSpeed = 5;
-	player.rotationAngle = PI / 2;
+	player->x = WINDOW_WIDTH / 2;
+	player->y = WINDOW_HEIGHT / 2;
+	player->w = 20;
+	player->h = 20;
+	player->walkDirection = 0;
+	player->turnDirection = 0;
+	player->turnSpeed = 30 * (PI / 180);
+	player->walkSpeed = 5;
+	player->rotationAngle = PI / 2;
 }
 
 void	free_set(t_set *set)
@@ -247,8 +200,8 @@ void	init_all(void)
 	vars.set = settings();
 	free_set(&vars.set);
 	ft_putarraydelim_fd(vars.set.map, '\n', 1);
-	ft_arrayfree(vars.set.map);
-	setup();
+	// ft_arrayfree(vars.set.map);
+	setup(&vars.player);
 	vars.mlx = mlx_init();
 	vars.window = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
 	vars.img.img = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -256,9 +209,8 @@ void	init_all(void)
 									&vars.img.bpp,
 									&vars.img.s_line,
 									&vars.img.endian);
-	render(&vars.img);
+	render(&vars);
 	input(&vars);
-
 	mlx_put_image_to_window(vars.mlx,
 					vars.window,
 					vars.img.img,

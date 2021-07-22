@@ -5,7 +5,7 @@ static void mlx_put4_pixel(t_data *img, int cx, int cy, int x, int y, int color)
 	mlx_put_pixel(img, cx + x, cy + y, color);
 	if (x != 0)
 		mlx_put_pixel(img, cx - x, cy + y, color);
-	if (x != 0)
+	if (y != 0)
 		mlx_put_pixel(img, cx + x, cy - y, color);
 	if (x != 0 && y != 0)
 		mlx_put_pixel(img, cx - x, cy - y, color);

@@ -57,7 +57,7 @@ typedef struct s_player
 	double	rotationAngle;
 	float	walkSpeed;
 	float	turnSpeed;
-}	t_player;
+}	t_P1;
 
 typedef struct s_vars
 {
@@ -65,6 +65,7 @@ typedef struct s_vars
 	void	*mlx;
 	t_set	set;
 	t_data	img;
+	t_P1	player;
 }	t_vars;
 
 typedef struct s_ray
@@ -109,5 +110,5 @@ void	check_inv_end(t_sval *val, int fd, t_list **map);
 void	check_inv_ch(t_sval *val, int fd);
 int		istexture(char *str);
 
-
+void	renderMap(t_data *img, char **map);
 #endif
