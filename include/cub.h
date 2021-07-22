@@ -10,6 +10,7 @@
 # include "cub_error.h"
 # include "mlx_extension.h"
 # include <fcntl.h>
+# include <float.h>
 
 #define KEY_UP 65362
 #define KEY_DOWN 65364
@@ -82,7 +83,7 @@ typedef struct s_ray
 	int		wallHitContent;
 }	t_ray[NUM_RAY];
 
-void	init_all(void);
+void	init_all(t_vars *vars);
 t_set	settings(void);
 void	clr_whitespaces(t_sval *val, int fd);
 void	clr_whitelines(t_sval *val, int fd);

@@ -2,6 +2,8 @@
 
 int	main(void)
 {
-	init_all();
+	t_vars vars;
+
+	init_all(&vars);
 	return (0);
 }
