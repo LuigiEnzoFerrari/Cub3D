@@ -23,13 +23,13 @@ char	*get_values(char *str)
 void	free_all(t_sval *val)
 {
 	if (val->cvalues.south)
-		free(val->tex.south);
+		free(val->set.tex.south);
 	if (val->cvalues.north)
-		free(val->tex.north);
+		free(val->set.tex.north);
 	if (val->cvalues.east)
-		free(val->tex.east);
+		free(val->set.tex.east);
 	if (val->cvalues.west)
-		free(val->tex.west);
+		free(val->set.tex.west);
 	if (val->cvalues.sprit)
-		free(val->tex.sprit);
+		free(val->set.tex.sprit);
 }

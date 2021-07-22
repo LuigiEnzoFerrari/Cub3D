@@ -3,6 +3,7 @@
 		"mlx_extension.h": "c",
 		"sdl.h": "c",
 		"sdl_render.h": "c",
-		"mlx_int.h": "c"
+		"mlx_int.h": "c",
+		"sstream": "c"
 	}
 }

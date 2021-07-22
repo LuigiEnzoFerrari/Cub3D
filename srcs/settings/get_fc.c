@@ -42,7 +42,7 @@ void	get_FC(t_sval *val)
 		free(str);
 	}
 	else if (*val->str == 'F')
-		set_FC(str, &val->cvalues.floor, &val->floor, &val->cvalues);
+		set_FC(str, &val->cvalues.floor, &val->set.floor, &val->cvalues);
 	else if (*val->str == 'C')
-		set_FC(str, &val->cvalues.color, &val->cell, &val->cvalues);
+		set_FC(str, &val->cvalues.color, &val->set.cell, &val->cvalues);
 }

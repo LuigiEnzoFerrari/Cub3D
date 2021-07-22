@@ -28,16 +28,21 @@
 #define MINIMAP_SCALE 0.3
 #define NUM_RAY WINDOW_WIDTH
 
-typedef struct s_set_values
+typedef struct s_setting
 {
-	char	*str;
 	char	**map;
-	int		fd;
 	t_TEX	tex;
 	t_RGBA	cell;
 	t_RGBA	floor;
 	t_RES	resolution;
+}	t_set;
+
+typedef struct s_set_values
+{
+	char	*str;
+	int		fd;
 	t_check	cvalues;
+	t_set	set;
 }	t_sval;
 
 typedef struct s_player
@@ -46,37 +51,38 @@ typedef struct s_player
 	float	y;
 	float	w;
 	float	h;
-	int r;
-	int turnDirection;
-	int walkDirection;
-	double rotationAngle;
-	float walkSpeed;
-	float turnSpeed;
+	int		r;
+	int		turnDirection;
+	int		walkDirection;
+	double	rotationAngle;
+	float	walkSpeed;
+	float	turnSpeed;
 }	t_player;
 
 typedef struct s_vars
 {
 	void	*window;
 	void	*mlx;
+	t_set	set;
 	t_data	img;
 }	t_vars;
 
 typedef struct s_ray
 {
-	float rayAngle;
-	float wallHitX;
-	float wallHitY;
-	float distance;
-	int wasHisVerical;
-	int isRayFacingUp;
-	int isRayFacingDown;
-	int isRayFacingLeft;
-	int isRayFacingRight;
-	int wallHitContent;
+	float	rayAngle;
+	float	wallHitX;
+	float	wallHitY;
+	float	distance;
+	int		wasHisVerical;
+	int		isRayFacingUp;
+	int		isRayFacingDown;
+	int		isRayFacingLeft;
+	int		isRayFacingRight;
+	int		wallHitContent;
 }	t_ray[NUM_RAY];
 
 void	init_all(void);
-void	settings(t_sval *val);
+t_set	settings(void);
 void	clr_whitespaces(t_sval *val, int fd);
 void	clr_whitelines(t_sval *val, int fd);
 void	save_configs(t_sval *val);

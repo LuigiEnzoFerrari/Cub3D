@@ -174,7 +174,7 @@ void	update()
 	// castAllRays();
 }
 
-static int	mlx_key_down(int event, t_vars *vars)
+static int	key_pressed(int event, t_vars *vars)
 {
 	if (event == 65307)
 	{
@@ -199,7 +199,7 @@ static int	mlx_key_down(int event, t_vars *vars)
 	return (0);
 }
 
-static int mlx_key_up(int event, t_vars *vars)
+static int key_released(int event, t_vars *vars)
 {
 	if (event == KEY_UP)
 		player.walkDirection = 0;
@@ -214,8 +214,8 @@ static int mlx_key_up(int event, t_vars *vars)
 
 void	input(t_vars *vars)
 {
-	mlx_hook(vars->window, 2, 1l << 0, mlx_key_down, vars);
-	mlx_hook(vars->window, 3, 1l << 1, mlx_key_up, vars);	
+	mlx_hook(vars->window, 2, 1l << 0, key_pressed, vars);
+	mlx_hook(vars->window, 3, 1l << 1, key_released, vars);	
 }
 
 void	setup()
@@ -231,26 +231,37 @@ void	setup()
 	player.rotationAngle = PI / 2;
 }
 
+void	free_set(t_set *set)
+{
+	free(set->tex.east);
+	free(set->tex.west);
+	free(set->tex.north);
+	free(set->tex.south);
+	free(set->tex.sprit);
+}
+
 void	init_all(void)
 {
-	t_sval	val;
 	t_vars	vars;
 
-	settings(&val);
-	// setup();
-	// vars.mlx = mlx_init();
-	// vars.window = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
-	// vars.img.img = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// vars.img.addr = mlx_get_data_addr(vars.img.img,
-	// 								&vars.img.bpp,
-	// 								&vars.img.s_line,
-	// 								&vars.img.endian);
-	// render(&vars.img);
-	// input(&vars);
+	vars.set = settings();
+	free_set(&vars.set);
+	ft_putarraydelim_fd(vars.set.map, '\n', 1);
+	ft_arrayfree(vars.set.map);
+	setup();
+	vars.mlx = mlx_init();
+	vars.window = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
+	vars.img.img = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	vars.img.addr = mlx_get_data_addr(vars.img.img,
+									&vars.img.bpp,
+									&vars.img.s_line,
+									&vars.img.endian);
+	render(&vars.img);
+	input(&vars);
 
-	// mlx_put_image_to_window(vars.mlx,
-	// 				vars.window,
-	// 				vars.img.img,
-	// 				0, 0);
-	// mlx_loop(vars.mlx);
+	mlx_put_image_to_window(vars.mlx,
+					vars.window,
+					vars.img.img,
+					0, 0);
+	mlx_loop(vars.mlx);
 }

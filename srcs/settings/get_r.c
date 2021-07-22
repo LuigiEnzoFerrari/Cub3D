@@ -34,7 +34,7 @@ void	get_R(t_sval *val)
 	}
 	else
 	{
-		val->resolution = get_RES(str);
+		val->set.resolution = get_RES(str);
 		val->cvalues.resol = true;
 	}
 }
