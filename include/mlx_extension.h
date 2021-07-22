@@ -4,6 +4,8 @@
 # include <stdint.h>
 # include <stddef.h>
 
+#include "mlx.h"
+
 typedef struct mlx_Rect
 {
 	int	x;
@@ -41,7 +43,7 @@ typedef struct mlx_Color
 	uint8_t	a;
 }	t_xColor;
 
-typedef struct s_data
+typedef struct mlx_Renderer
 {
 	void	*img;
 	char	*addr;
@@ -49,7 +51,7 @@ typedef struct s_data
 	int		s_line;
 	int		endian;
 	int		color;
-}	t_data;
+}	t_xRenderer;
 
 typedef struct s_Bresenham_line
 {
@@ -61,14 +63,18 @@ typedef struct s_Bresenham_line
 	int e2;
 }	t_BLine;
 
-void	mlx_put_pixel(t_data *img, int x, int y, int color);
-void	mlx_draw_line(t_data *img, t_xLine line, int color);
-void	mlx_draw_fill_rect(t_data *img, t_xRect, int color);
-void	mlx_draw_circle(t_data *img, t_xCircle circle, int color);
+void	mlx_put_pixel(t_xRenderer *renderer, int x, int y);
+void	mlx_draw_line(t_xRenderer *renderer, t_xLine line);
+void	mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect);
+void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle);
+void	mlx_set_render_color(t_xRenderer *renderer, int color);
 
 t_xLine	mlx_get_line(int x0, int y0, int x1, int y1);
 t_xRect	mlx_get_rect(int x, int y, int w, int h);
 t_xCircle	mlx_get_circle(int x, int y, int r);
+t_xRenderer	mlx_create_renderer(void *mlx, int size_x, int size_y);
+
 int		mlx_trgb_to_hex(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
+
 
 #endif

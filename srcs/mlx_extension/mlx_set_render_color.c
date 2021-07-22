@@ -1,6 +1,6 @@
 #include "mlx_extension.h"
 
-void	mlx_set_render_color(t_data *img, int color)
+void	mlx_set_render_color(t_xRenderer *renderer, int color)
 {
-	img->color = color;
+	renderer->color = color;
 }

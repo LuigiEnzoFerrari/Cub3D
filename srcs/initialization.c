@@ -2,24 +2,23 @@
 
 void	renderPlayer(t_vars *vars)
 {
-	mlx_draw_fill_rect(&vars->img,
+	mlx_set_render_color(&vars->renderer, 0x00ff0000);
+	mlx_draw_fill_rect(&vars->renderer,
 	mlx_get_rect(vars->player.x * MINIMAP_SCALE,
 				vars->player.y * MINIMAP_SCALE,
 				vars->player.w * MINIMAP_SCALE,
-				vars->player.h * MINIMAP_SCALE),
-	mlx_trgb_to_hex(0, 255, 0, 0));
+				vars->player.h * MINIMAP_SCALE));
 
-	mlx_draw_line(&vars->img,
+	mlx_draw_line(&vars->renderer,
 	mlx_get_line(MINIMAP_SCALE * vars->player.x,
 				MINIMAP_SCALE * vars->player.y,
 				MINIMAP_SCALE * vars->player.x + cos(vars->player.rotationAngle) * 40,
-				MINIMAP_SCALE * vars->player.y + sin(vars->player.rotationAngle) * 40),
-				0x00ff0000);
+				MINIMAP_SCALE * vars->player.y + sin(vars->player.rotationAngle) * 40));
 }
 
 void	render(t_vars *vars)
 {
-	renderMap(&vars->img, vars->set.map);
+	renderMap(&vars->renderer, vars->set.map);
 	renderPlayer(vars);
 }
 
@@ -126,51 +125,6 @@ void	update(t_vars *vars)
 	// castAllRays();
 }
 
-static int	key_pressed(int event, t_vars *vars)
-{
-	if (event == 65307)
-	{
-		// mlx_destroy_window(vars->mlx, vars->window);
-		// mlx_destroy_image(vars->mlx, vars->img.img);
-		exit(0);
-	}
-	if (event == KEY_UP)
-		vars->player.walkDirection = 1;
-	if (event == KEY_DOWN)
-		vars->player.walkDirection = -1;
-	if (event == KEY_LEFT)
-		vars->player.turnDirection = 1;
-	if (event == KEY_RIGHT)
-		vars->player.turnDirection = -1;
-	update(vars);
-	render(vars);
-	mlx_put_image_to_window(vars->mlx,
-				vars->window,
-				vars->img.img,
-				0, 0);
-	return (0);
-}
-
-static int key_released(int event, t_vars *vars)
-{
-	if (event == KEY_UP)
-		vars->player.walkDirection = 0;
-	if (event == KEY_DOWN)
-		vars->player.walkDirection = 0;
-	if (event == KEY_LEFT)
-		vars->player.turnDirection = 0;
-	if (event == KEY_RIGHT)
-		vars->player.turnDirection = 0;
-	vars->set.cell.a = 0;
-	return (0);
-}
-
-void	input(t_vars *vars)
-{
-	mlx_hook(vars->window, 2, 1l << 0, key_pressed, vars);
-	mlx_hook(vars->window, 3, 1l << 1, key_released, vars);	
-}
-
 void	setup(t_P1 *player)
 {
 	player->x = WINDOW_WIDTH / 2;
@@ -204,16 +158,15 @@ void	init_all(void)
 	setup(&vars.player);
 	vars.mlx = mlx_init();
 	vars.window = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
-	vars.img.img = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	vars.img.addr = mlx_get_data_addr(vars.img.img,
-									&vars.img.bpp,
-									&vars.img.s_line,
-									&vars.img.endian);
+	vars.renderer = mlx_create_renderer(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	render(&vars);
 	input(&vars);
+	mlx_set_render_color(&vars.renderer, 0x00aa00aa);
+	mlx_draw_circle(&vars.renderer,
+	mlx_get_circle(400, 400, 60));
 	mlx_put_image_to_window(vars.mlx,
 					vars.window,
-					vars.img.img,
+					vars.renderer.img,
 					0, 0);
 	mlx_loop(vars.mlx);
 }

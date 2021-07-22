@@ -1,24 +1,24 @@
 #include "mlx_extension.h"
 
-static void mlx_put4_pixel(t_data *img, int cx, int cy, int x, int y, int color)
+static void mlx_put4_pixel(t_xRenderer *renderer, int cx, int cy, int x, int y)
 {
-	mlx_put_pixel(img, cx + x, cy + y, color);
+	mlx_put_pixel(renderer, cx + x, cy + y);
 	if (x != 0)
-		mlx_put_pixel(img, cx - x, cy + y, color);
+		mlx_put_pixel(renderer, cx - x, cy + y);
 	if (y != 0)
-		mlx_put_pixel(img, cx + x, cy - y, color);
+		mlx_put_pixel(renderer, cx + x, cy - y);
 	if (x != 0 && y != 0)
-		mlx_put_pixel(img, cx - x, cy - y, color);
+		mlx_put_pixel(renderer, cx - x, cy - y);
 }
 
-static void mlx_put8_pixel(t_data *img, int cx, int cy, int x, int y, int color)
+static void mlx_put8_pixel(t_xRenderer *renderer, int cx, int cy, int x, int y)
 {
-	mlx_put4_pixel(img, cx, cy, x, y, color);
+	mlx_put4_pixel(renderer, cx, cy, x, y);
 	if (x != y)
-		mlx_put4_pixel(img, cx, cy, y, x, color);
+		mlx_put4_pixel(renderer, cx, cy, y, x);
 }
 
-void	mlx_draw_circle(t_data *img, t_xCircle circle, int color)
+void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle)
 {
 	int	error;
 	int	x;
@@ -30,7 +30,7 @@ void	mlx_draw_circle(t_data *img, t_xCircle circle, int color)
 	y = 0;
 	while (x >= y)
 	{
-		mlx_put8_pixel(img, circle.x, circle.y, x, y, color);
+		mlx_put8_pixel(renderer, circle.x, circle.y, x, y);
 		error += y;
 		y++;
 		error += y;

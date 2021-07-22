@@ -11,7 +11,7 @@ LIB := $(foreach dir, $(LIB_PATH), $(wildcard $(dir)/*.a))
 INC_PATH := $(LIB_PATH) include
 INC := $(addprefix -I , $(INC_PATH))
 
-SRC_DIR := settings mlx_extension render
+SRC_DIR := settings mlx_extension render input
 SRC_PATH := $(addprefix srcs/, $(SRC_DIR)) srcs
 SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
 
@@ -19,10 +19,6 @@ all: $(NAME)
 
 $(NAME):
 	$(CC) $(CFLAGS) $(SANIT) main.c $(SRC) $(LIB) $(INC) $(MLX_FLAGS) -o $@
-
-# build:
-# 	clang main.c -g -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
-# clang main.c -g -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
 
 run: $(NAME)
 	@./cub

@@ -1,6 +1,6 @@
 #include "mlx_extension.h"
 
-void	mlx_draw_fill_rect(t_data *img, t_xRect rect, int color)
+void	mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect rect)
 {
 	int	dx;
 	int	dy;
@@ -13,7 +13,7 @@ void	mlx_draw_fill_rect(t_data *img, t_xRect rect, int color)
 	{
 		while (rect.x < dx)
 		{
-			mlx_draw_line(img, mlx_get_line(rect.x, rect.y, dx, rect.y), color);
+			mlx_draw_line(renderer, mlx_get_line(rect.x, rect.y, dx, rect.y));
 			rect.x++;
 		}
 		rect.y++;

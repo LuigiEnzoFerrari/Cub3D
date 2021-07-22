@@ -1,9 +1,9 @@
 #include "mlx_extension.h"
 
-void	mlx_put_pixel(t_data *img, int x, int y, int color)
+void	mlx_put_pixel(t_xRenderer *renderer, int x, int y)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->s_line + x * (img->bpp >> 3));
-	*(uint32_t *)dst = color;
+	dst = renderer->addr + (y * renderer->s_line + x * (renderer->bpp >> 3));
+	*(uint32_t *)dst = renderer->color;
 }
