@@ -12,6 +12,13 @@ typedef struct mlx_Rect
 	int	h;
 }	t_xRect;
 
+typedef struct mlx_Circle
+{
+	int	x;
+	int y;
+	int	r;
+}	t_xCircle;
+
 typedef struct mlx_Point
 {
 	int	x;
@@ -56,7 +63,11 @@ typedef struct s_Bresenham_line
 void	mlx_put_pixel(t_data *img, int x, int y, int color);
 void	mlx_draw_line(t_data *img, t_xLine line, int color);
 void	mlx_draw_fill_rect(t_data *img, t_xRect, int color);
+void	mlx_draw_circle(t_data *img, t_xCircle circle, int color);
+
 t_xLine	mlx_get_line(int x0, int y0, int x1, int y1);
 t_xRect	mlx_get_rect(int x, int y, int w, int h);
+t_xCircle	mlx_get_circle(int x, int y, int r);
+int		mlx_trgb_to_hex(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
 
 #endif

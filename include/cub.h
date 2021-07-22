@@ -11,6 +11,23 @@
 # include "mlx_extension.h"
 # include <fcntl.h>
 
+#define KEY_UP 65362
+#define KEY_DOWN 65364
+#define KEY_LEFT 65361
+#define KEY_RIGHT 65363
+
+#define PI 3.14159265358979323846
+#define TWO_PI (2 * PI)
+#define TILE_SIZE 64
+#define MAP_COLS 20
+#define MAP_ROWS 13
+#define WINDOW_WIDTH (MAP_COLS * TILE_SIZE)
+#define WINDOW_HEIGHT (MAP_ROWS * TILE_SIZE)
+#define FOV_ANGLE (60 * PI /180)
+
+#define MINIMAP_SCALE 0.3
+#define NUM_RAY WINDOW_WIDTH
+
 typedef struct s_set_values
 {
 	char	*str;
@@ -23,12 +40,40 @@ typedef struct s_set_values
 	t_check	cvalues;
 }	t_sval;
 
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	w;
+	float	h;
+	int r;
+	int turnDirection;
+	int walkDirection;
+	double rotationAngle;
+	float walkSpeed;
+	float turnSpeed;
+}	t_player;
+
 typedef struct s_vars
 {
 	void	*window;
 	void	*mlx;
 	t_data	img;
 }	t_vars;
+
+typedef struct s_ray
+{
+	float rayAngle;
+	float wallHitX;
+	float wallHitY;
+	float distance;
+	int wasHisVerical;
+	int isRayFacingUp;
+	int isRayFacingDown;
+	int isRayFacingLeft;
+	int isRayFacingRight;
+	int wallHitContent;
+}	t_ray[NUM_RAY];
 
 void	init_all(void);
 void	settings(t_sval *val);

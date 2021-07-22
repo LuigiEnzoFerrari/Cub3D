@@ -26,37 +26,22 @@ static t_BLine mlx_set_Bresenham_value(t_xLine line)
 
 void	mlx_draw_line(t_data *img, t_xLine line, int color)
 {
-	// int dx;
-	// int dy;
-	// int sx;
-	// int sy;
-	// int err;
-	// int e2;	/* error value e_xy */
 
-	// sy = -1;
-	// sx = -1;
-	// if (line.x0 < line.x1)
-	// 	sx = 1;
-	// if (line.y0 < line.y1)
-	// 	sy = 1;
-	// dx = mlx_abs(line.x1 - line.x0);
-	// dy = -mlx_abs(line.y1 - line.y0);
-	// err = dx + dy;
 	t_BLine Bresenham;
 
 	Bresenham = mlx_set_Bresenham_value(line);
-	while (666)
+	while (1)
 	{
 		mlx_put_pixel(img, line.x0, line.y0, color);
 		if (line.x0 == line.x1 && line.y0 == line.y1) 
 			break;
 		Bresenham.e2 = 2 * Bresenham.err;
-		if (Bresenham.e2 >= Bresenham.dy)	/* e_xy+e_x > 0 */
+		if (Bresenham.e2 >= Bresenham.dy)
 		{
 			Bresenham.err += Bresenham.dy;
 			line.x0 += Bresenham.sx;
 		}
-		if (Bresenham.e2 <= Bresenham.dx)	/* e_xy+e_y < 0 */
+		if (Bresenham.e2 <= Bresenham.dx)
 		{
 			Bresenham.err += Bresenham.dx;
 			line.y0 += Bresenham.sy;

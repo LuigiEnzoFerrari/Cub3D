@@ -33,5 +33,4 @@ typedef struct s_check
 	t_map	cmap;
 }	t_check;
 
-
 #endif
