@@ -1,12 +1,5 @@
 #include "cub.h"
 
-
-
-
-t_rays rays;
-
-
-
 int	hasWall(char **map, float x, float y)
 {
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
@@ -59,13 +52,13 @@ float	distanceBetweenPoints(float x1, float y1, float x2, float y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	castRay(t_P1 player, char **map, float rayAngle, int stripId)
+void	castRay(t_P1 player, char **map, float rayAngle, int stripId, t_rays *rays)
 {
 	rayAngle = normalizeAngle(rayAngle);
 
 	int	isRayFacingDown = rayAngle > 0 && rayAngle < PI;
 	int	isRayFacingUp = !isRayFacingDown;
-	int	isRayFacingRight = rayAngle <  0.5 * PI || rayAngle > 1.5 * PI;
+	int	isRayFacingRight = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
 	int isRayFacingLeft = !isRayFacingRight;
 
 	float xintercept, yintercept;
@@ -149,13 +142,13 @@ void	castRay(t_P1 player, char **map, float rayAngle, int stripId)
 			nextVertTouchY += ystep;
 		}
 	}
-		float horzHitDinstance = foundHorzWallHit
+		float horzHitDistance = foundHorzWallHit
 		? distanceBetweenPoints(player.x, player.y, horzWallHitX, horzWallHitY) : FLT_MAX;
-		float vertHitDinstance = foundVertWallHit
+		float vertHitDistance = foundVertWallHit
 		? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY) : FLT_MAX;
-		if (vertHitDinstance < horzHitDinstance)
+		if (vertHitDistance < horzHitDistance)
 		{
-			rays[stripId].distance = vertHitDinstance;
+			rays[stripId].distance = vertHitDistance;
 			rays[stripId].wallHitX = vertWallHitX;
 			rays[stripId].wallHitY = vertWallHitY;
 			rays[stripId].wallHitContent = vertWallContent;
@@ -163,7 +156,7 @@ void	castRay(t_P1 player, char **map, float rayAngle, int stripId)
 		}
 		else
 		{
-			rays[stripId].distance = horzHitDinstance;
+			rays[stripId].distance = horzHitDistance;
 			rays[stripId].wallHitX = horzWallHitX;
 			rays[stripId].wallHitY = horzWallHitY;
 			rays[stripId].wallHitContent = horzWallContent;
@@ -176,12 +169,12 @@ void	castRay(t_P1 player, char **map, float rayAngle, int stripId)
 		rays[stripId].isRayFacingRight = isRayFacingRight;
 }
 
-void	castAllRays(t_P1 player, char **map)
+void	castAllRays(t_P1 player, char **map, t_rays *rays)
 {
 	float rayAngle = player.rotationAngle - (FOV_ANGLE / 2);
 	for (int stripId = 0; stripId < NUM_RAY; stripId++)
 	{
-		castRay(player, map, rayAngle, stripId);
+		castRay(player, map, rayAngle, stripId, rays);
 		rayAngle += FOV_ANGLE / NUM_RAY;
 	}
 }
@@ -195,15 +188,15 @@ void	renderRays(t_vars *vars)
 		mlx_get_line(
 			MINIMAP_SCALE * vars->player.x,
 			MINIMAP_SCALE * vars->player.y, 
-			MINIMAP_SCALE * rays[i].wallHitX,
-			MINIMAP_SCALE * rays[i].wallHitY));
+			MINIMAP_SCALE * vars->rays[i].wallHitX,
+			MINIMAP_SCALE * vars->rays[i].wallHitY));
 	}
 }
 
 void	update(t_vars *vars)
 {
 	movePlayer(vars);
-	castAllRays(vars->player, vars->set.map);
+	castAllRays(vars->player, vars->set.map, vars->rays);
 }
 
 void	render(t_vars *vars)

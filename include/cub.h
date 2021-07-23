@@ -62,15 +62,6 @@ typedef struct s_player
 	float	turnSpeed;
 }	t_P1;
 
-typedef struct s_vars
-{
-	void	*window;
-	void	*mlx;
-	t_set	set;
-	t_xRenderer	renderer;
-	t_P1	player;
-}	t_vars;
-
 typedef struct s_ray
 {
 	float	rayAngle;
@@ -83,7 +74,17 @@ typedef struct s_ray
 	int		isRayFacingLeft;
 	int		isRayFacingRight;
 	int		wallHitContent;
-}	t_rays[NUM_RAY];
+}	t_rays;
+
+typedef struct s_vars
+{
+	void	*window;
+	void	*mlx;
+	t_set	set;
+	t_xRenderer	renderer;
+	t_P1	player;
+	t_rays	rays[NUM_RAY];
+}	t_vars;
 
 void	init_all(t_vars *vars);
 t_set	settings(void);
