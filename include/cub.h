@@ -9,27 +9,11 @@
 # include "validate.h"
 # include "cub_error.h"
 # include "mlx_extension.h"
+# include "const.h"
 # include <fcntl.h>
 # include <float.h>
 # include <limits.h>
-
-#define KEY_UP 65362
-#define KEY_DOWN 65364
-#define KEY_LEFT 65361
-#define KEY_RIGHT 65363
-#define KEY_ESC 65307
-
-#define PI 3.14159265358979323846
-#define TWO_PI 6.28318530
-#define TILE_SIZE 64
-#define MAP_COLS 20
-#define MAP_ROWS 13
-#define WINDOW_WIDTH (MAP_COLS * TILE_SIZE)
-#define WINDOW_HEIGHT (MAP_ROWS * TILE_SIZE)
-#define FOV_ANGLE (60 * PI /180)
-
-#define MINIMAP_SCALE 0.3
-#define NUM_RAY WINDOW_WIDTH
+# include <math.h>
 
 typedef struct s_setting
 {
@@ -86,8 +70,8 @@ typedef struct s_vars
 	t_rays	rays[NUM_RAY];
 }	t_vars;
 
-void	init_all(t_vars *vars);
 t_set	settings(void);
+void	init_all(t_vars *vars);
 void	clr_whitespaces(t_sval *val, int fd);
 void	clr_whitelines(t_sval *val, int fd);
 void	save_configs(t_sval *val);
@@ -118,5 +102,8 @@ void	renderMap(t_xRenderer *img, char **map);
 void	input(t_vars *vars);
 void	update(t_vars *vars);
 void	render(t_vars *vars);
+
+void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *rays);
+int		hasWall(char **map, float x, float y);
 
 #endif

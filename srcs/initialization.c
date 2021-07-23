@@ -29,6 +29,8 @@ void	init_all(t_vars *vars)
 	free_set(&vars->set);
 	ft_putarraydelim_fd(vars->set.map, '\n', 1);
 	set_player(&vars->player);
+
+
 	vars->mlx = mlx_init();
 	vars->window = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
 	vars->renderer = mlx_create_renderer(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
