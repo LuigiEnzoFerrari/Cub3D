@@ -26,7 +26,6 @@ static t_BLine mlx_set_Bresenham_value(t_xLine line)
 
 void	mlx_draw_line(t_xRenderer *renderer, t_xLine line)
 {
-
 	t_BLine Bresenham;
 
 	Bresenham = mlx_set_Bresenham_value(line);

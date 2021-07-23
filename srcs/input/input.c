@@ -3,7 +3,7 @@
 
 static int	key_pressed(int event, t_vars *vars)
 {
-	if (event == 65307)
+	if (event == KEY_ESC)
 	{
 		// mlx_destroy_window(vars->mlx, vars->window);
 		// mlx_destroy_image(vars->mlx, vars->renderer.img);

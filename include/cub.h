@@ -11,14 +11,16 @@
 # include "mlx_extension.h"
 # include <fcntl.h>
 # include <float.h>
+# include <limits.h>
 
 #define KEY_UP 65362
 #define KEY_DOWN 65364
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
+#define KEY_ESC 65307
 
 #define PI 3.14159265358979323846
-#define TWO_PI (2 * PI)
+#define TWO_PI 6.28318530
 #define TILE_SIZE 64
 #define MAP_COLS 20
 #define MAP_ROWS 13
@@ -81,7 +83,7 @@ typedef struct s_ray
 	int		isRayFacingLeft;
 	int		isRayFacingRight;
 	int		wallHitContent;
-}	t_ray[NUM_RAY];
+}	t_rays[NUM_RAY];
 
 void	init_all(t_vars *vars);
 t_set	settings(void);
