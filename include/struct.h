@@ -3,20 +3,13 @@
 
 # include <stdint.h>
 # include <stddef.h>
+# include "mlx_extension.h"
 
 typedef struct s_Resolution // to points later
 {
 	int	w;
 	int	h;
 }	t_RES;
-
-typedef struct s_RGBA
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-	uint8_t	a;
-}	t_RGBA;
 
 typedef struct s_TEX
 {
@@ -29,6 +22,6 @@ typedef struct s_TEX
 
 void	init_RES(t_RES *res);
 void	init_TEX(t_TEX *tex);
-void	init_RGBA(t_RGBA *rgba);
+void	init_RGBA(t_xColor *rgba);
 
 #endif

@@ -17,11 +17,13 @@
 
 typedef struct s_setting
 {
-	char	**map;
-	t_TEX	tex;
-	t_RGBA	cell;
-	t_RGBA	floor;
-	t_RES	resolution;
+	char		**map;
+	t_TEX		tex;
+	t_xColor	cell;
+	t_xColor	floor;
+	int			llec;
+	int			roolf;
+	t_RES		resolution;
 }	t_set;
 
 typedef struct s_set_values

@@ -77,20 +77,25 @@ void	renderBack(t_xRenderer *renderer)
 	mlx_get_rect(0, WINDOW_HEIGHT >> 1, WINDOW_WIDTH, WINDOW_HEIGHT >> 1));
 }
 
-void	castAllRays(t_P1 player, char **map, t_rays *rays)
+void	raysCasting(t_P1 player, char **map, t_rays *rays)
 {
-	float rayAngle = player.rotationAngle - (FOV_ANGLE / 2);
-	for (int stripId = 0; stripId < NUM_RAY; stripId++)
+	float	angle;
+	size_t	i;
+	
+	angle = player.rotationAngle - (FOV_ANGLE / 2);
+	i = 0;
+	while (i < NUM_RAY)
 	{
-		rayCasting(player, map, rayAngle, stripId, rays);
-		rayAngle += FOV_ANGLE / NUM_RAY;
+		rayCasting(player, map, angle, i, rays);
+		angle += FOV_ANGLE / NUM_RAY;
+		i++;
 	}
 }
 
 void	update(t_vars *vars)
 {
 	movePlayer(vars);
-	castAllRays(vars->player, vars->set.map, vars->rays);
+	raysCasting(vars->player, vars->set.map, vars->rays);
 }
 
 void	render(t_vars *vars)
@@ -108,9 +113,9 @@ int	main(void)
 	t_vars vars;
 
 	init_all(&vars);
-	update(&vars);
-	render(&vars);
-	input(&vars);
-	mlx_loop(vars.mlx);
+	// update(&vars);
+	// render(&vars);
+	// input(&vars);
+	// mlx_loop(vars.mlx);
 	return (0);
 }

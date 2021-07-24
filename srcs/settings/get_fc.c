@@ -1,9 +1,9 @@
 #include "cub.h"
 
-static t_RGBA	get_RGB(char *str)
+static t_xColor	get_RGB(char *str)
 {
-	t_RGBA	rgb;
-	char	*ptr;
+	t_xColor	rgb;
+	char		*ptr;
 
 	ptr = str;
 	str = ft_skipctype(str, ft_isdigit, 0);
@@ -18,7 +18,7 @@ static t_RGBA	get_RGB(char *str)
 	return (rgb);
 }
 
-static void	set_FC(char *str, bool *rgb, t_RGBA *rgba, t_check *cvalues)
+static void	set_FC(char *str, bool *rgb, t_xColor *rgba, t_check *cvalues)
 {
 	if (*rgb == true)
 	{

@@ -32,7 +32,7 @@ t_set	settings(void)
 	init_val(&val);
 	set_elements(&val, fd);
 	set_map(&val, fd);
-	// printall(&val);
+	printall(&val);
 	// free_all(&val);
 	// ft_arrayfree(val.set.map);
 	close(fd);

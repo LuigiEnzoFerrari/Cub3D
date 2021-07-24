@@ -1,4 +1,4 @@
-#include "struct.h"
+#include "cub.h"
 
 void	init_RES(t_RES *res)
 {
@@ -15,10 +15,10 @@ void	init_TEX(t_TEX *tex)
 	tex->north = NULL;
 }
 
-void	init_RGBA(t_RGBA *rgba)
+void	init_RGBA(t_xColor *rgba)
 {
+	rgba->t = 0;
 	rgba->r = 0;
 	rgba->g = 0;
 	rgba->b = 0;
-	rgba->a = 0;
 }

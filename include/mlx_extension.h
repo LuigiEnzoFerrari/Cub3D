@@ -37,10 +37,10 @@ typedef struct mlx_Line
 
 typedef struct mlx_Color
 {
+	uint8_t	t;
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
-	uint8_t	a;
 }	t_xColor;
 
 typedef struct mlx_Renderer
@@ -76,7 +76,7 @@ t_xRect	mlx_get_rect(int x, int y, int w, int h);
 t_xCircle	mlx_get_circle(int x, int y, int r);
 t_xRenderer	mlx_create_renderer(void *mlx, int size_x, int size_y);
 
-int		mlx_trgb_to_hex(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
+int		mlx_get_hex_trgb(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
 
 
 #endif

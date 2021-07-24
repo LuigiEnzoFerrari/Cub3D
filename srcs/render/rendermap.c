@@ -20,7 +20,7 @@ void	renderMap(t_xRenderer *img, char **map)
 				tileColor = 255;
 			else
 				tileColor = 0;
-			mlx_set_render_color(img, mlx_trgb_to_hex(0, tileColor, tileColor, tileColor));
+			mlx_set_render_color(img, mlx_get_hex_trgb(0, tileColor, tileColor, tileColor));
 			mlx_draw_fill_rect(img,
 			mlx_get_rect(tileX * MINIMAP_SCALE, 
 					tileY * MINIMAP_SCALE,
