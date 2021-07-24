@@ -32,33 +32,36 @@ void	renderPlayer(t_vars *vars)
 				vars->player.w * MINIMAP_SCALE,
 				vars->player.h * MINIMAP_SCALE));
 
-	mlx_draw_line(&vars->renderer,
-	mlx_get_line(MINIMAP_SCALE * vars->player.x,
-				MINIMAP_SCALE * vars->player.y,
-				MINIMAP_SCALE * vars->player.x + cos(vars->player.rotationAngle) * 40,
-				MINIMAP_SCALE * vars->player.y + sin(vars->player.rotationAngle) * 40));
+	// mlx_draw_line(&vars->renderer,
+	// mlx_get_line(MINIMAP_SCALE * vars->player.x,
+	// 			MINIMAP_SCALE * vars->player.y,
+	// 			MINIMAP_SCALE * vars->player.x + cos(vars->player.rotationAngle) * 40,
+	// 			MINIMAP_SCALE * vars->player.y + sin(vars->player.rotationAngle) * 40));
 }
 
-// void	prjection()
-// {
-// 	for (int i = 0; i < NUM_RAY; i++)
-// 	{
-// 		float	distanceProjPlane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
-// 		float	projectedWallHeight = (TILE_SIZE / rays[i].distance) * distanceProjPlane;
+void	renderPro(t_vars *vars, t_rays *rays, t_P1 player)
+{
+	mlx_set_render_color(&vars->renderer, 0x333333);
+	for (int i = 0; i < NUM_RAY; i++)
+	{
+		float	perpDistance = rays[i].distance * cos(rays[i].rayAngle - player.rotationAngle);
+		float	distanceProjPlane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
+		float	projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
 
-// 		int	wallStripHeight = (int)projectedWallHeight;
-// 		int	wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
-// 		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
+		int	wallStripHeight = (int)projectedWallHeight;
 
-// 		int	wallBottomPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
-// 		wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
+		int	wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
+		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
 
-// 		for (int y = walltopPixel; y < wallBottomPixel; y++)
-// 		{
-			
-// 		}
-// 	}
-// }
+		int	wallBottomPixel = (WINDOW_HEIGHT / 2) + (wallStripHeight / 2);
+		wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
+
+		for (int y = wallTopPixel; y < wallBottomPixel; y++)
+		{
+			mlx_put_pixel(&vars->renderer, i, y);
+		}
+	}
+}
 
 void	renderRays(t_vars *vars)
 {
@@ -76,10 +79,15 @@ void	renderRays(t_vars *vars)
 
 void	renderBack(t_xRenderer *renderer)
 {
-	mlx_set_render_color(renderer, 0x8B008B);
+	mlx_set_render_color(renderer, 0x2b2f77);
 	mlx_draw_fill_rect(renderer,
-	mlx_get_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
+	mlx_get_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT >> 1));
+	
+	mlx_set_render_color(renderer, 0x6b4984);
+	mlx_draw_fill_rect(renderer,
+	mlx_get_rect(0, WINDOW_HEIGHT >> 1, WINDOW_WIDTH, WINDOW_HEIGHT >> 1));
 }
+
 void	castAllRays(t_P1 player, char **map, t_rays *rays)
 {
 	float rayAngle = player.rotationAngle - (FOV_ANGLE / 2);
@@ -102,6 +110,7 @@ void	render(t_vars *vars)
 	renderMap(&vars->renderer, vars->set.map);
 	renderPlayer(vars);
 	renderRays(vars);
+	renderPro(vars, vars->rays, vars->player);
 	mlx_render_present(vars->mlx, vars->window, vars->renderer.img);
 }
 

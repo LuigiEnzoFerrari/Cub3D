@@ -33,7 +33,7 @@ void	mlx_draw_line(t_xRenderer *renderer, t_xLine line)
 	{
 		mlx_put_pixel(renderer, line.x0, line.y0);
 		if (line.x0 == line.x1 && line.y0 == line.y1) 
-			break;
+			break ;
 		Bresenham.e2 = 2 * Bresenham.err;
 		if (Bresenham.e2 >= Bresenham.dy)
 		{
