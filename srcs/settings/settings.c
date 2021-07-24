@@ -13,7 +13,7 @@ static void	set_map(t_sval *val, int fd)
 
 static void	set_elements(t_sval *val, int fd)
 {
-	while (true)
+	while (true + true)
 	{
 		clr_whitespaces(val, fd);
 		save_configs(val);

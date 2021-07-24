@@ -2,25 +2,14 @@
 
 int	hasWall(char **map, float x, float y)
 {
+	int indexGridX;
+	int indexGridY;
+
+	indexGridX = floor(x / TILE_SIZE);
+	indexGridY = floor(y / TILE_SIZE);
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
 		return 1;
-	int indexGridX = floor(x / TILE_SIZE);
-	int indexGridY = floor(y / TILE_SIZE);
 	return map[indexGridY][indexGridX] != '0';
-}
-
-void	movePlayer(t_vars *vars)
-{
-	vars->player.rotationAngle += vars->player.turnDirection * vars->player.turnSpeed;
-	float	moveStep = vars->player.walkDirection * vars->player.walkSpeed;
-	float	newPlayerX = vars->player.x + cos(vars->player.rotationAngle) * moveStep;
-	float	newPlayerY = vars->player.y + sin(vars->player.rotationAngle) * moveStep;
-	if (!hasWall(vars->set.map, newPlayerX, newPlayerY))
-	{
-		vars->player.x = newPlayerX;
-		vars->player.y = newPlayerY;
-	}
-
 }
 
 void	renderPlayer(t_vars *vars)
@@ -41,19 +30,19 @@ void	renderPlayer(t_vars *vars)
 
 void	renderPro(t_vars *vars, t_rays *rays, t_P1 player)
 {
-	mlx_set_render_color(&vars->renderer, 0x333333);
+	mlx_set_render_color(&vars->renderer, 0x00131313);
 	for (int i = 0; i < NUM_RAY; i++)
 	{
 		float	perpDistance = rays[i].distance * cos(rays[i].rayAngle - player.rotationAngle);
-		float	distanceProjPlane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
+		float	distanceProjPlane = (WINDOW_WIDTH >> 1) / tan(FOV_ANGLE / 2);
 		float	projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
 
 		int	wallStripHeight = (int)projectedWallHeight;
 
-		int	wallTopPixel = (WINDOW_HEIGHT / 2) - (wallStripHeight / 2);
+		int	wallTopPixel = (WINDOW_HEIGHT >> 1) - (wallStripHeight >> 1);
 		wallTopPixel = wallTopPixel < 0 ? 0 : wallTopPixel;
 
-		int	wallBottomPixel = (WINDOW_HEIGHT / 2) + (wallStripHeight / 2);
+		int	wallBottomPixel = (WINDOW_HEIGHT >> 1) + (wallStripHeight >> 1);
 		wallBottomPixel = wallBottomPixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wallBottomPixel;
 
 		for (int y = wallTopPixel; y < wallBottomPixel; y++)

@@ -13,14 +13,19 @@ static float	distanceBetweenPoints(float x1, float y1, float x2, float y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *rays)
+void	rayCasting(t_P1 player, char **map, float rayAngle, int i, t_rays *rays)
 {
 	rayAngle = normalizeAngle(rayAngle);
 
-	int	isRayFacingDown = rayAngle > 0 && rayAngle < PI;
-	int	isRayFacingUp = !isRayFacingDown;
-	int	isRayFacingRight = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
-	int isRayFacingLeft = !isRayFacingRight;
+	// int	down = rayAngle > 0 && rayAngle < PI;
+	// int	up = !down;
+	// int	right = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
+	// int left = !right;
+
+	rays[i].down = rayAngle > 0 && rayAngle < PI;
+	rays[i].up = !rays[i].down;
+	rays[i].right = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
+	rays[i].left = !rays[i].right;
 
 	float xintercept, yintercept;
 	float xstep, ystep;
@@ -31,16 +36,16 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *ra
 	int	horzWallContent = 0;
 
 	yintercept = floor(player.y / TILE_SIZE) * TILE_SIZE;
-	yintercept += isRayFacingDown ? TILE_SIZE : 0;
+	yintercept += rays[i].down ? TILE_SIZE : 0;
 
 	xintercept = player.x + (yintercept -player.y) / tan(rayAngle);
 
 	ystep = TILE_SIZE;
-	ystep *= isRayFacingUp ? -1 : 1;
+	ystep *= rays[i].up ? -1 : 1;
 
 	xstep = TILE_SIZE / tan(rayAngle);
-	xstep *= (isRayFacingLeft && xstep > 0) ? -1 : 1;
-	xstep *= (isRayFacingRight && xstep < 0) ? -1 : 1;
+	xstep *= (rays[i].left && xstep > 0) ? -1 : 1;
+	xstep *= (rays[i].right && xstep < 0) ? -1 : 1;
 
 	float nextHorzTouchX = xintercept;
 	float nextHorzTouchY = yintercept;
@@ -48,7 +53,7 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *ra
 	while (nextHorzTouchX >= 0 && nextHorzTouchX <= WINDOW_WIDTH && nextHorzTouchY >= 0 && nextHorzTouchY <= WINDOW_HEIGHT)
 	{
 		float xToCheck = nextHorzTouchX;
-		float yToCheck = nextHorzTouchY + (isRayFacingUp ? -1 : 0);
+		float yToCheck = nextHorzTouchY + (rays[i].up ? -1 : 0);
 
 		if (hasWall(map, xToCheck, yToCheck))
 		{
@@ -70,23 +75,23 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *ra
 	int	vertWallContent = 0;
 
 	xintercept = floor(player.x / TILE_SIZE) * TILE_SIZE;
-	xintercept += isRayFacingRight ? TILE_SIZE : 0;
+	xintercept += rays[i].right ? TILE_SIZE : 0;
 
 	yintercept = player.y + (xintercept - player.x) * tan(rayAngle);
 
 	xstep = TILE_SIZE;
-	xstep *= isRayFacingLeft ? -1 : 1;
+	xstep *= rays[i].left ? -1 : 1;
 
 	ystep = TILE_SIZE * tan(rayAngle);
-	ystep *= (isRayFacingUp && ystep > 0) ? -1 : 1;
-	ystep *= (isRayFacingDown  && ystep < 0) ? -1 : 1;
+	ystep *= (rays[i].up && ystep > 0) ? -1 : 1;
+	ystep *= (rays[i].down  && ystep < 0) ? -1 : 1;
 
 	float nextVertTouchX = xintercept;
 	float nextVertTouchY = yintercept;
 
 	while (nextVertTouchX >= 0 && nextVertTouchX <= WINDOW_WIDTH && nextVertTouchY >= 0 && nextVertTouchY <= WINDOW_HEIGHT)
 	{
-		float xToCheck = nextVertTouchX + (isRayFacingLeft ? -1 : 0);
+		float xToCheck = nextVertTouchX + (rays[i].left ? -1 : 0);
 		float yToCheck = nextVertTouchY;
 
 		if (hasWall(map, xToCheck, yToCheck))
@@ -109,23 +114,23 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *ra
 	? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY) : FLT_MAX;
 	if (vertHitDistance < horzHitDistance)
 	{
-		rays[stripId].distance = vertHitDistance;
-		rays[stripId].wallHitX = vertWallHitX;
-		rays[stripId].wallHitY = vertWallHitY;
-		rays[stripId].wallHitContent = vertWallContent;
-		rays[stripId].wasHisVerical = 1;
+		rays[i].distance = vertHitDistance;
+		rays[i].wallHitX = vertWallHitX;
+		rays[i].wallHitY = vertWallHitY;
+		rays[i].wallHitContent = vertWallContent;
+		rays[i].wasHisVerical = 1;
 	}
 	else
 	{
-		rays[stripId].distance = horzHitDistance;
-		rays[stripId].wallHitX = horzWallHitX;
-		rays[stripId].wallHitY = horzWallHitY;
-		rays[stripId].wallHitContent = horzWallContent;
-		rays[stripId].wasHisVerical = 0;
+		rays[i].distance = horzHitDistance;
+		rays[i].wallHitX = horzWallHitX;
+		rays[i].wallHitY = horzWallHitY;
+		rays[i].wallHitContent = horzWallContent;
+		rays[i].wasHisVerical = 0;
 	}
-	rays[stripId].rayAngle = rayAngle;
-	rays[stripId].isRayFacingDown = isRayFacingDown;
-	rays[stripId].isRayFacingUp = isRayFacingUp;
-	rays[stripId].isRayFacingLeft = isRayFacingLeft;
-	rays[stripId].isRayFacingRight = isRayFacingRight;
+	rays[i].rayAngle = rayAngle;
+	rays[i].down = rays[i].down;
+	rays[i].up = rays[i].up;
+	rays[i].left = rays[i].left;
+	rays[i].right = rays[i].right;
 }

@@ -30,8 +30,11 @@ void	init_all(t_vars *vars)
 	ft_putarraydelim_fd(vars->set.map, '\n', 1);
 	set_player(&vars->player);
 
-
 	vars->mlx = mlx_init();
 	vars->window = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
 	vars->renderer = mlx_create_renderer(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// vars->window = mlx_new_window(vars->mlx, vars->set.resolution.h,
+	// vars->set.resolution.w, "3DCub");
+	// vars->renderer = mlx_create_renderer(vars->mlx, vars->set.resolution.h,
+	// vars->set.resolution.w);
 }

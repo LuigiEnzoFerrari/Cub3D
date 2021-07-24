@@ -1,6 +1,5 @@
 #include "cub.h"
 
-
 static int exit_game(t_vars *vars) //temporary
 {
 		mlx_destroy_window(vars->mlx, vars->window);
@@ -13,13 +12,17 @@ static int	key_pressed(int event, t_vars *vars)
 {
 	if (event == KEY_ESC)
 		exit_game(vars);
-	if (event == KEY_UP)
+	if (event == KEY_W)
 		vars->player.walkDirection = 1;
-	if (event == KEY_DOWN)
+	if (event == KEY_S)
 		vars->player.walkDirection = -1;
-	if (event == KEY_LEFT)
+	if (event == KEY_D)
 		vars->player.turnDirection = 1;
+	if (event == KEY_A)
+		vars->player.turnDirection = -1;
 	if (event == KEY_RIGHT)
+		vars->player.turnDirection = 1;
+	if (event == KEY_LEFT)
 		vars->player.turnDirection = -1;
 	update(vars);
 	render(vars);
@@ -28,15 +31,18 @@ static int	key_pressed(int event, t_vars *vars)
 
 static int key_released(int event, t_vars *vars)
 {
-	if (event == KEY_UP)
+	if (event == KEY_W)
 		vars->player.walkDirection = 0;
-	if (event == KEY_DOWN)
+	if (event == KEY_S)
 		vars->player.walkDirection = 0;
-	if (event == KEY_LEFT)
+	if (event == KEY_D)
+		vars->player.turnDirection = 0;
+	if (event == KEY_A)
 		vars->player.turnDirection = 0;
 	if (event == KEY_RIGHT)
 		vars->player.turnDirection = 0;
-	vars->set.cell.a = 0;
+	if (event == KEY_LEFT)
+		vars->player.turnDirection = 0;
 	return (0);
 }
 

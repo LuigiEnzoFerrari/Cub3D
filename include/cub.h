@@ -53,10 +53,10 @@ typedef struct s_ray
 	float	wallHitY;
 	float	distance;
 	int		wasHisVerical;
-	int		isRayFacingUp;
-	int		isRayFacingDown;
-	int		isRayFacingLeft;
-	int		isRayFacingRight;
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
 	int		wallHitContent;
 }	t_rays;
 
@@ -105,5 +105,6 @@ void	render(t_vars *vars);
 
 void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *rays);
 int		hasWall(char **map, float x, float y);
+void	movePlayer(t_vars *vars);
 
 #endif
