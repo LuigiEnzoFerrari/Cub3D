@@ -24,17 +24,15 @@ void	free_set(t_set *set)
 
 void	drawRects(t_vars *vars)
 {
-	mlx_set_render_color(&vars->renderer,
-	mlx_get_hex_trgb(vars->set.cell.t, vars->set.cell.r, vars->set.cell.g, vars->set.cell.b));
+	//two square in y = 150
+	mlx_set_render_color(&vars->renderer, vars->set.llec);
 	mlx_draw_fill_rect(&vars->renderer,
-	mlx_get_rect( 50, 50, 50, 50));
+	mlx_get_rect( 50, 150, 50, 50));
 	mlx_render_present(vars->mlx, vars->window, vars->renderer.img);
 
-
-	mlx_set_render_color(&vars->renderer,
-	mlx_get_hex_trgb(vars->set.floor.t, vars->set.floor.r, vars->set.floor.g, vars->set.floor.b));
+	mlx_set_render_color(&vars->renderer, vars->set.roolf);
 	mlx_draw_fill_rect(&vars->renderer,
-	mlx_get_rect( 200, 50, 50, 50));
+	mlx_get_rect( 200, 150, 50, 50));
 	mlx_render_present(vars->mlx, vars->window, vars->renderer.img);
 }
 

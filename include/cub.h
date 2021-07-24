@@ -19,8 +19,6 @@ typedef struct s_setting
 {
 	char		**map;
 	t_TEX		tex;
-	t_xColor	cell;
-	t_xColor	floor;
 	int			llec;
 	int			roolf;
 	t_RES		resolution;

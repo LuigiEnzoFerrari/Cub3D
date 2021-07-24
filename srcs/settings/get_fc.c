@@ -1,11 +1,12 @@
 #include "cub.h"
 
-static t_xColor	get_RGB(char *str)
+static int	get_RGB(char *str)
 {
 	t_xColor	rgb;
 	char		*ptr;
 
 	ptr = str;
+	rgb.t = 0;
 	str = ft_skipctype(str, ft_isdigit, 0);
 	rgb.r = ft_atoi(str);
 	str = ft_skipctype(str, ft_isdigit, 1);
@@ -15,10 +16,10 @@ static t_xColor	get_RGB(char *str)
 	str = ft_skipctype(str, ft_isdigit, 0);
 	rgb.b = ft_atoi(str);
 	free(ptr);
-	return (rgb);
+	return (mlx_get_hex_trgb(rgb.t, rgb.r, rgb.g, rgb.b));
 }
 
-static void	set_FC(char *str, bool *rgb, t_xColor *rgba, t_check *cvalues)
+static void	set_FC(char *str, bool *rgb, t_check *cvalues, int *trgb)
 {
 	if (*rgb == true)
 	{
@@ -26,11 +27,11 @@ static void	set_FC(char *str, bool *rgb, t_xColor *rgba, t_check *cvalues)
 		free(str);
 		return ;
 	}
-	*rgba = get_RGB(str);
+	*trgb = get_RGB(str);
 	*rgb = true;
 }
 
-void	get_FC(t_sval *val)
+void		get_FC(t_sval *val)
 {
 	char	*str;
 
@@ -42,7 +43,7 @@ void	get_FC(t_sval *val)
 		free(str);
 	}
 	else if (*val->str == 'F')
-		set_FC(str, &val->cvalues.floor, &val->set.floor, &val->cvalues);
+		set_FC(str, &val->cvalues.floor, &val->cvalues, &val->set.roolf);
 	else if (*val->str == 'C')
-		set_FC(str, &val->cvalues.color, &val->set.cell, &val->cvalues);
+		set_FC(str, &val->cvalues.color, &val->cvalues, &val->set.llec);
 }
