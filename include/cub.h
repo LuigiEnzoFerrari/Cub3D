@@ -50,12 +50,14 @@ void	get_R(t_sval *val);
 void	get_FC(t_sval *val);
 char	*get_values(char *str);
 
-char	**cpy_map(t_list *lst);
-
 void	check_line(t_list **map, t_sval *val, int fd);
-void	check_after_map(t_sval *val, int fd, t_list **map);
-void	check_chr_get_map(t_list **map, t_sval *val, int fd);
-void	check_befor_map(t_sval *val, int fd);
+int		good_line(char *str, t_cmap *cmap);
+void	get_check_map(t_sval *val, int fd);
+
+void	map_clear_spaces(t_sval *val);
+size_t	size_map(char **map);
+int		n_whitecolumn(char **str);
+
 int		istexture(char *str);
 
 void	renderMap(t_xRenderer *img, char **map);

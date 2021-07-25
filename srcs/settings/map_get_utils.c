@@ -16,8 +16,12 @@ static int	valid_map(int c)
 	return (0);
 }
 
-static int	good_line(char *str, t_cmap *cmap)
+// static	
+
+int	good_line(char *str, t_cmap *cmap)
 {
+	char	*ptr;
+
 	while (*str == ' ')
 		str++;
 	if (*str != '1')
@@ -35,7 +39,15 @@ static int	good_line(char *str, t_cmap *cmap)
 			}
 			cmap->player = true;
 		}
+		if (*str == '1')
+			ptr = str;
 		str++;
+	}
+	while (*ptr)
+	{
+		if (*ptr != '1' && *ptr != ' ')
+			return (0);
+		ptr++;
 	}
 	return (1);
 }
@@ -48,40 +60,9 @@ void	check_line(t_list **map, t_sval *val, int fd)
 	if (good_line(str, &val->cmap))
 		return ;
 	if (val->cmap.dplayer == true)
-		ft_putendl_fd("Multiple Players", 0);
+		ft_putendl_fd("Multiple Players\n", 0);
 	else
-		ft_putendl_fd("Shit Map", 0);
+		ft_putendl_fd("Invalid map\n", 0);
 	ft_lstclear(map, free);
-	exit_elements(val, fd);
-}
-
-void	check_after_map(t_sval *val, int fd, t_list **map)
-{
-	t_cmap temp;
-
-	temp.player = false;
-	clr_whitelines(val, fd);
-	if (*val->str == '\0')
-	{
-		free(val->str);
-		return ;
-	}
-	else if (good_line(val->str, &temp))
-		ft_putendl_fd("Double map or splited map\n", 0);
-	else
-		ft_putendl_fd("Invalid key in the end of the file\n", 0);
-	ft_lstclear(map, free);
-	exit_elements(val, fd);
-}
-
-void	check_befor_map(t_sval *val, int fd)
-{
-	char	*str;
-
-	clr_whitelines(val, fd);
-	str = ft_skipctype(val->str, ft_isspace, 1);
-	if (*str == '1')
-		return ;
-	ft_putendl_fd("Invalid key found", 1);
 	exit_elements(val, fd);
 }

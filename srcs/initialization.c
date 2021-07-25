@@ -27,11 +27,11 @@ void	init_all(t_vars *vars)
 {
 	vars->set = settings();
 
-	vars->rays = malloc(sizeof(t_rays) * NUM_RAY);
-	set_player(&vars->player);
-	free_set(&vars->set);
+	// vars->rays = malloc(sizeof(t_rays) * NUM_RAY);
+	// set_player(&vars->player);
+	// free_set(&vars->set);
 
-	vars->mlx = mlx_init();
-	vars->window = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
-	vars->renderer = mlx_create_renderer(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// vars->mlx = mlx_init();
+	// vars->window = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "3DCub");
+	// vars->renderer = mlx_create_renderer(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 }

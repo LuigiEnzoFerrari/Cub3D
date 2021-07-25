@@ -112,9 +112,9 @@ int	main(void)
 	t_vars vars;
 
 	init_all(&vars);
-	update(&vars);
-	render(&vars);
-	input(&vars);
-	mlx_loop(vars.mlx);
+	// update(&vars);
+	// render(&vars);
+	// input(&vars);
+	// mlx_loop(vars.mlx);
 	return (0);
 }
