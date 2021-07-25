@@ -34,7 +34,7 @@ void	renderPro(t_vars *vars, t_rays *rays, t_P1 player)
 	for (int i = 0; i < NUM_RAY; i++)
 	{
 		float	perpDistance = rays[i].distance * cos(rays[i].rayAngle - player.rotationAngle);
-		float	distanceProjPlane = (WINDOW_WIDTH >> 1) / tan(FOV_ANGLE / 2);
+		float	distanceProjPlane = (WINDOW_WIDTH >> 1) / tan(player.fov / 2);
 		float	projectedWallHeight = (TILE_SIZE / perpDistance) * distanceProjPlane;
 
 		int	wallStripHeight = (int)projectedWallHeight;
@@ -66,13 +66,12 @@ void	renderRays(t_vars *vars)
 	}
 }
 
-void	renderBack(t_xRenderer *renderer)
-{
-	mlx_set_render_color(renderer, 0x2b2f77);
+void	renderBack(t_xRenderer *renderer, int cell, int floor)
+{	
+	mlx_set_render_color(renderer, cell);
 	mlx_draw_fill_rect(renderer,
 	mlx_get_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT >> 1));
-	
-	mlx_set_render_color(renderer, 0x6b4984);
+	mlx_set_render_color(renderer, floor);
 	mlx_draw_fill_rect(renderer,
 	mlx_get_rect(0, WINDOW_HEIGHT >> 1, WINDOW_WIDTH, WINDOW_HEIGHT >> 1));
 }
@@ -82,12 +81,12 @@ void	raysCasting(t_P1 player, char **map, t_rays *rays)
 	float	angle;
 	size_t	i;
 	
-	angle = player.rotationAngle - (FOV_ANGLE / 2);
+	angle = player.rotationAngle - (player.fov / 2);
 	i = 0;
 	while (i < NUM_RAY)
 	{
 		rayCasting(player, map, angle, i, rays);
-		angle += FOV_ANGLE / NUM_RAY;
+		angle += player.fov / NUM_RAY;
 		i++;
 	}
 }
@@ -100,7 +99,7 @@ void	update(t_vars *vars)
 
 void	render(t_vars *vars)
 {
-	renderBack(&vars->renderer);
+	renderBack(&vars->renderer, vars->set.cell, vars->set.floor);
 	renderMap(&vars->renderer, vars->set.map);
 	renderPlayer(vars);
 	renderRays(vars);
@@ -113,9 +112,9 @@ int	main(void)
 	t_vars vars;
 
 	init_all(&vars);
-	// update(&vars);
-	// render(&vars);
-	// input(&vars);
-	// mlx_loop(vars.mlx);
+	update(&vars);
+	render(&vars);
+	input(&vars);
+	mlx_loop(vars.mlx);
 	return (0);
 }

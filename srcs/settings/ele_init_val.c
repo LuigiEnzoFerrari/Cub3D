@@ -17,13 +17,14 @@ static void	init_checkv(t_check *cvalues)
 	cvalues->inv.res = false;
 	cvalues->inv.tex = false;
 	cvalues->inv.ch = false;
-	cvalues->cmap.bot = false;
-	cvalues->cmap.top = false;
-	cvalues->cmap.player = false;
 }
 
 void	init_val(t_sval *val)
 {
+	val->cmap.player = false;
+	val->cmap.dplayer = false;
+	val->cmap.x_split = false;
+	val->cmap.y_split = false;
 	init_checkv(&val->cvalues);
 	init_TEX(&val->set.tex);
 	init_RES(&val->set.resolution);

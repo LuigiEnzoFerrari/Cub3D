@@ -17,11 +17,6 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int i, t_rays *rays)
 {
 	rayAngle = normalizeAngle(rayAngle);
 
-	// int	down = rayAngle > 0 && rayAngle < PI;
-	// int	up = !down;
-	// int	right = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
-	// int left = !right;
-
 	rays[i].down = rayAngle > 0 && rayAngle < PI;
 	rays[i].up = !rays[i].down;
 	rays[i].right = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;

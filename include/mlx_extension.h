@@ -4,7 +4,7 @@
 # include <stdint.h>
 # include <stddef.h>
 
-#include "mlx.h"
+# include "mlx.h"
 
 typedef struct mlx_Rect
 {
@@ -69,7 +69,6 @@ void	mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect);
 void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle);
 void	mlx_set_render_color(t_xRenderer *renderer, int color);
 void	mlx_render_present(void *mlx, void *win, void *img);
-
 
 t_xLine	mlx_get_line(int x0, int y0, int x1, int y1);
 t_xRect	mlx_get_rect(int x, int y, int w, int h);

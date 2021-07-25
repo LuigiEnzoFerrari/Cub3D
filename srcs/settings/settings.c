@@ -4,9 +4,9 @@ static void	set_map(t_sval *val, int fd)
 {
 	t_list	*map;
 
-	check_inv_ch(val, fd);
-	get_map(&map, val, fd);
-	check_inv_end(val, fd, &map);
+	check_befor_map(val, fd);
+	check_chr_get_map(&map, val, fd);
+	check_after_map(val, fd, &map);
 	val->set.map = cpy_map(map);
 	ft_lstclear(&map, free);
 }
@@ -33,6 +33,7 @@ t_set	settings(void)
 	set_elements(&val, fd);
 	set_map(&val, fd);
 	printall(&val);
+	ft_putarraydelim_fd(val.set.map, '\n', 1);
 	// free_all(&val);
 	// ft_arrayfree(val.set.map);
 	close(fd);

@@ -18,14 +18,14 @@ char	**cpy_map(t_list *lst)
 	return (ptr);
 }
 
-void	get_map(t_list **map, t_sval *val, int fd)
+void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 {
 	ssize_t	r;
 	t_list	*ptr;
 
-	r = 1;
 	*map = ft_lstnew(val->str);
 	check_line(map, val, fd);
+	r = 1;
 	ptr = *map;
 	while (r > 0)
 	{
