@@ -16,7 +16,19 @@ static int	valid_map(int c)
 	return (0);
 }
 
-// static	
+static int map_basic_player(char c, t_cmap *cmap)
+{
+		if (isplayer(c))
+		{
+			if (cmap->player == true)
+			{
+				cmap->dplayer = true;
+				return (0);
+			}
+			cmap->player = true;
+		}
+	return (1);
+}
 
 int	map_basic_line(char *str, t_cmap *cmap)
 {
@@ -30,15 +42,17 @@ int	map_basic_line(char *str, t_cmap *cmap)
 	{
 		if (!valid_map(*str))
 			return (0);
-		if (isplayer(*str))
-		{
-			if (cmap->player == true)
-			{
-				cmap->dplayer = true;
-				return (0);
-			}
-			cmap->player = true;
-		}
+		if (!map_basic_player(*str, cmap))
+			return (0);
+		// if (isplayer(*str))
+		// {
+		// 	if (cmap->player == true)
+		// 	{
+		// 		cmap->dplayer = true;
+		// 		return (0);
+		// 	}
+		// 	cmap->player = true;
+		// }
 		if (*str == '1')
 			ptr = str;
 		str++;

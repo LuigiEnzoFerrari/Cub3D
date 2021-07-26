@@ -2,6 +2,8 @@
 
 int	map_line(char *map_line)
 {
+	while (*map_line == ' ')
+		map_line++;
 	while (*map_line)
 	{
 		if (map_line[1] == ' ')

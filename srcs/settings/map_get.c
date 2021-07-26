@@ -54,7 +54,7 @@ static void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 
 static void	check_after_map(t_sval *val, int fd, t_list **map)
 {
-	t_cmap temp;
+	t_cmap	temp;
 
 	temp.player = false;
 	clr_whitelines(val, fd);
