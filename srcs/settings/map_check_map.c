@@ -62,7 +62,12 @@ static int	map_colomns(char **map)
 	}
 	if (!isClose(map))
 	{
-		ft_putendl_fd("Invalid Map", 1);
+		ft_putendl_fd("Invalid Map", 0);
+		return (0);
+	}
+	if (!map_column(map))
+	{
+		ft_putendl_fd("Must be close by walls", 0);
 		return (0);
 	}
 	return (1);

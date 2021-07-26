@@ -44,7 +44,7 @@ static size_t	n_numbers(char *str)
 	return (n);
 }
 
-static size_t	n_commas (char *str)
+static size_t	n_commas(char *str)
 {
 	size_t	n;
 

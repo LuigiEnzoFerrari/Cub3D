@@ -11,7 +11,7 @@ void	exit_cub_settings(t_sval *val, t_inv inv, int fd)
 	else if (inv.rgb)
 		ft_putendl_fd("\nInvalid rgb color\n", 0);
 	else if (inv.empty)
-		ft_putendl_fd("\nEmptyfile\n", 0);
+		ft_putendl_fd("\nEmpty file\n", 0);
 	else if (inv.dkey)
 		ft_putendl_fd("\nDouble command line\n", 0);
 	free_all(val);

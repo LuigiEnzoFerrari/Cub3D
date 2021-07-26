@@ -16,17 +16,17 @@ static int	valid_map(int c)
 	return (0);
 }
 
-static int map_basic_player(char c, t_cmap *cmap)
+static int	map_basic_player(char c, t_cmap *cmap)
 {
-		if (isplayer(c))
+	if (isplayer(c))
+	{
+		if (cmap->player == true)
 		{
-			if (cmap->player == true)
-			{
-				cmap->dplayer = true;
-				return (0);
-			}
-			cmap->player = true;
+			cmap->dplayer = true;
+			return (0);
 		}
+		cmap->player = true;
+	}
 	return (1);
 }
 
@@ -44,15 +44,6 @@ int	map_basic_line(char *str, t_cmap *cmap)
 			return (0);
 		if (!map_basic_player(*str, cmap))
 			return (0);
-		// if (isplayer(*str))
-		// {
-		// 	if (cmap->player == true)
-		// 	{
-		// 		cmap->dplayer = true;
-		// 		return (0);
-		// 	}
-		// 	cmap->player = true;
-		// }
 		if (*str == '1')
 			ptr = str;
 		str++;
@@ -74,9 +65,9 @@ void	map_basic_check(t_list **map, t_sval *val, int fd)
 	if (map_basic_line(str, &val->cmap))
 		return ;
 	if (val->cmap.dplayer == true)
-		ft_putendl_fd("Multiple Players\n", 0);
+		ft_putendl_fd("Multiple players", 0);
 	else
-		ft_putendl_fd("Invalid map\n", 0);
+		ft_putendl_fd("Invalid map", 0);
 	ft_lstclear(map, free);
 	exit_elements(val, fd);
 }

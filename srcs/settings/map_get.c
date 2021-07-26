@@ -26,7 +26,7 @@ static void	check_befor_map(t_sval *val, int fd)
 	str = ft_skipctype(val->str, ft_isspace, 1);
 	if (*str == '1')
 		return ;
-	ft_putendl_fd("Invalid key found", 1);
+	ft_putendl_fd("Invalid key found", 0);
 	exit_elements(val, fd);
 }
 
@@ -49,7 +49,15 @@ static void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 		ft_lstadd_back(&(*map), ptr);
 	}
 	if (*val->str == '\0')
+	{
 		free(val->str);
+		val->str = NULL;
+	}
+	if (!val->cmap.player)
+	{
+		ft_putendl_fd("Missing a player", 0);
+		exit_elements(val, 0);
+	}
 }
 
 static void	check_after_map(t_sval *val, int fd, t_list **map)

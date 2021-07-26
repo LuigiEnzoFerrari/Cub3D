@@ -31,7 +31,7 @@ static void	set_FC(char *str, bool *rgb, t_check *cvalues, int *trgb)
 	*rgb = true;
 }
 
-void		get_FC(t_sval *val)
+void	get_FC(t_sval *val)
 {
 	char	*str;
 

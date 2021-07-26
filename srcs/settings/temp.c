@@ -28,7 +28,6 @@ void	printall(t_sval *val)
 	ft_putchar('\n');
 	ft_putnbr(val->set.resolution.h);
 	ft_putchar('\n');
-
 }
 
 void	print_lst(t_list *lst)

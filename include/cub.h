@@ -63,6 +63,7 @@ size_t	len_map(char *map_line);
 void	replace_map(char *map, char *ptr, size_t x);
 int		hasWhiteColomns(char **str);
 int		map_line(char *map_line);
+int		map_column(char **map);
 
 int		istexture(char *str);
 

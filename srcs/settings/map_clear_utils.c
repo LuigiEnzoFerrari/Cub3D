@@ -25,7 +25,7 @@ void	replace_map(char *map, char *ptr, size_t x)
 	len = len_map(map);
 	while (i < len)
 	{
-		ptr[i]	= map[i];
+		ptr[i] = map[i];
 		i++;
 	}
 	while (i < x)
