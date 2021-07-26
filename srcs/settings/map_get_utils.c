@@ -18,7 +18,7 @@ static int	valid_map(int c)
 
 // static	
 
-int	good_line(char *str, t_cmap *cmap)
+int	map_basic_line(char *str, t_cmap *cmap)
 {
 	char	*ptr;
 
@@ -52,12 +52,12 @@ int	good_line(char *str, t_cmap *cmap)
 	return (1);
 }
 
-void	check_line(t_list **map, t_sval *val, int fd)
+void	map_basic_check(t_list **map, t_sval *val, int fd)
 {
 	char	*str;
 
 	str = val->str;
-	if (good_line(str, &val->cmap))
+	if (map_basic_line(str, &val->cmap))
 		return ;
 	if (val->cmap.dplayer == true)
 		ft_putendl_fd("Multiple Players\n", 0);

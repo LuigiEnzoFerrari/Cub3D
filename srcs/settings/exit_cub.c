@@ -21,7 +21,8 @@ void	exit_cub_settings(t_sval *val, t_inv inv, int fd)
 
 void	exit_elements(t_sval *val, int fd)
 {
-	free(val->str);
+	if (val->str)
+		free(val->str);
 	free_all(val);
 	close(fd);
 	exit(0);

@@ -2,9 +2,9 @@
 
 static void	set_map(t_sval *val, int fd)
 {
-	get_check_map(val, fd);
+	get_map(val, fd);
 	map_clear_spaces(val);
-	// check_map(val, fd);
+	check_map(val, fd);
 }
 
 static void	set_elements(t_sval *val, int fd)

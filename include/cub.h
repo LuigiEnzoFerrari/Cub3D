@@ -50,13 +50,19 @@ void	get_R(t_sval *val);
 void	get_FC(t_sval *val);
 char	*get_values(char *str);
 
-void	check_line(t_list **map, t_sval *val, int fd);
-int		good_line(char *str, t_cmap *cmap);
-void	get_check_map(t_sval *val, int fd);
+void	map_basic_check(t_list **map, t_sval *val, int fd);
+int		map_basic_line(char *str, t_cmap *cmap);
+void	get_map(t_sval *val, int fd);
 
 void	map_clear_spaces(t_sval *val);
 size_t	size_map(char **map);
 int		n_whitecolumn(char **str);
+void	check_map(t_sval *val, int fd);
+int		iswhite(char **str, int i);
+size_t	len_map(char *map_line);
+void	replace_map(char *map, char *ptr, size_t x);
+int		hasWhiteColomns(char **str);
+int		map_line(char *map_line);
 
 int		istexture(char *str);
 

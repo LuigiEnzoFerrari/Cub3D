@@ -1,6 +1,6 @@
 #include "cub.h"
 
-static size_t	len_map(char *map_line)
+size_t	len_map(char *map_line)
 {
 	size_t	i;
 	size_t	len;
@@ -14,6 +14,25 @@ static size_t	len_map(char *map_line)
 		map_line++;
 	}
 	return (len + 1);
+}
+
+void	replace_map(char *map, char *ptr, size_t x)
+{
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	len = len_map(map);
+	while (i < len)
+	{
+		ptr[i]	= map[i];
+		i++;
+	}
+	while (i < x)
+	{
+		ptr[i] = ' ';
+		i++;
+	}
 }
 
 size_t	size_map(char **map)
@@ -32,7 +51,7 @@ size_t	size_map(char **map)
 	return (len);
 }
 
-static int	iswhite(char **str, int i)
+int	iswhite(char **str, int i)
 {
 	while (*str)
 	{

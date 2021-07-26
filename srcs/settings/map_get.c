@@ -36,7 +36,7 @@ static void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 	t_list	*ptr;
 
 	*map = ft_lstnew(val->str);
-	check_line(map, val, fd);
+	map_basic_check(map, val, fd);
 	r = 1;
 	ptr = *map;
 	while (r > 0)
@@ -44,7 +44,7 @@ static void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 		r = get_next_line(fd, &val->str);
 		if (*val->str == '\0')
 			break ;
-		check_line(map, val, fd);
+		map_basic_check(map, val, fd);
 		ptr = ft_lstnew(val->str);
 		ft_lstadd_back(&(*map), ptr);
 	}
@@ -63,7 +63,7 @@ static void	check_after_map(t_sval *val, int fd, t_list **map)
 		free(val->str);
 		return ;
 	}
-	else if (good_line(val->str, &temp))
+	else if (map_basic_line(val->str, &temp))
 		ft_putendl_fd("Double map or splited map", 0);
 	else
 		ft_putendl_fd("Invalid key in the end of the file", 0);
@@ -71,7 +71,7 @@ static void	check_after_map(t_sval *val, int fd, t_list **map)
 	exit_elements(val, fd);
 }
 
-void	get_check_map(t_sval *val, int fd)
+void	get_map(t_sval *val, int fd)
 {
 	t_list	*map;
 
