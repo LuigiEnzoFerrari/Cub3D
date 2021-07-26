@@ -30,7 +30,6 @@ typedef struct s_setting
 	t_RES		resolution;
 }	t_set;
 
-
 typedef struct s_player
 {
 	float	x;

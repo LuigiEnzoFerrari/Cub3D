@@ -30,8 +30,8 @@ t_set	settings(void)
 	set_map(&val, fd);
 	printall(&val);
 	ft_putarraydelim_fd(val.set.map, '\n', 1);
-	free_all(&val);
-	ft_arrayfree(val.set.map);
+	// free_all(&val);
+	// ft_arrayfree(val.set.map);
 	close(fd);
 	return (val.set);
 }
