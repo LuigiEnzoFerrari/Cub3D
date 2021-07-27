@@ -59,7 +59,4 @@ typedef struct s_ray
 	int		wallHitContent;
 }	t_rays;
 
-void	init_RES(t_RES *res);
-void	init_TEX(t_TEX *tex);
-
 #endif

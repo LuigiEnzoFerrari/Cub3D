@@ -53,11 +53,6 @@ static void	check_chr_get_map(t_list **map, t_sval *val, int fd)
 		free(val->str);
 		val->str = NULL;
 	}
-	if (!val->cmap.player)
-	{
-		ft_putendl_fd("Missing a player", 0);
-		exit_elements(val, 0);
-	}
 }
 
 static void	check_after_map(t_sval *val, int fd, t_list **map)
@@ -85,6 +80,11 @@ void	get_map(t_sval *val, int fd)
 
 	check_befor_map(val, fd);
 	check_chr_get_map(&map, val, fd);
+	if (!val->cmap.player)
+	{
+		ft_putendl_fd("Missing a player", 0);
+		exit_elements(val, 0);
+	}
 	check_after_map(val, fd, &map);
 	val->set.map = cpy_map(map);
 	ft_lstclear(&map, free);

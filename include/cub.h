@@ -35,8 +35,6 @@ void	map_basic_check(t_list **map, t_sval *val, int fd);
 int		map_basic_line(char *str, t_cmap *cmap);
 void	get_map(t_sval *val, int fd);
 
-
-
 void	renderMap(t_xRenderer *img, char **map);
 void	input(t_vars *vars);
 void	update(t_vars *vars);

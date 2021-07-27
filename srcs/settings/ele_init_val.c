@@ -1,6 +1,5 @@
 #include "cub.h"
 
-
 void	init_RES(t_RES *res)
 {
 	res->h = 0;

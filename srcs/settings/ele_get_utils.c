@@ -1,4 +1,4 @@
-# include "cub.h"
+#include "cub.h"
 
 char	*get_values(char *str)
 {

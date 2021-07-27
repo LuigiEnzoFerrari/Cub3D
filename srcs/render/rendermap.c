@@ -16,11 +16,13 @@ void	renderMap(t_xRenderer *img, char **map)
 		{
 			tileX = j * TILE_SIZE;
 			tileY = i * TILE_SIZE;
-			if (map[i][j] != '0')
-				tileColor = 255;
-			else
+			if (map[i][j] == '0')
 				tileColor = 0;
-			mlx_set_render_color(img, mlx_get_hex_trgb(0, tileColor, tileColor, tileColor));
+			else if (map[i][j] == 'W')
+				tileColor = 0x00adf16a;
+			else
+				tileColor = 0x00ffffff;
+			mlx_set_render_color(img, tileColor);
 			mlx_draw_fill_rect(img,
 			mlx_get_rect(tileX * MINIMAP_SCALE, 
 					tileY * MINIMAP_SCALE,
