@@ -14,6 +14,21 @@ void	set_player(t_P1 *player)
 	player->fov = 60 * PI /180;
 }
 
+void	set_window(t_set *set)
+{
+	float	tile_x;
+	float	tile_y;
+
+	tile_x = len_map(*set->map);
+	tile_y = size_map(set->map);
+
+	set->tile_size = tile_y;
+	if (tile_x > tile_y)
+		set->tile_size = tile_x;
+	// printf("size_x: %d", set->tile_x);
+	// printf("size_y: %d", set->tile_y);
+}
+
 void	free_set(t_set *set)
 {
 	free(set->tex.east);
@@ -26,6 +41,7 @@ void	free_set(t_set *set)
 void	init_all(t_vars *vars)
 {
 	vars->set = settings();
+	set_window(&vars->set);
 	vars->rays = malloc(sizeof(t_rays) * NUM_RAY);
 	set_player(&vars->player);
 	free_set(&vars->set);

@@ -28,6 +28,7 @@ typedef struct s_setting
 	int			cell;
 	int			floor;
 	t_RES		resolution;
+	int			tile_size;
 }	t_set;
 
 typedef struct s_player
@@ -38,7 +39,8 @@ typedef struct s_player
 	float	h;
 	int		r;
 	int		turnDirection;
-	int		walkDirection;
+	double	walkDirection;
+	double	walkDirectiontwo;
 	double	fov;
 	double	rotationAngle;
 	float	walkSpeed;

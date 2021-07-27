@@ -1,5 +1,6 @@
 #include "cub.h"
 
+
 static void	set_map(t_sval *val, int fd)
 {
 	get_map(val, fd);
@@ -30,7 +31,7 @@ t_set	settings(void)
 	set_map(&val, fd);
 	printall(&val);
 	ft_putarraydelim_fd(val.set.map, '\n', 1);
-	// free_all(&val);
+	// free_textures(&val);
 	// ft_arrayfree(val.set.map);
 	close(fd);
 	return (val.set);

@@ -44,4 +44,6 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *ra
 int		hasWall(char **map, float x, float y);
 void	movePlayer(t_vars *vars);
 
+
+
 #endif

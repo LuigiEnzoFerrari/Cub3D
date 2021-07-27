@@ -1,6 +1,6 @@
 #include "cub.h"
 
-static void	free_textures(t_sval *val)
+void	free_textures(t_sval *val)
 {
 	if (val->cvalues.south)
 		free(val->set.tex.south);

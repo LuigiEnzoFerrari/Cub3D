@@ -14,9 +14,9 @@
 
 # define PI 3.14159265358979323846
 # define TWO_PI 6.28318530
-# define TILE_SIZE 46
+# define TILE_SIZE 50
 # define MAP_COLS 20
-# define MAP_ROWS 13
+# define MAP_ROWS 20
 # define WINDOW_WIDTH (MAP_COLS * TILE_SIZE)
 # define WINDOW_HEIGHT (MAP_ROWS * TILE_SIZE)
 

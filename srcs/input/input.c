@@ -17,9 +17,9 @@ static int	key_pressed(int event, t_vars *vars)
 	if (event == KEY_S)
 		vars->player.walkDirection = -1;
 	if (event == KEY_D)
-		vars->player.turnDirection = 1;
+		vars->player.walkDirectiontwo = 1;
 	if (event == KEY_A)
-		vars->player.turnDirection = -1;
+		vars->player.walkDirectiontwo = -1;
 	if (event == KEY_RIGHT)
 		vars->player.turnDirection = 1;
 	if (event == KEY_LEFT)
@@ -36,9 +36,9 @@ static int key_released(int event, t_vars *vars)
 	if (event == KEY_S)
 		vars->player.walkDirection = 0;
 	if (event == KEY_D)
-		vars->player.turnDirection = 0;
+		vars->player.walkDirectiontwo = 0;
 	if (event == KEY_A)
-		vars->player.turnDirection = 0;
+		vars->player.walkDirectiontwo = 0;
 	if (event == KEY_RIGHT)
 		vars->player.turnDirection = 0;
 	if (event == KEY_LEFT)

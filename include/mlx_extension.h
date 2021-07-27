@@ -27,6 +27,12 @@ typedef struct mlx_Point
 	int	y;
 }	t_xPoint;
 
+typedef struct mlx_FPoint
+{
+	float	x;
+	float	y;
+}	t_xFPoint;
+
 typedef struct mlx_Line
 {
 	int	x0;

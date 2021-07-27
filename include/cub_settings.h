@@ -67,6 +67,8 @@ void	print_lst(t_list *lst);
 int		check_configs(t_sval *val, int fd);
 void	exit_cub_settings(t_sval *val, t_inv inv, int fd);
 void	exit_elements(t_sval *val, int fd);
+void	free_textures(t_sval *val);
+
 
 void	get_TEX(t_sval *val);
 void	get_R(t_sval *val);
@@ -76,10 +78,10 @@ int		istexture(char *str);
 
 void	map_clear_spaces(t_sval *val);
 size_t	size_map(char **map);
+size_t	len_map(char *map_line);
 int		n_whitecolumn(char **str);
 void	check_map(t_sval *val, int fd);
 int		iswhite(char **str, int i);
-size_t	len_map(char *map_line);
 void	replace_map(char *map, char *ptr, size_t x);
 int		hasWhiteColomns(char **str);
 int		map_line(char *map_line);
