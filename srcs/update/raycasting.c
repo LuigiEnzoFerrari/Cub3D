@@ -22,8 +22,9 @@ void	rayDirection(float rayAngle, t_rays *rays)
 	rays->left = !rays->right;
 }
 
-void	rayCasting(t_P1 player, char **map, float rayAngle, int i, t_rays *rays)
+void	rayCasting(t_vars vars, float rayAngle, t_rays *rays)
 {
+	rayDirection(rayAngle, rays);
 	t_xFPoint	intercept;
 	t_xFPoint	step;
 
@@ -32,39 +33,34 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int i, t_rays *rays)
 	float horzWallHitY = 0;	
 	int	horzWallContent = 0;
 
-	rayDirection(rayAngle, &rays[i]);
-	intercept.y = floor(player.y / TILE_SIZE) * TILE_SIZE;
-	if (rays[i].down)
-		intercept.y += TILE_SIZE;
-	intercept.x = player.x + (intercept.y - player.y) / tan(rayAngle);
 
-	step.y = TILE_SIZE;
-	if (rays[i].up)
+	intercept.y = floor(vars.player.y / vars.set.tile_size) * vars.set.tile_size;
+	if (rays->down)
+		intercept.y += vars.set.tile_size;
+	intercept.x = vars.player.x + (intercept.y - vars.player.y) / tan(rayAngle);
+	step.y = vars.set.tile_size;
+	if (rays->up)
 		step.y = -step.y;
-	step.x = TILE_SIZE / tan(rayAngle);
-	if (rays[i].left && step.x > 0)
+	step.x = vars.set.tile_size / tan(rayAngle);
+	if (rays->left && step.x > 0)
 		step.x = -step.x;
-	if (rays[i].right && step.x < 0)
+	if (rays->right && step.x < 0)
 		step.x = -step.x;
-	// step.x *= (rays[i].left && step.x > 0) ? -1 : 1;
-	// step.x *= (rays[i].right && step.x < 0) ? -1 : 1;
-
-	// float nextHorzTouchX = intercept.x;
-	// float nextHorzTouchY = intercept.y;
 
 	while (intercept.x >= 0 && intercept.x <= WINDOW_WIDTH && intercept.y >= 0 && intercept.y <= WINDOW_HEIGHT)
 	{
 		float xToCheck = intercept.x;
-		float yToCheck = intercept.y + (rays[i].up ? -1 : 0);
+		float yToCheck = intercept.y + (rays->up ? -1 : 0);
 
-		if (hasWall(map, xToCheck, yToCheck))
+		if (hasWall(vars.set.map, xToCheck, yToCheck, vars.set))
 		{
 			horzWallHitX = intercept.x;
 			horzWallHitY = intercept.y;
-			horzWallContent = map[(int)floor(yToCheck / TILE_SIZE)][(int)floor(xToCheck / TILE_SIZE)];
+			horzWallContent = vars.set.map[(int)floor(yToCheck / vars.set.tile_size)][(int)floor(xToCheck / vars.set.tile_size)];
 			foundHorzWallHit = 1;
 			break ;
-		} else
+		}
+		else
 		{
 			intercept.x += step.x;
 			intercept.y += step.y;
@@ -76,67 +72,76 @@ void	rayCasting(t_P1 player, char **map, float rayAngle, int i, t_rays *rays)
 	float vertWallHitY = 0;
 	int	vertWallContent = 0;
 
-	intercept.x = floor(player.x / TILE_SIZE) * TILE_SIZE;
-	if (rays[i].right)
-		intercept.x +=TILE_SIZE;
-	intercept.y = player.y + (intercept.x - player.x) * tan(rayAngle);
-
-	step.x = TILE_SIZE;
-	if (rays[i].left)
+	intercept.x = floor(vars.player.x / vars.set.tile_size) * vars.set.tile_size;
+	if (rays->right)
+		intercept.x +=vars.set.tile_size;
+	intercept.y = vars.player.y + (intercept.x - vars.player.x) * tan(rayAngle);
+	step.x = vars.set.tile_size;
+	if (rays->left)
 		step.x = -step.x;
-	step.y = TILE_SIZE * tan(rayAngle);
-	if (rays[i].up && step.y > 0)
+	step.y = vars.set.tile_size * tan(rayAngle);
+	if (rays->up && step.y > 0)
 		step.y = -step.y;
-	if (rays[i].down  && step.y < 0)
+	if (rays->down  && step.y < 0)
 		step.y = -step.y;
-	// step.y *= (rays[i].up && step.y > 0) ? -1 : 1;
-	// step.y *= (rays[i].down  && step.y < 0) ? -1 : 1;
 
-	float nextVertTouchX = intercept.x;
-	float nextVertTouchY = intercept.y;
-
-	while (nextVertTouchX >= 0 && nextVertTouchX <= WINDOW_WIDTH && nextVertTouchY >= 0 && nextVertTouchY <= WINDOW_HEIGHT)
+	while (intercept.x >= 0 && intercept.x <= WINDOW_WIDTH && intercept.y >= 0 && intercept.y <= WINDOW_HEIGHT)
 	{
-		float xToCheck = nextVertTouchX + (rays[i].left ? -1 : 0);
-		float yToCheck = nextVertTouchY;
+		float xToCheck = intercept.x + (rays->left ? -1 : 0);
+		float yToCheck = intercept.y;
 
-		if (hasWall(map, xToCheck, yToCheck))
+		if (hasWall(vars.set.map, xToCheck, yToCheck, vars.set))
 		{
-			vertWallHitX = nextVertTouchX;
-			vertWallHitY = nextVertTouchY;
-			vertWallContent = map[(int)floor(yToCheck / TILE_SIZE)][(int)floor(xToCheck / TILE_SIZE)];
+			vertWallHitX = intercept.x;
+			vertWallHitY = intercept.y;
+			vertWallContent = vars.set.map[(int)floor(yToCheck / vars.set.tile_size)][(int)floor(xToCheck / vars.set.tile_size)];
 			foundVertWallHit = 1;
 			break ;
 		}
 		else
 		{
-			nextVertTouchX += step.x;
-			nextVertTouchY += step.y;
+			intercept.x += step.x;
+			intercept.y += step.y;
 		}
 	}
 	float horzHitDistance = foundHorzWallHit
-	? distanceBetweenPoints(player.x, player.y, horzWallHitX, horzWallHitY) : FLT_MAX;
+	? distanceBetweenPoints(vars.player.x, vars.player.y, horzWallHitX, horzWallHitY) : FLT_MAX;
 	float vertHitDistance = foundVertWallHit
-	? distanceBetweenPoints(player.x, player.y, vertWallHitX, vertWallHitY) : FLT_MAX;
+	? distanceBetweenPoints(vars.player.x, vars.player.y, vertWallHitX, vertWallHitY) : FLT_MAX;
 	if (vertHitDistance < horzHitDistance)
 	{
-		rays[i].distance = vertHitDistance;
-		rays[i].wallHitX = vertWallHitX;
-		rays[i].wallHitY = vertWallHitY;
-		rays[i].wallHitContent = vertWallContent;
-		rays[i].wasHisVerical = 1;
+		rays->distance = vertHitDistance;
+		rays->wallHitX = vertWallHitX;
+		rays->wallHitY = vertWallHitY;
+		rays->wallHitContent = vertWallContent;
+		rays->wasHisVerical = 1;
 	}
 	else
 	{
-		rays[i].distance = horzHitDistance;
-		rays[i].wallHitX = horzWallHitX;
-		rays[i].wallHitY = horzWallHitY;
-		rays[i].wallHitContent = horzWallContent;
-		rays[i].wasHisVerical = 0;
+		rays->distance = horzHitDistance;
+		rays->wallHitX = horzWallHitX;
+		rays->wallHitY = horzWallHitY;
+		rays->wallHitContent = horzWallContent;
+		rays->wasHisVerical = 0;
 	}
-	rays[i].rayAngle = rayAngle;
-	rays[i].down = rays[i].down;
-	rays[i].up = rays[i].up;
-	rays[i].left = rays[i].left;
-	rays[i].right = rays[i].right;
+	rays->rayAngle = rayAngle;
+	rays->down = rays->down;
+	rays->up = rays->up;
+	rays->left = rays->left;
+	rays->right = rays->right;
+}
+
+void	raysCasting(t_vars *vars)
+{
+	float	angle;
+	size_t	i;
+	
+	i = 0;
+	angle = vars->player.rotationAngle - (vars->player.fov / 2);
+	while (i < NUM_RAY)
+	{
+		rayCasting(*vars, angle, &vars->rays[i]);
+		angle += vars->player.fov / NUM_RAY;
+		i++;
+	}
 }

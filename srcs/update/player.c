@@ -19,7 +19,7 @@ void	movePlayer(t_vars *vars)
 	moveStep = vars->player.walkDirection * vars->player.walkSpeed;
 	newPlayerX = vars->player.x + cos(vars->player.rotationAngle) * moveStep;
 	newPlayerY = vars->player.y + sin(vars->player.rotationAngle) * moveStep;
-	if (!hasWall(vars->set.map, newPlayerX, newPlayerY))
+	if (!hasWall(vars->set.map, newPlayerX, newPlayerY, vars->set))
 	{
 		vars->player.x = newPlayerX;
 		vars->player.y = newPlayerY;
@@ -27,7 +27,11 @@ void	movePlayer(t_vars *vars)
 	moveStep = vars->player.walkDirectiontwo * vars->player.walkSpeed;
 	newPlayerX = vars->player.x + cos(vars->player.rotationAngle + 0.5 * PI) * moveStep;
 	newPlayerY = vars->player.y + sin(vars->player.rotationAngle + 0.5 * PI) * moveStep;
-	if (!hasWall(vars->set.map, newPlayerX, newPlayerY))
+	if (newPlayerX != newPlayerX)
+		newPlayerX = 0;
+	if (newPlayerY != newPlayerY)
+		newPlayerY = 0;
+	if (!hasWall(vars->set.map, newPlayerX, newPlayerY, vars->set))
 	{
 		vars->player.x = newPlayerX;
 		vars->player.y = newPlayerY;

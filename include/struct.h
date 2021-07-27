@@ -29,6 +29,7 @@ typedef struct s_setting
 	int			floor;
 	t_RES		resolution;
 	int			tile_size;
+	t_xPoint	map_size;
 }	t_set;
 
 typedef struct s_player

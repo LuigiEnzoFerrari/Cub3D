@@ -35,15 +35,14 @@ void	map_basic_check(t_list **map, t_sval *val, int fd);
 int		map_basic_line(char *str, t_cmap *cmap);
 void	get_map(t_sval *val, int fd);
 
-void	renderMap(t_xRenderer *img, char **map);
+void	renderMap(t_xRenderer *img, char **map, t_set set);
 void	input(t_vars *vars);
 void	update(t_vars *vars);
 void	render(t_vars *vars);
 
-void	rayCasting(t_P1 player, char **map, float rayAngle, int stripId, t_rays *rays);
-int		hasWall(char **map, float x, float y);
+void	raysCasting(t_vars *vars);
+void	rayCasting(t_vars vars, float rayAngle, t_rays *rays);
+int		hasWall(char **map, float x, float y, t_set set);
 void	movePlayer(t_vars *vars);
-
-
 
 #endif

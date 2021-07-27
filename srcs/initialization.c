@@ -16,17 +16,12 @@ void	set_player(t_P1 *player)
 
 void	set_window(t_set *set)
 {
-	float	tile_x;
-	float	tile_y;
-
-	tile_x = len_map(*set->map);
-	tile_y = size_map(set->map);
-
-	set->tile_size = tile_y;
-	if (tile_x > tile_y)
-		set->tile_size = tile_x;
-	// printf("size_x: %d", set->tile_x);
-	// printf("size_y: %d", set->tile_y);
+	set->map_size.x = ft_strlen(*set->map);
+	set->map_size.y = ft_arraylen(set->map);
+	set->tile_size = floor(set->resolution.h / set->map_size.y);
+	if (set->map_size.x > set->map_size.y)
+		set->tile_size = floor(set->resolution.w / set->map_size.x);
+	set->tile_size = 50;
 }
 
 void	free_set(t_set *set)
