@@ -62,4 +62,11 @@ typedef struct s_ray
 	int		wallHitContent;
 }	t_rays;
 
+typedef struct s_rayCasting
+{
+	bool		hit;
+	t_xFPoint	wallHit;
+	int			wallContent;
+}	t_casting;
+
 #endif

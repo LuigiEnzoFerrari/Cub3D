@@ -45,4 +45,10 @@ void	rayCasting(t_vars vars, float rayAngle, t_rays *rays);
 int		hasWall(char **map, float x, float y, t_set set);
 void	movePlayer(t_vars *vars);
 
+void	foundWallVert(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
+void	foundtWallHoriz(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
+void	minimumDistance(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
+
+
+
 #endif
