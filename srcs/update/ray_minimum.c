@@ -5,7 +5,7 @@ static float	distPoints(float x1, float y1, float x2, float y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	minimumDistance(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast)
+void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast)
 {
 	t_xFPoint	dist;
 
@@ -31,5 +31,4 @@ void	minimumDistance(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast)
 		rays->wallHitContent = cast[0].wallContent;
 		rays->wasHisVerical = 0;
 	}
-	rays->rayAngle = rayAngle;
 }

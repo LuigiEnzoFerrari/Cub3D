@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/07/28 11:53:37 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 static float	normalizeAngle(float angle)
@@ -8,23 +20,23 @@ static float	normalizeAngle(float angle)
 	return (angle);
 }
 
-void	rayDirection(float rayAngle, t_rays *rays)
+static void	rayDirection(float rayAngle, t_rays *rays)
 {
-	rayAngle = normalizeAngle(rayAngle);
-	rays->down = rayAngle > 0 && rayAngle < PI;
+	rays->rayAngle = normalizeAngle(rayAngle);
+	rays->down = rays->rayAngle > 0 && rays->rayAngle < PI;
 	rays->up = !rays->down;
-	rays->right = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
+	rays->right = rays->rayAngle < 0.5 * PI || rays->rayAngle > 1.5 * PI;
 	rays->left = !rays->right;
 }
 
-void	rayCasting(t_vars vars, float rayAngle, t_rays *rays)
+static void	rayCasting(t_vars vars, float rayAngle, t_rays *rays)
 {
 	t_casting	cast[2];
 
 	rayDirection(rayAngle, rays);
-	foundtWallHoriz(vars, rays, rayAngle, &cast[0]);
-	foundWallVert(vars, rays, rayAngle, &cast[1]);
-	minimumDistance(vars, rays, rayAngle, cast);
+	foundWallHoriz(vars, rays, &cast[0]);
+	foundWallVert(vars, rays, &cast[1]);
+	minimumDistance(vars, rays, cast);
 }
 
 void	raysCasting(t_vars *vars)

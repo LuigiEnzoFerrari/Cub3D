@@ -1,40 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_vertical.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 11:53:22 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/07/28 11:53:24 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
-void	foundWallVert(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast)
+static void	set_foundWallVert(t_vars vars, t_rays *rays, t_inter *a)
 {
-	t_xFPoint	intercept;
-	t_xFPoint	step;
-
-	cast->hit = 0;
-	intercept.x = floor(vars.player.x / vars.set.tile_size) * vars.set.tile_size;
+	a->intercept.x = floor(vars.player.x / vars.set.tile_size) * vars.set.tile_size;
 	if (rays->right)
-		intercept.x +=vars.set.tile_size;
-	intercept.y = vars.player.y + (intercept.x - vars.player.x) * tan(rayAngle);
-	step.x = vars.set.tile_size;
+		a->intercept.x +=vars.set.tile_size;
+	a->intercept.y = vars.player.y + (a->intercept.x - vars.player.x) * tan(rays->rayAngle);
+	a->step.x = vars.set.tile_size;
 	if (rays->left)
-		step.x = -step.x;
-	step.y = vars.set.tile_size * tan(rayAngle);
-	if (rays->up && step.y > 0)
-		step.y = -step.y;
-	if (rays->down  && step.y < 0)
-		step.y = -step.y;
-	while (intercept.x >= 0 && intercept.x <= WINDOW_WIDTH && intercept.y >= 0 && intercept.y <= WINDOW_HEIGHT)
-	{
-		float xToCheck = intercept.x + (rays->left ? -1 : 0);
-		float yToCheck = intercept.y;
+		a->step.x = -a->step.x;
+	a->step.y = vars.set.tile_size * tan(rays->rayAngle);
+	if (rays->up && a->step.y > 0)
+		a->step.y = -a->step.y;
+	if (rays->down  && a->step.y < 0)
+		a->step.y = -a->step.y;
+}
 
-		if (hasWall(vars.set.map, xToCheck, yToCheck, vars.set))
+static void	lookingWall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
+{
+	t_xFPoint	toCheck;
+
+	while (a.intercept.x >= 0 && a.intercept.x <= set.resolution.w
+		&& a.intercept.y >= 0 && a.intercept.y <= set.resolution.h)
+	{
+		toCheck.x = a.intercept.x;
+		toCheck.y = a.intercept.y;
+		if (rays->left)
+			toCheck.x -= 1;
+		if (hasWall(set.map, toCheck.x, toCheck.y, set))
 		{
-			cast->wallHit.x = intercept.x;
-			cast->wallHit.y = intercept.y;
-			cast->wallContent = vars.set.map[(int)floor(yToCheck / vars.set.tile_size)][(int)floor(xToCheck / vars.set.tile_size)];
+			cast->wallHit.x = a.intercept.x;
+			cast->wallHit.y = a.intercept.y;
+			cast->wallContent = set.map[(int)floor(toCheck.y / set.tile_size)][(int)floor(toCheck.x / set.tile_size)];
 			cast->hit = 1;
 			break ;
 		}
 		else
 		{
-			intercept.x += step.x;
-			intercept.y += step.y;
+			a.intercept.x += a.step.x;
+			a.intercept.y += a.step.y;
 		}
 	}
+}
+
+void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast)
+{
+	t_inter	a;
+
+	cast->hit = 0;
+	set_foundWallVert(vars, rays, &a);
+	lookingWall(vars.set, rays, cast, a);
 }

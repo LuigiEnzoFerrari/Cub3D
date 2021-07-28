@@ -69,4 +69,10 @@ typedef struct s_rayCasting
 	int			wallContent;
 }	t_casting;
 
+typedef struct s_intercept
+{
+	t_xFPoint	intercept;
+	t_xFPoint	step;
+}	t_inter;
+
 #endif

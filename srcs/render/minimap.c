@@ -1,6 +1,6 @@
 #include "cub.h"
 
-void	renderMap(t_xRenderer *img, char **map, t_set set)
+void	minimap(t_xRenderer *img, char **map, t_set set)
 {
 	int i;
 	int j;

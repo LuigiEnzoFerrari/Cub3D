@@ -35,20 +35,23 @@ void	map_basic_check(t_list **map, t_sval *val, int fd);
 int		map_basic_line(char *str, t_cmap *cmap);
 void	get_map(t_sval *val, int fd);
 
-void	renderMap(t_xRenderer *img, char **map, t_set set);
 void	input(t_vars *vars);
 void	update(t_vars *vars);
 void	render(t_vars *vars);
 
 void	raysCasting(t_vars *vars);
-void	rayCasting(t_vars vars, float rayAngle, t_rays *rays);
 int		hasWall(char **map, float x, float y, t_set set);
 void	movePlayer(t_vars *vars);
 
-void	foundWallVert(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
-void	foundtWallHoriz(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
-void	minimumDistance(t_vars vars, t_rays *rays, float rayAngle, t_casting *cast);
+void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast);
+void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast);
+void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast);
 
+void	background(t_xRenderer *renderer, t_set set);
+void	playerPosition(t_vars *vars);
+void	rays(t_vars *vars);
+void	minimap(t_xRenderer *img, char **map, t_set set);
+void	projection(t_vars *vars, t_rays *rays, t_P1 player, t_set set);
 
 
 #endif
