@@ -29,6 +29,7 @@ typedef struct s_vars
 }	t_vars;
 
 void	init_all(t_vars *vars);
+void	set_player(t_P1 *player, char **map);
 void	printall(t_sval *val);
 
 void	map_basic_check(t_list **map, t_sval *val, int fd);

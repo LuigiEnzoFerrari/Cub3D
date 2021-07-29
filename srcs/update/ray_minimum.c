@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 09:45:44 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:26:48 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 13:35:00 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	horzGreater(t_rays *rays, t_casting *cast, t_xFPoint dist)
 	rays->wallHitX = cast->wallHit.x;
 	rays->wallHitY = cast->wallHit.y;
 	rays->wallHitContent = cast->wallContent;
-	rays->wasHisVerical = 1;
+	rays->isVert = 1;
 }
 
 static void	vertGreater(t_rays *rays, t_casting *cast, t_xFPoint dist)
@@ -32,7 +32,7 @@ static void	vertGreater(t_rays *rays, t_casting *cast, t_xFPoint dist)
 	rays->wallHitX = cast->wallHit.x;
 	rays->wallHitY = cast->wallHit.y;
 	rays->wallHitContent = cast->wallContent;
-	rays->wasHisVerical = 0;
+	rays->isVert = 0;
 }
 
 void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast)

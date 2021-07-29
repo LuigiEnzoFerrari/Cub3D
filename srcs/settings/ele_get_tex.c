@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:59 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:00 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 10:39:53 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_TEX(t_sval *val)
 		free(ptr);
 	}
 	else if (*str == 'S' && *(str + 1) != 'O')
-		set_tex(&val->set.tex.sprit, &ptr, 
+		set_tex(&val->set.tex.sprit, &ptr,
 			&val->cvalues.sprit, &val->cvalues.inv);
 	else if (*str == 'N' && *(str + 1) == 'O')
 		set_tex(&val->set.tex.north, &ptr,

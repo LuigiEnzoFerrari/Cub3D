@@ -6,12 +6,11 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:46 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:47 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 12:41:13 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
 
 static void	set_map(t_sval *val, int fd)
 {
@@ -42,7 +41,6 @@ t_set	settings(void)
 	set_elements(&val, fd);
 	set_map(&val, fd);
 	printall(&val);
-	ft_putarraydelim_fd(val.set.map, '\n', 1);
 	// free_textures(&val);
 	// ft_arrayfree(val.set.map);
 	close(fd);

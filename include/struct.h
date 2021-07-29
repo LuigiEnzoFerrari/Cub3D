@@ -36,22 +36,22 @@ typedef struct s_player
 	double	x;
 	double	y;
 	int		r;
-	int		turnDirection;
-	double	walkDirection;
-	double	walkDirectiontwo;
+	int		tD;
+	double	wDFB;
+	double	wDLR;
 	double	fov;
 	double	rAngle;
-	double	walkSpeed;
-	double	turnSpeed;
+	double	wS;
+	double	tS;
 }	t_P1;
 
 typedef struct s_ray
 {
-	double	rayAngle;
+	double	angle;
 	double	wallHitX;
 	double	wallHitY;
 	double	distance;
-	int		wasHisVerical;
+	bool	isVert;
 	bool	up;
 	bool	down;
 	bool	left;
@@ -71,5 +71,17 @@ typedef struct s_intercept
 	t_xFPoint	intercept;
 	t_xFPoint	step;
 }	t_inter;
+
+typedef struct s_prjection
+{
+	double	perDistance;
+	double	projDistance;
+	double	projHeight;
+
+	int		stripHeight;
+	int		topPixel;
+	int		bottomPixel;
+}	t_proj;
+
 
 #endif

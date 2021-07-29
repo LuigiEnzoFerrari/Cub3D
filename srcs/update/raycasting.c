@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:00:47 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 13:31:40 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static double	normalizeAngle(double angle)
 
 static void	rayDirection(double rayAngle, t_rays *rays)
 {
-	rays->rayAngle = normalizeAngle(rayAngle);
-	rays->down = rays->rayAngle > 0 && rays->rayAngle < PI;
+	rays->angle = normalizeAngle(rayAngle);
+	rays->down = rays->angle > 0 && rays->angle < PI;
 	rays->up = !rays->down;
-	rays->right = rays->rayAngle < 0.5 * PI || rays->rayAngle > 1.5 * PI;
+	rays->right = rays->angle < 0.5 * PI || rays->angle > 1.5 * PI;
 	rays->left = !rays->right;
 }
 

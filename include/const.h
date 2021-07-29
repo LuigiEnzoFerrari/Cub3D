@@ -16,7 +16,7 @@
 
 # define PI 3.14159265358979323846
 # define TWO_PI 6.28318530
-# define MINIMAP_SCALE 0.2
+# define MINIMAP_SCALE 0.15
 
 
 #endif

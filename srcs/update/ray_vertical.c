@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:22 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 09:43:49 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 13:31:23 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	set_foundWallVert(t_vars vars, t_rays *rays, t_inter *a)
 	if (rays->right)
 		a->intercept.x += TILE_SIZE;
 	a->intercept.y = vars.player.y + (a->intercept.x - vars.player.x)
-		* tan(rays->rayAngle);
+		* tan(rays->angle);
 	a->step.x = TILE_SIZE;
 	if (rays->left)
 		a->step.x = -a->step.x;
-	a->step.y = TILE_SIZE * tan(rays->rayAngle);
+	a->step.y = TILE_SIZE * tan(rays->angle);
 	if (rays->up && a->step.y > 0)
 		a->step.y = -a->step.y;
 	if (rays->down && a->step.y < 0)

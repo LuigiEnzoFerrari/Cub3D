@@ -1,18 +1,5 @@
 #include "cub.h"
 
-void	set_player(t_P1 *player)
-{
-	player->x = 6 * TILE_SIZE + (TILE_SIZE >> 1);
-	player->y = 6 * TILE_SIZE + (TILE_SIZE >> 1);
-	player->r = 20;
-	player->walkDirection = 0;
-	player->turnDirection = 0;
-	player->turnSpeed = 5 * (PI / 180);
-	player->walkSpeed = 5;
-	player->rAngle = PI / 2;
-	player->fov = PI / 3;
-}
-
 void	set_window(t_set *set)
 {
 	set->map_size.x = ft_strlen(*set->map);
@@ -33,7 +20,7 @@ void	init_all(t_vars *vars)
 	vars->set = settings();
 	set_window(&vars->set);
 	vars->rays = malloc(sizeof(t_rays) * vars->set.resolution.w);
-	set_player(&vars->player);
+	set_player(&vars->player, vars->set.map);
 	free_set(&vars->set);
 	vars->mlx = mlx_init();
 	vars->window = mlx_new_window(vars->mlx, vars->set.resolution.w,

@@ -6,43 +6,56 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 09:21:33 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 09:23:05 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 15:37:08 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	minimap(t_xRenderer *img, char **map, t_set set)
+static void	set_tile_color(t_xRenderer *renderer, char c)
 {
-	int	i;
-	int	j;
-	int	tileX;
-	int	tileY;
-	int	tileColor;
+	if (c == '1')
+		mlx_set_render_color(renderer, 0x00ffffff);
+	else
+		mlx_set_render_color(renderer, 0x00000000);
+}
 
+static void	paintRow(t_xRenderer *renderer, char *map, int y)
+{
+	size_t	i;
+	int		x;
+
+	x = 0;
 	i = 0;
-	j = 0;
-	while (i < set.map_size.y)
+	y *= TILE_SIZE;
+	while (*(map + i))
 	{
-		while (j < set.map_size.x)
+		if (*(map + i) == ' ')
 		{
-			tileX = j * TILE_SIZE;
-			tileY = i * TILE_SIZE;
-			if (map[i][j] == '0')
-				tileColor = 0;
-			else if (map[i][j] == 'W')
-				tileColor = 0x00adf16a;
-			else
-				tileColor = 0x00ffffff;
-			mlx_set_render_color(img, tileColor);
-			mlx_draw_fill_rect(img,
-				mlx_get_rect(tileX * MINIMAP_SCALE,
-					tileY * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE,
-					TILE_SIZE * MINIMAP_SCALE));
-			j++;
+			i++;
+			continue ;
 		}
-		j = 0;
+		x = i * TILE_SIZE;
+		set_tile_color(renderer, *(map + i));
+		mlx_draw_fill_rect(renderer,
+			mlx_get_rect(x * MINIMAP_SCALE,
+				y * MINIMAP_SCALE,
+				TILE_SIZE * MINIMAP_SCALE,
+				TILE_SIZE * MINIMAP_SCALE));
+		x++;
 		i++;
+	}
+}
+
+void	minimap(t_xRenderer *renderer, char **map, t_set set)
+{
+	int	y;
+
+	y = 0;
+	set.map_size.x = 0;
+	while (*(map + y))
+	{
+		paintRow(renderer, *(map + y), y);
+		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 10:57:17 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:01:02 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 11:37:15 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,25 @@ static float	normalizeAngle(float angle)
 
 void	player(t_vars *vars)
 {
-	t_xFPoint	newPlayer;
+	t_xFPoint	newP;
 	double		moveStep;
 
-	vars->player.rAngle += vars->player.turnDirection
-		* vars->player.turnSpeed;
+	vars->player.rAngle += vars->player.tD * vars->player.tS;
 	vars->player.rAngle = normalizeAngle(vars->player.rAngle);
-	moveStep = vars->player.walkDirection * vars->player.walkSpeed;
-	newPlayer.x = vars->player.x + cos(vars->player.rAngle) * moveStep;
-	newPlayer.y = vars->player.y + sin(vars->player.rAngle) * moveStep;
-	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y))
+	moveStep = vars->player.wDFB * vars->player.wS;
+	newP.x = vars->player.x + cos(vars->player.rAngle) * moveStep;
+	newP.y = vars->player.y + sin(vars->player.rAngle) * moveStep;
+	if (!hasWall(vars->set.map, newP.x, newP.y))
 	{
-		vars->player.x = newPlayer.x;
-		vars->player.y = newPlayer.y;
+		vars->player.x = newP.x;
+		vars->player.y = newP.y;
 	}
-	moveStep = vars->player.walkDirectiontwo * vars->player.walkSpeed;
-	newPlayer.x = vars->player.x + cos(vars->player.rAngle + 0.5 * PI)
-		* moveStep;
-	newPlayer.y = vars->player.y + sin(vars->player.rAngle + 0.5 * PI)
-		* moveStep;
-	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y))
+	moveStep = vars->player.wDLR * vars->player.wS;
+	newP.x = vars->player.x + cos(vars->player.rAngle + 0.5 * PI) * moveStep;
+	newP.y = vars->player.y + sin(vars->player.rAngle + 0.5 * PI) * moveStep;
+	if (!hasWall(vars->set.map, newP.x, newP.y))
 	{
-		vars->player.x = newPlayer.x;
-		vars->player.y = newPlayer.y;
+		vars->player.x = newP.x;
+		vars->player.y = newP.y;
 	}
 }
