@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 09:45:44 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:24:08 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 10:26:48 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ static double	distPoints(double x1, double y1, double x2, double y2)
 
 static void	horzGreater(t_rays *rays, t_casting *cast, t_xFPoint dist)
 {
-		rays->distance = dist.y;
-		rays->wallHitX = cast->wallHit.x;
-		rays->wallHitY = cast->wallHit.y;
-		rays->wallHitContent = cast->wallContent;
-		rays->wasHisVerical = 1;
+	rays->distance = dist.y;
+	rays->wallHitX = cast->wallHit.x;
+	rays->wallHitY = cast->wallHit.y;
+	rays->wallHitContent = cast->wallContent;
+	rays->wasHisVerical = 1;
 }
 
 static void	vertGreater(t_rays *rays, t_casting *cast, t_xFPoint dist)
 {
-		rays->distance = dist.x;
-		rays->wallHitX = cast->wallHit.x;
-		rays->wallHitY = cast->wallHit.y;
-		rays->wallHitContent = cast->wallContent;
-		rays->wasHisVerical = 0;
+	rays->distance = dist.x;
+	rays->wallHitX = cast->wallHit.x;
+	rays->wallHitY = cast->wallHit.y;
+	rays->wallHitContent = cast->wallContent;
+	rays->wasHisVerical = 0;
 }
 
 void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast)

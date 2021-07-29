@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/29 10:27:40 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/07/29 10:28:12 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
-static int exit_game(t_vars *vars) //temporary
+static int	exit_game(t_vars *vars)
 {
-		mlx_destroy_window(vars->mlx, vars->window);
-		mlx_destroy_image(vars->mlx, vars->renderer.img);
-		exit(0);
-		return (0);
+	mlx_destroy_window(vars->mlx, vars->window);
+	mlx_destroy_image(vars->mlx, vars->renderer.img);
+	exit(0);
+	return (0);
 }
 
 static int	key_pressed(int event, t_vars *vars)
@@ -29,7 +41,7 @@ static int	key_pressed(int event, t_vars *vars)
 	return (0);
 }
 
-static int key_released(int event, t_vars *vars)
+static int	key_released(int event, t_vars *vars)
 {
 	if (event == KEY_W)
 		vars->player.walkDirection = 0;
