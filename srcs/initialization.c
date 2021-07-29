@@ -4,8 +4,7 @@ void	set_player(t_P1 *player)
 {
 	player->x = 6 * TILE_SIZE + (TILE_SIZE >> 1);
 	player->y = 6 * TILE_SIZE + (TILE_SIZE >> 1);
-	player->w = 5;
-	player->h = 5;
+	player->r = 20;
 	player->walkDirection = 0;
 	player->turnDirection = 0;
 	player->turnSpeed = 5 * (PI / 180);

@@ -35,8 +35,7 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	w;
-	double	h;
+	int		r;
 	int		turnDirection;
 	double	walkDirection;
 	double	walkDirectiontwo;
