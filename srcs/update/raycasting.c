@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/28 11:53:37 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 10:00:47 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static float	normalizeAngle(float angle)
+static double	normalizeAngle(double angle)
 {
 	angle = remainder(angle, TWO_PI);
 	if (angle < 0)
@@ -20,7 +20,7 @@ static float	normalizeAngle(float angle)
 	return (angle);
 }
 
-static void	rayDirection(float rayAngle, t_rays *rays)
+static void	rayDirection(double rayAngle, t_rays *rays)
 {
 	rays->rayAngle = normalizeAngle(rayAngle);
 	rays->down = rays->rayAngle > 0 && rays->rayAngle < PI;
@@ -29,7 +29,7 @@ static void	rayDirection(float rayAngle, t_rays *rays)
 	rays->left = !rays->right;
 }
 
-static void	rayCasting(t_vars vars, float rayAngle, t_rays *rays)
+static void	rayCasting(t_vars vars, double rayAngle, t_rays *rays)
 {
 	t_casting	cast[2];
 
@@ -41,15 +41,15 @@ static void	rayCasting(t_vars vars, float rayAngle, t_rays *rays)
 
 void	raysCasting(t_vars *vars)
 {
-	float	angle;
-	size_t	i;
-	
+	double	angle;
+	int		i;
+
 	i = 0;
-	angle = vars->player.rotationAngle - (vars->player.fov / 2);
-	while (i < NUM_RAY)
+	angle = vars->player.rAngle - (vars->player.fov / 2);
+	while (i < vars->set.resolution.w)
 	{
 		rayCasting(*vars, angle, &vars->rays[i]);
-		angle += vars->player.fov / NUM_RAY;
+		angle += vars->player.fov / vars->set.resolution.w;
 		i++;
 	}
 }

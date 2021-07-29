@@ -2,7 +2,7 @@
 
 void	update(t_vars *vars)
 {
-	movePlayer(vars);
+	player(vars);
 	raysCasting(vars);
 }
 

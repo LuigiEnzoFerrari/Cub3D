@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 09:46:20 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/28 10:41:48 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 01:06:43 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void	set_foundWallHoriz(t_vars vars, t_rays *rays, t_inter *a)
 {
 	a->intercept.y = floor(vars.player.y
-			/ vars.set.tile_size) * vars.set.tile_size;
+			/ TILE_SIZE) * TILE_SIZE;
 	if (rays->down)
-		a->intercept.y += vars.set.tile_size;
+		a->intercept.y += TILE_SIZE;
 	a->intercept.x = vars.player.x + (a->intercept.y - vars.player.y)
 		/ tan(rays->rayAngle);
-	a->step.y = vars.set.tile_size;
+	a->step.y = TILE_SIZE;
 	if (rays->up)
 		a->step.y = -a->step.y;
-	a->step.x = vars.set.tile_size / tan(rays->rayAngle);
+	a->step.x = TILE_SIZE / tan(rays->rayAngle);
 	if (rays->left && a->step.x > 0)
 		a->step.x = -a->step.x;
 	if (rays->right && a->step.x < 0)
@@ -34,19 +34,19 @@ static void	lookingWall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
 {
 	t_xFPoint	toCheck;
 
-	while (a.intercept.x >= 0 && a.intercept.x <= set.resolution.w
-		&& a.intercept.y >= 0 && a.intercept.y <= set.resolution.h)
+	while (a.intercept.x >= 0 && a.intercept.x <= TILE_SIZE * set.map_size.x
+		&& a.intercept.y >= 0 && a.intercept.y <= TILE_SIZE * set.map_size.y)
 	{
 		toCheck.x = a.intercept.x;
 		toCheck.y = a.intercept.y;
 		if (rays->up)
 			toCheck.y -= 1;
-		if (hasWall(set.map, toCheck.x, toCheck.y, set))
+		if (hasWall(set.map, toCheck.x, toCheck.y))
 		{
 			cast->wallHit.x = a.intercept.x;
 			cast->wallHit.y = a.intercept.y;
 			cast->wallContent = set.map[(int)floor(toCheck.y
-					/ set.tile_size)][(int)floor(toCheck.x / set.tile_size)];
+					/ TILE_SIZE)][(int)floor(toCheck.x / TILE_SIZE)];
 			cast->hit = 1;
 			break ;
 		}
@@ -63,6 +63,9 @@ void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast)
 	t_inter	a;
 
 	cast->hit = 0;
+	cast->wallContent = 0;
+	cast->wallHit.x = 0;
+	cast->wallHit.y = 0;
 	set_foundWallHoriz(vars, rays, &a);
 	lookingWall(vars.set, rays, cast, a);
 }

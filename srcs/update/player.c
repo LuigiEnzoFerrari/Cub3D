@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 10:57:17 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/28 11:19:11 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/29 10:01:02 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,28 @@ static float	normalizeAngle(float angle)
 	return (angle);
 }
 
-void	movePlayer(t_vars *vars)
+void	player(t_vars *vars)
 {
 	t_xFPoint	newPlayer;
-	float		moveStep;
+	double		moveStep;
 
-	vars->player.rotationAngle += vars->player.turnDirection * vars->player.turnSpeed;
-	vars->player.rotationAngle = normalizeAngle(vars->player.rotationAngle);
+	vars->player.rAngle += vars->player.turnDirection
+		* vars->player.turnSpeed;
+	vars->player.rAngle = normalizeAngle(vars->player.rAngle);
 	moveStep = vars->player.walkDirection * vars->player.walkSpeed;
-	newPlayer.x = vars->player.x + cos(vars->player.rotationAngle) * moveStep;
-	newPlayer.y = vars->player.y + sin(vars->player.rotationAngle) * moveStep;
-	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y, vars->set))
+	newPlayer.x = vars->player.x + cos(vars->player.rAngle) * moveStep;
+	newPlayer.y = vars->player.y + sin(vars->player.rAngle) * moveStep;
+	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y))
 	{
 		vars->player.x = newPlayer.x;
 		vars->player.y = newPlayer.y;
 	}
 	moveStep = vars->player.walkDirectiontwo * vars->player.walkSpeed;
-	newPlayer.x = vars->player.x + cos(vars->player.rotationAngle + 0.5 * PI) * moveStep;
-	newPlayer.y = vars->player.y + sin(vars->player.rotationAngle + 0.5 * PI) * moveStep;
-	if (newPlayer.x != newPlayer.x)
-		newPlayer.x = 0;
-	if (newPlayer.y != newPlayer.y)
-		newPlayer.y = 0;
-	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y, vars->set))
+	newPlayer.x = vars->player.x + cos(vars->player.rAngle + 0.5 * PI)
+		* moveStep;
+	newPlayer.y = vars->player.y + sin(vars->player.rAngle + 0.5 * PI)
+		* moveStep;
+	if (!hasWall(vars->set.map, newPlayer.x, newPlayer.y))
 	{
 		vars->player.x = newPlayer.x;
 		vars->player.y = newPlayer.y;

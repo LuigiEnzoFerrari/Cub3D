@@ -40,8 +40,8 @@ void	update(t_vars *vars);
 void	render(t_vars *vars);
 
 void	raysCasting(t_vars *vars);
-int		hasWall(char **map, float x, float y, t_set set);
-void	movePlayer(t_vars *vars);
+int		hasWall(char **map, double x, double y);
+void	player(t_vars *vars);
 
 void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast);
 void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast);

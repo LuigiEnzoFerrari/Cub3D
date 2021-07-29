@@ -12,12 +12,11 @@
 # define KEY_S 115
 # define KEY_D 100
 
+# define TILE_SIZE 64
+
 # define PI 3.14159265358979323846
 # define TWO_PI 6.28318530
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
-
 # define MINIMAP_SCALE 0.2
-# define NUM_RAY WINDOW_WIDTH
+
 
 #endif

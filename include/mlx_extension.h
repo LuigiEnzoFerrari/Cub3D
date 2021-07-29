@@ -29,8 +29,8 @@ typedef struct mlx_Point
 
 typedef struct mlx_FPoint
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_xFPoint;
 
 typedef struct mlx_Line

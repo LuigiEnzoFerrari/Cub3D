@@ -69,7 +69,6 @@ void	exit_cub_settings(t_sval *val, t_inv inv, int fd);
 void	exit_elements(t_sval *val, int fd);
 void	free_textures(t_sval *val);
 
-
 void	get_TEX(t_sval *val);
 void	get_R(t_sval *val);
 void	get_FC(t_sval *val);

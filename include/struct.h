@@ -28,32 +28,30 @@ typedef struct s_setting
 	int			cell;
 	int			floor;
 	t_RES		resolution;
-	int			tile_size;
 	t_xPoint	map_size;
 }	t_set;
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	w;
-	float	h;
-	int		r;
+	double	x;
+	double	y;
+	double	w;
+	double	h;
 	int		turnDirection;
 	double	walkDirection;
 	double	walkDirectiontwo;
 	double	fov;
-	double	rotationAngle;
-	float	walkSpeed;
-	float	turnSpeed;
+	double	rAngle;
+	double	walkSpeed;
+	double	turnSpeed;
 }	t_P1;
 
 typedef struct s_ray
 {
-	float	rayAngle;
-	float	wallHitX;
-	float	wallHitY;
-	float	distance;
+	double	rayAngle;
+	double	wallHitX;
+	double	wallHitY;
+	double	distance;
 	int		wasHisVerical;
 	bool	up;
 	bool	down;
