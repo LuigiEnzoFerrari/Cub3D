@@ -78,8 +78,8 @@ typedef struct s_intercept
 typedef struct s_prjection
 {
 	double	perDistance;
-	double	projDistance;
-	double	projHeight;
+	double	distance;
+	double	height;
 
 	int		stripHeight;
 	int		topPixel;

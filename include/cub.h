@@ -31,7 +31,7 @@ typedef struct s_vars
 	t_P1	player;
 	t_rays	*rays;
 	t_xRenderer	renderer;
-	t_ximg	tex;
+	t_ximg	tex[4];
 }	t_vars;
 
 void	init_all(t_vars *vars, int argc, char **argv);
