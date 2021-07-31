@@ -22,8 +22,7 @@ void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle)
 {
 	int	error;
 	int	x;
-	int y;
-
+	int	y;
 
 	error = -circle.r;
 	x = circle.r;

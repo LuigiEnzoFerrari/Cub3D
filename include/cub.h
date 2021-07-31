@@ -18,6 +18,11 @@
 # include <float.h>
 # include <math.h>
 
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+
 typedef struct s_vars
 {
 	void	*window;
@@ -26,10 +31,11 @@ typedef struct s_vars
 	t_P1	player;
 	t_rays	*rays;
 	t_xRenderer	renderer;
+	t_ximg	tex;
 }	t_vars;
 
-void	init_all(t_vars *vars);
-void	set_player(t_P1 *player, char **map);
+void	init_all(t_vars *vars, int argc, char **argv);
+void	set_player(t_P1 *player, t_set set);
 void	printall(t_sval *val);
 
 void	map_basic_check(t_list **map, t_sval *val, int fd);

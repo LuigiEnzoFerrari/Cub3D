@@ -28,10 +28,9 @@ static void	playerPostion(double *x, double *y, char **map)
 	}
 }
 
-void	set_player(t_P1 *player, char **map)
+void	set_player(t_P1 *player, t_set set)
 {
-	playerPostion(&player->x, &player->y, map);
-	ft_putarraydelim_fd(map, '\n', 1);
+	playerPostion(&player->x, &player->y, set.map);
 	printf("a::%.2lf b::%.2lf\n ", player->x, player->y);
 	player->x = player->x * TILE_SIZE + (TILE_SIZE >> 1);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE >> 1);
@@ -42,4 +41,5 @@ void	set_player(t_P1 *player, char **map)
 	player->wS = 8;
 	player->rAngle = PI / 2;
 	player->fov = PI / 3;
+	player->dist = (set.resolution.w >> 1) / tan(player->fov / 2);
 }

@@ -51,7 +51,8 @@ typedef struct s_set_values
 	t_set	set;
 }	t_sval;
 
-t_set	settings(void);
+t_set	settings(int argc, char **argv);
+void	file_error(uint8_t);
 
 void	clr_whitespaces(t_sval *val, int fd);
 void	clr_whitelines(t_sval *val, int fd);

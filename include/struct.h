@@ -5,6 +5,7 @@
 # include <stddef.h>
 # include "mlx_extension.h"
 # include "const.h"
+#  include <stdint.h>
 
 typedef struct s_Resolution // to points later
 {
@@ -29,6 +30,7 @@ typedef struct s_setting
 	int			floor;
 	t_RES		resolution;
 	t_xPoint	map_size;
+	uint32_t	*pixel;
 }	t_set;
 
 typedef struct s_player
@@ -41,6 +43,7 @@ typedef struct s_player
 	double	wDLR;
 	double	fov;
 	double	rAngle;
+	double	dist;
 	double	wS;
 	double	tS;
 }	t_P1;

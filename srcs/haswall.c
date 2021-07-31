@@ -8,10 +8,12 @@ int	isWall(int c)
 
 int	hasWall(char **map, double x, double y)
 {
-	uint32_t	indexGridX;
-	uint32_t	indexGridY;
+	uint32_t	gX;
+	uint32_t	gY;
 
-	indexGridX = floor(x / TILE_SIZE);
-	indexGridY = floor(y / TILE_SIZE);
-	return (isWall(map[indexGridY][indexGridX]));
+	// if (x < 0 || x > n_columns * TILE_SIZE || y < 0 || y > n_rows * TILE_SIZE)
+	// 	return (1);
+	gX = floor(x / TILE_SIZE);
+	gY = floor(y / TILE_SIZE);
+	return (isWall(map[gY][gX]));
 }

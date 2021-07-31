@@ -59,6 +59,16 @@ typedef struct mlx_Renderer
 	int		color;
 }	t_xRenderer;
 
+typedef struct mlx_img
+{
+	void	*img;
+	int		*addr;
+	int		bpp;
+	int		s_line;
+	int		endian;
+	int		color;
+}	t_ximg;
+
 typedef struct s_Bresenham_line
 {
 	int dx;

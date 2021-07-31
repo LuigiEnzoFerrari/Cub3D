@@ -16,11 +16,11 @@ void	render(t_vars *vars)
 	mlx_render_present(vars->mlx, vars->window, vars->renderer.img);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars vars;
 
-	init_all(&vars);
+	init_all(&vars, argc, argv);
 	update(&vars);
 	render(&vars);
 	input(&vars);

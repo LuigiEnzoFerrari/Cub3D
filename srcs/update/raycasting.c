@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 13:31:40 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/30 20:07:20 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ void	raysCasting(t_vars *vars)
 	double	angle;
 	int		i;
 
+
 	i = 0;
-	angle = vars->player.rAngle - (vars->player.fov / 2);
 	while (i < vars->set.resolution.w)
 	{
+		angle = vars->player.rAngle + atan((i - (vars->set.resolution.w >> 1)) / vars->player.dist);
 		rayCasting(*vars, angle, &vars->rays[i]);
 		angle += vars->player.fov / vars->set.resolution.w;
 		i++;
