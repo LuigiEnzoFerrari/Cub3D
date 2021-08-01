@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 09:46:20 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 13:33:23 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:47:41 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	lookingWall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
 		toCheck.y = a.intercept.y;
 		if (rays->up)
 			toCheck.y -= 1;
-		if (hasWall(set.map, toCheck.x, toCheck.y))
+		if (hasWall(set, toCheck.x, toCheck.y))
 		{
 			cast->wallHit.x = a.intercept.x;
 			cast->wallHit.y = a.intercept.y;

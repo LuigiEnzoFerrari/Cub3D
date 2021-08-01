@@ -18,7 +18,7 @@ SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SANIT) main.c $(SRC) $(LIB) $(INC) $(MLX_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB) $(INC) $(MLX_FLAGS) -o $@
 
 run: $(NAME)
 	@./cub

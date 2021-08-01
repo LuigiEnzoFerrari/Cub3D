@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rays.c                                             :+:      :+:    :+:   */
+/*   map_rays.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 10:55:51 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 09:16:21 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 03:12:39 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	rays(t_vars *vars)
 				MINIMAP_SCALE * vars->player.y,
 				MINIMAP_SCALE * vars->rays[i].wallHitX,
 				MINIMAP_SCALE * vars->rays[i].wallHitY));
-		i++;
+		i += 16;
 	}
 }

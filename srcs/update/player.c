@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 10:57:17 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 11:37:15 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:47:05 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	player(t_vars *vars)
 	moveStep = vars->player.wDFB * vars->player.wS;
 	newP.x = vars->player.x + cos(vars->player.rAngle) * moveStep;
 	newP.y = vars->player.y + sin(vars->player.rAngle) * moveStep;
-	if (!hasWall(vars->set.map, newP.x, newP.y))
+	if (!hasWall(vars->set, newP.x, newP.y))
 	{
 		vars->player.x = newP.x;
 		vars->player.y = newP.y;
@@ -38,7 +38,7 @@ void	player(t_vars *vars)
 	moveStep = vars->player.wDLR * vars->player.wS;
 	newP.x = vars->player.x + cos(vars->player.rAngle + 0.5 * PI) * moveStep;
 	newP.y = vars->player.y + sin(vars->player.rAngle + 0.5 * PI) * moveStep;
-	if (!hasWall(vars->set.map, newP.x, newP.y))
+	if (!hasWall(vars->set, newP.x, newP.y))
 	{
 		vars->player.x = newP.x;
 		vars->player.y = newP.y;

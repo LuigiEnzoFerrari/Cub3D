@@ -23,6 +23,8 @@
 # define WE 2
 # define EA 3
 
+# define ITEM 0
+
 typedef struct s_vars
 {
 	void	*window;
@@ -32,6 +34,7 @@ typedef struct s_vars
 	t_rays	*rays;
 	t_xRenderer	renderer;
 	t_ximg	tex[4];
+	t_s		s[1];
 }	t_vars;
 
 void	init_all(t_vars *vars, int argc, char **argv);
@@ -47,7 +50,7 @@ void	update(t_vars *vars);
 void	render(t_vars *vars);
 
 void	raysCasting(t_vars *vars);
-int		hasWall(char **map, double x, double y);
+int		hasWall(t_set set, double x, double y);
 void	player(t_vars *vars);
 
 void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast);
@@ -57,8 +60,8 @@ void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast);
 void	background(t_xRenderer *renderer, t_set set);
 void	playerPosition(t_vars *vars);
 void	rays(t_vars *vars);
-void	minimap(t_xRenderer *img, char **map, t_set set);
+void	map(t_vars *vars);
 void	projection(t_vars *vars, t_rays *rays, t_P1 player, t_set set);
-
+// void	sprites(t_vars *vars, t_rays *rays, t_P1 player, t_set set);
 
 #endif

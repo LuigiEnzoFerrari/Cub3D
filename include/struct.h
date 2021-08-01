@@ -86,5 +86,14 @@ typedef struct s_prjection
 	int		bottomPixel;
 }	t_proj;
 
+typedef struct s_sprites
+{
+	t_ximg		s;
+	t_xFPoint	*p;
+	bool		visible;
+	int			distance;
+	int			angle;
+	int			n;
+}	t_s;
 
 #endif

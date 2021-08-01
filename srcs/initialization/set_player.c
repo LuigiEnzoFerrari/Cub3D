@@ -5,7 +5,7 @@ static int	isjogador(int c)
 	return (c == 'W' || c == 'S' || c == 'N' || c == 'E');
 }
 
-static void	playerPostion(double *x, double *y, char **map)
+static void	findPostion(double *x, double *y, char **map, int (f)(int))
 {
 	int	a;
 	int	b;
@@ -16,7 +16,7 @@ static void	playerPostion(double *x, double *y, char **map)
 		b = 0;
 		while (*(*(map + a) + b))
 		{
-			if (isjogador(*(*(map + a) + b)))
+			if (f(*(*(map + a) + b)))
 			{
 				*y = a;
 				*x = b;
@@ -30,11 +30,14 @@ static void	playerPostion(double *x, double *y, char **map)
 
 void	set_player(t_P1 *player, t_set set)
 {
-	playerPostion(&player->x, &player->y, set.map);
-	printf("a::%.2lf b::%.2lf\n ", player->x, player->y);
+	findPostion(&player->x, &player->y, set.map, isjogador);
+	ft_putnbr(player->x);
+	ft_putchar('\n');
+	ft_putnbr(player->y);
+	ft_putchar('\n');
 	player->x = player->x * TILE_SIZE + (TILE_SIZE >> 1);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE >> 1);
-	player->r = 20;
+	player->r = 15;
 	player->wDFB = 0;
 	player->tD = 0;
 	player->tS = 5 * (PI / 180);

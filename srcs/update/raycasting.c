@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/30 20:07:20 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/07/31 21:10:24 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	raysCasting(t_vars *vars)
 {
 	double	angle;
 	int		i;
-
 
 	i = 0;
 	while (i < vars->set.resolution.w)
