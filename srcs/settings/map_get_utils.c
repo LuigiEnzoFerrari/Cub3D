@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:39 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:40 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:47:43 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	isplayer(int c)
 
 static int	valid_map(int c)
 {
-	if (c == '1' || c == '0' || c == '2'
-		|| c == ' ' || isplayer(c))
+	if (c == '1' || c == '0' || c == ' '
+		|| isplayer(c))
 		return (1);
 	return (0);
 }

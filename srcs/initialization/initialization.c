@@ -1,11 +1,6 @@
 #include "cub.h"
 
-int		issprite(int c)
-{
-	return (c == '2');
-}
-
-static size_t	ft_arraynchar(char **map, int (f)(int))
+ size_t	ft_arraynchar(char **map, int (f)(int))
 {
 	int		a;
 	int		b;
@@ -25,72 +20,6 @@ static size_t	ft_arraynchar(char **map, int (f)(int))
 		a++;
 	}
 	return (n);
-}
-
-static void	s_postion(char **map, t_xFPoint *p, int (f)(int))
-{
-	int		a;
-	int		b;
-	size_t	i;
-
-	a = 0;
-	i = 0;
-	while (*(map + a))
-	{
-		b = 0;
-		while (*(*(map + a) + b))
-		{
-			if (f(*(*(map + a) + b)))
-			{
-				p[i].x = b;
-				p[i].y = a;
-				i++;
-			}
-			b++;
-		}
-		a++;
-	}
-}
-
-void	set_sprites(t_set set, t_s *s)
-{
-	int	n;
-
-	s[ITEM].n = ft_arraynchar(set.map, issprite);
-	s[ITEM].p = malloc(sizeof(t_xFPoint) * s[ITEM].n);
-	s_postion(set.map, s[ITEM].p, issprite);
-
-	n = 0;
-	while (n < s[ITEM].n)
-	{
-		s[ITEM].p[n].x = s[ITEM].p[n].x * TILE_SIZE + (TILE_SIZE >> 1);
-		s[ITEM].p[n].y = s[ITEM].p[n].y * TILE_SIZE + (TILE_SIZE >> 1);
-		ft_putnbr(n);
-		ft_putstr(" spx ");
-		ft_putnbr(s[ITEM].p[n].x);
-		ft_putchar('\n');
-		ft_putstr(" spy ");
-		ft_putnbr(s[ITEM].p[n].y);
-		ft_putchar('\n');
-		n++;
-	}
-}
-
-void	load_sprites(t_vars *vars, t_s *s)
-{
-	int		h;
-	int		w;
-
-	ft_memset(s, 0, sizeof(t_s));
-	s[ITEM].s.img = mlx_xpm_file_to_image(vars->mlx, vars->set.tex.sprit, &w, &h);
-	if (!s[ITEM].s.img)
-	{
-		ft_putendl_fd("No barrel was found", 0);
-		exit(0);
-	}
-	s[ITEM].s.addr = (int32_t *)mlx_get_data_addr(s[ITEM].s.img, &s[ITEM].s.bpp,
-		&s[ITEM].s.s_line, &s[ITEM].s.endian);
-	set_sprites(vars->set, &s[ITEM]);
 }
 
 void	load_textures(t_vars *vars, t_ximg *tex)
@@ -138,14 +67,12 @@ void	free_set(t_set *set)
 	free(set->tex.west);
 	free(set->tex.north);
 	free(set->tex.south);
-	free(set->tex.sprit);
 }
 
 void	init_all(t_vars *vars, int argc, char **argv)
 {
 	vars->set = settings(argc, argv);
 	vars->rays = malloc(sizeof(t_rays) * vars->set.resolution.w);
-
 	ft_putarraydelim_fd(vars->set.map, '\n', 1);
 	set_player(&vars->player, vars->set);
 	vars->mlx = mlx_init();
@@ -155,6 +82,5 @@ void	init_all(t_vars *vars, int argc, char **argv)
 	vars->renderer = mlx_create_renderer(vars->mlx, vars->set.resolution.w,
 		vars->set.resolution.h);
 	load_textures(vars, vars->tex);
-	load_sprites(vars, vars->s);
 	free_set(&vars->set);
 }

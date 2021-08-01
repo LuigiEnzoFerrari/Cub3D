@@ -19,7 +19,6 @@ typedef struct s_TEX
 	char	*north;
 	char	*west;
 	char	*east;
-	char	*sprit;
 }	t_TEX;
 
 typedef struct s_setting
@@ -85,15 +84,5 @@ typedef struct s_prjection
 	int		topPixel;
 	int		bottomPixel;
 }	t_proj;
-
-typedef struct s_sprites
-{
-	t_ximg		s;
-	t_xFPoint	*p;
-	bool		visible;
-	int			distance;
-	int			angle;
-	int			n;
-}	t_s;
 
 #endif

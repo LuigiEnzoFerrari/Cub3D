@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:07 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:09 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:32:04 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ void	init_TEX(t_TEX *tex)
 {
 	tex->east = NULL;
 	tex->south = NULL;
-	tex->sprit = NULL;
 	tex->west = NULL;
 	tex->north = NULL;
 }
 
 static void	init_checkv(t_check *cvalues)
 {
-	cvalues->sprit = false;
 	cvalues->south = false;
 	cvalues->north = false;
 	cvalues->west = false;

@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:50 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:51 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:44:08 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void	printall(t_sval *val)
 		ft_putendl_fd(val->set.tex.west, 1);
 	else
 		ft_putendl_fd("ko_west", 1);
-	if (val->cvalues.sprit)
-		ft_putendl_fd(val->set.tex.sprit, 1);
-	else
-		ft_putendl_fd("ok_sprite", 1);
 	fprintf(stdout, "color :%#X:\n", val->set.floor);
 	fprintf(stdout, "color :%#X:\n", val->set.cell);
 	ft_putnbr(val->set.resolution.w);

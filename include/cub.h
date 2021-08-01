@@ -34,7 +34,6 @@ typedef struct s_vars
 	t_rays	*rays;
 	t_xRenderer	renderer;
 	t_ximg	tex[4];
-	t_s		s[1];
 }	t_vars;
 
 void	init_all(t_vars *vars, int argc, char **argv);
@@ -49,10 +48,13 @@ void	input(t_vars *vars);
 void	update(t_vars *vars);
 void	render(t_vars *vars);
 
+int	key_pressed(int event, t_vars *vars);
+int	key_released(int event, t_vars *vars);
+int	key_exit(t_vars *vars);
+
 void	raysCasting(t_vars *vars);
 int		hasWall(t_set set, double x, double y);
 void	player(t_vars *vars);
-
 void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast);
 void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast);
 void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast);
@@ -62,6 +64,5 @@ void	playerPosition(t_vars *vars);
 void	rays(t_vars *vars);
 void	map(t_vars *vars);
 void	projection(t_vars *vars, t_rays *rays, t_P1 player, t_set set);
-// void	sprites(t_vars *vars, t_rays *rays, t_P1 player, t_set set);
 
 #endif

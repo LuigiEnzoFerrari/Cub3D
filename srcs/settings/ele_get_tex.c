@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:59 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:39:53 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:40:13 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,12 @@ void	get_TEX(t_sval *val)
 	char	*ptr;
 
 	str = val->str;
-	if ((*str == 'S' && *(str + 1) != 'O'))
-		ptr = get_values(str + 1);
-	else
-		ptr = get_values(str + 2);
+	ptr = get_values(str + 2);
 	if (!validate_TEX(ptr))
 	{
 		val->cvalues.inv.tex = true;
 		free(ptr);
 	}
-	else if (*str == 'S' && *(str + 1) != 'O')
-		set_tex(&val->set.tex.sprit, &ptr,
-			&val->cvalues.sprit, &val->cvalues.inv);
 	else if (*str == 'N' && *(str + 1) == 'O')
 		set_tex(&val->set.tex.north, &ptr,
 			&val->cvalues.north, &val->cvalues.inv);

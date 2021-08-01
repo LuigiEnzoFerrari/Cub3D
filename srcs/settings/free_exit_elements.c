@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:13 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/31 10:18:09 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 19:03:19 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	free_textures(t_sval *val)
 		free(val->set.tex.east);
 	if (val->cvalues.west)
 		free(val->set.tex.west);
-	if (val->cvalues.sprit)
-		free(val->set.tex.sprit);
 }
 
 void	exit_cub_settings(t_sval *val, t_inv inv, int fd)
@@ -40,6 +38,8 @@ void	exit_cub_settings(t_sval *val, t_inv inv, int fd)
 		ft_putendl_fd("Empty file", 0);
 	else if (inv.dkey)
 		ft_putendl_fd("Double command line", 0);
+	else if (inv.map)
+		ft_putendl_fd("Missing command line", 0);
 	free_textures(val);
 	close(fd);
 	exit(0);

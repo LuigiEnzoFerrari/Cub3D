@@ -31,10 +31,6 @@ static void	findPostion(double *x, double *y, char **map, int (f)(int))
 void	set_player(t_P1 *player, t_set set)
 {
 	findPostion(&player->x, &player->y, set.map, isjogador);
-	ft_putnbr(player->x);
-	ft_putchar('\n');
-	ft_putnbr(player->y);
-	ft_putchar('\n');
 	player->x = player->x * TILE_SIZE + (TILE_SIZE >> 1);
 	player->y = player->y * TILE_SIZE + (TILE_SIZE >> 1);
 	player->r = 15;

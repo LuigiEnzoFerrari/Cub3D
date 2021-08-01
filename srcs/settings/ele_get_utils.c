@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:03 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:04 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 18:34:00 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ char	*get_values(char *str)
 
 int	istexture(char *str)
 {
-	if ((*str == 'S' && *(str + 1) != 'O')
+	if ((*str == 'S' && *(str + 1) == 'O')
 		|| (*str == 'N' && *(str + 1) == 'O')
 		|| (*str == 'E' && *(str + 1) == 'A')
-		|| (*str == 'S' && *(str + 1) == 'O')
 		|| (*str == 'W' && *(str + 1) == 'E'))
 		return (1);
 	return (0);

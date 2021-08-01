@@ -1,5 +1,12 @@
 #include "cub.h"
 
+void	input(t_vars *vars)
+{
+	mlx_hook(vars->window, 2, 1l << 0, key_pressed, vars);
+	mlx_hook(vars->window, 3, 1l << 1, key_released, vars);
+	mlx_hook(vars->window, 33, 1l << 17, key_exit, vars);
+}
+
 void	update(t_vars *vars)
 {
 	player(vars);
@@ -11,7 +18,6 @@ void	render(t_vars *vars)
 	background(&vars->renderer, vars->set);
 	projection(vars, vars->rays, vars->player, vars->set);
 	map(vars);
-	// sprites(vars, vars->rays, vars->player, vars->set);
 	mlx_render_present(vars->mlx, vars->window, vars->renderer.img);
 }
 
