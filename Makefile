@@ -20,21 +20,24 @@ SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
 all: $(NAME)
 
 $(NAME): $(SRC) $(LIB_SRC) $(HEADERS)
-	$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB_LINK) $(INC) $(MLX_FLAGS) -o $@
+	@$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB_LINK) $(INC) $(MLX_FLAGS) -o $@
 
 $(LIB_SRC):
 	@make -C libs/libft
 	@make -C libs/Libft2D
 	@make -C libs/libx
 
+install:
+	@sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+
 run: $(NAME)
 	@./cub maps/game.cub
 
-clean:
-	$(RM) cub
+clean: 
+	@$(RM) $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@make fclean -C libs/libft
 	@make fclean -C libs/Libft2D
 	@make clean -C libs/libx
