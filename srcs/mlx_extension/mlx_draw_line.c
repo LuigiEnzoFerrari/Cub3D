@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_draw_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/01 20:46:51 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 20:59:55 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx_extension.h"
 
 static int	mlx_abs(int n)
@@ -7,13 +19,12 @@ static int	mlx_abs(int n)
 	return (n);
 }
 
-static t_BLine mlx_set_Bresenham_value(t_xLine line)
+static t_BLine	mlx_set_Bresenham_value(t_xLine line)
 {
 	t_BLine	Bresenham;
 
 	Bresenham.sy = -1;
 	Bresenham.sx = -1;
-
 	if (line.x0 < line.x1)
 		Bresenham.sx = 1;
 	if (line.y0 < line.y1)
@@ -26,13 +37,13 @@ static t_BLine mlx_set_Bresenham_value(t_xLine line)
 
 void	mlx_draw_line(t_xRenderer *renderer, t_xLine line)
 {
-	t_BLine Bresenham;
+	t_BLine	Bresenham;
 
 	Bresenham = mlx_set_Bresenham_value(line);
 	while (1)
 	{
 		mlx_put_pixel(renderer, line.x0, line.y0);
-		if (line.x0 == line.x1 && line.y0 == line.y1) 
+		if (line.x0 == line.x1 && line.y0 == line.y1)
 			break ;
 		Bresenham.e2 = 2 * Bresenham.err;
 		if (Bresenham.e2 >= Bresenham.dy)

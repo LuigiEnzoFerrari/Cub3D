@@ -2,7 +2,7 @@ NAME := cub
 CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
-MLX_FLAGS := -I libx -L libx -lm -lbsd -lmlx -lXext -lX11
+MLX_FLAGS := -I libs/libx -L libs/libx -lm -lbsd -lmlx -lXext -lX11
 
 LIB_DIRS := libft Libft2D
 LIB_PATH = $(addprefix libs/, $(LIB_DIRS))
@@ -17,14 +17,14 @@ SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB) $(INC) $(MLX_FLAGS) -o $@
 
 run: $(NAME)
 	@./cub
 
 clean:
-	$(RM) *.out
+	$(RM) cub
 
 fclean: clean
 	$(RM) $(NAME)

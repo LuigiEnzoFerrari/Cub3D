@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:46 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/31 10:27:14 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:53:29 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 
 static void	set_args(int argc, char **argv, int *fd)
 {
-	if (argc < 2 || argc > 3)
+	if (argc != 2)
 		file_error(1);
 	else if (!argv[1])
 		file_error(2);
 	if (!ft_strrchr(argv[1], '.'))
 		file_error(3);
-	else if(ft_strncmp(ft_strrchr(argv[1], '.'), ".cub", 4))
+	else if (ft_strncmp(ft_strrchr(argv[1], '.'), ".cub", 4))
 		file_error(3);
-	else if (argc == 3 && ft_memcmp(argv[2], "--save", 6))
-		file_error(4);
 	*fd = open(argv[1], O_RDONLY);
 	if (*fd <= 0)
 		file_error(5);
@@ -58,7 +56,6 @@ t_set	settings(int argc, char **argv)
 	init_val(&val);
 	set_elements(&val, fd);
 	set_map(&val, fd);
-	printall(&val);
 	close(fd);
 	return (val.set);
 }

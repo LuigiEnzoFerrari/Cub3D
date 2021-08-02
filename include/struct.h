@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/01 22:33:27 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 22:35:22 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
@@ -5,9 +17,9 @@
 # include <stddef.h>
 # include "mlx_extension.h"
 # include "const.h"
-#  include <stdint.h>
+# include <stdint.h>
 
-typedef struct s_Resolution // to points later
+typedef struct s_Resolution
 {
 	int	w;
 	int	h;

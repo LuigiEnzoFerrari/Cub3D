@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:00:29 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/31 18:19:01 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 22:03:54 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ uint32_t	colorIntesity(uint32_t color, float intensity)
 	r = ((color & (0xff << 16)) * intensity);
 	g = ((color & (0xff << 8)) * intensity);
 	b = ((color & (0xff)) * intensity);
-	return ((t & (0xff << 24)) | (r  & (0xff << 16)) | (g & (0xff << 8)) | b);
+	return ((t & (0xff << 24)) | (r & (0xff << 16)) | (g & (0xff << 8)) | b);
 }
 
 static void	texOffSet(t_rays rays, t_xPoint *offSet)
 {
-		if (rays.isVert)
-			offSet->x = (int)rays.wallHitY % TILE_SIZE;
-		else
-			offSet->x = (int)rays.wallHitX % TILE_SIZE;
+	if (rays.isVert)
+		offSet->x = (int)rays.wallHitY % TILE_SIZE;
+	else
+		offSet->x = (int)rays.wallHitX % TILE_SIZE;
 }
 
 static int	*get_texture_addr(t_ximg *tex, t_rays rays)
 {
-	int *dest;
+	int	*dest;
 
 	dest = 0x00000000;
 	if (rays.up && !rays.isVert)

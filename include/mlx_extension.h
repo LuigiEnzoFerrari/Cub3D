@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_extension.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/01 22:33:23 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 22:38:25 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MLX_EXTENSION_H
 # define MLX_EXTENSION_H
 
@@ -17,7 +29,7 @@ typedef struct mlx_Rect
 typedef struct mlx_Circle
 {
 	int	x;
-	int y;
+	int	y;
 	int	r;
 }	t_xCircle;
 
@@ -71,27 +83,26 @@ typedef struct mlx_img
 
 typedef struct s_Bresenham_line
 {
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int err;
-	int e2;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 }	t_BLine;
 
-void	mlx_put_pixel(t_xRenderer *renderer, int x, int y);
-void	mlx_draw_line(t_xRenderer *renderer, t_xLine line);
-void	mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect);
-void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle);
-void	mlx_set_render_color(t_xRenderer *renderer, int color);
-void	mlx_render_present(void *mlx, void *win, void *img);
+void		mlx_put_pixel(t_xRenderer *renderer, int x, int y);
+void		mlx_draw_line(t_xRenderer *renderer, t_xLine line);
+void		mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect rect);
+void		mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle);
+void		mlx_set_render_color(t_xRenderer *renderer, int color);
+void		mlx_render_present(void *mlx, void *win, void *img);
 
-t_xLine	mlx_get_line(int x0, int y0, int x1, int y1);
-t_xRect	mlx_get_rect(int x, int y, int w, int h);
+t_xLine		mlx_get_line(int x0, int y0, int x1, int y1);
+t_xRect		mlx_get_rect(int x, int y, int w, int h);
 t_xCircle	mlx_get_circle(int x, int y, int r);
 t_xRenderer	mlx_create_renderer(void *mlx, int size_x, int size_y);
 
-int		mlx_get_hex_trgb(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
-
+int			mlx_get_hex_trgb(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
 
 #endif

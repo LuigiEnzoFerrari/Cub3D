@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub_settings.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/01 22:33:14 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 22:39:59 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB_SETTINGS_H
 # define CUB_SETTINGS_H
 
@@ -11,7 +23,7 @@ typedef struct s_invalid_map
 	bool	y_split;
 }	t_cmap;
 
-typedef	struct s_invalid
+typedef struct s_invalid
 {
 	bool	ch;
 	bool	rgb;
@@ -35,7 +47,7 @@ typedef struct s_check
 	t_inv	inv;
 }	t_check;
 
-typedef	struct s_vRGB
+typedef struct s_vRGB
 {
 	size_t	comma;
 	size_t	digit;
@@ -52,7 +64,7 @@ typedef struct s_set_values
 }	t_sval;
 
 t_set	settings(int argc, char **argv);
-void	file_error(uint8_t);
+void	file_error(uint8_t n);
 
 void	clr_whitespaces(t_sval *val, int fd);
 void	clr_whitelines(t_sval *val, int fd);

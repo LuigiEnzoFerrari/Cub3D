@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:22 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:23 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 20:20:20 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	map_line(char *map_line)
 			else if (*map_line != '1')
 				return (0);
 		}
+		if (map_line[1] == '\0' && *map_line != '1')
+			return (0);
 		map_line++;
 	}
 	return (1);

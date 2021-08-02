@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/01 22:06:04 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 22:16:23 by lenzo-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 void	input(t_vars *vars)
@@ -23,7 +35,7 @@ void	render(t_vars *vars)
 
 int	main(int argc, char **argv)
 {
-	t_vars vars;
+	t_vars	vars;
 
 	init_all(&vars, argc, argv);
 	update(&vars);

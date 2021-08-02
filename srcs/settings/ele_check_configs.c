@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:17 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 18:42:13 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:01:09 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_values(t_check cvalues)
 {
 	if (cvalues.south && cvalues.north
 		&& cvalues.east && cvalues.west
-		&& cvalues.color  && cvalues.resol
+		&& cvalues.color && cvalues.resol
 		&& cvalues.floor)
 		return (1);
 	return (0);

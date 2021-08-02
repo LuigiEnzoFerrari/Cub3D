@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:27:40 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 18:24:53 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/01 20:45:53 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	key_exit(t_vars *vars)
 {
+	size_t	n;
+
+	n = vars->set.resolution.w;
 	mlx_destroy_window(vars->mlx, vars->window);
 	mlx_destroy_image(vars->mlx, vars->renderer.img);
+	free(vars->rays);
 	exit(0);
 	return (0);
 }

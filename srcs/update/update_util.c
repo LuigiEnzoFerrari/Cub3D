@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_trgb_to_hex.c                                  :+:      :+:    :+:   */
+/*   update_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/01 20:47:16 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:47:17 by lenzo-pe         ###   ########.fr       */
+/*   Created: 2021/08/01 22:05:19 by lenzo-pe          #+#    #+#             */
+/*   Updated: 2021/08/01 22:05:24 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_extension.h"
+#include "cub.h"
+#include <stdio.h>
 
-int	mlx_get_hex_trgb(uint8_t t, uint8_t r, uint8_t g, uint8_t b)
+int	isWall(int c)
 {
-	return ((t << 24) | (r << 16) | (g << 8) | (b));
+	return (c == '1' || c == ' ');
+}
+
+int	hasWall(t_set set, double x, double y)
+{
+	uint32_t	gX;
+	uint32_t	gY;
+
+	if (x < 0 || x > set.map_size.x * TILE_SIZE
+		|| y < 0 || y > set.map_size.y * TILE_SIZE)
+		return (1);
+	gX = floor(x / TILE_SIZE);
+	gY = floor(y / TILE_SIZE);
+	return (isWall(set.map[gY][gX]));
 }
