@@ -2,7 +2,7 @@ NAME := cub
 CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
-MLX_FLAGS := -I libs/libx -lm -lbsd -lXext -lX11
+MLX_FLAGS := -lm -lbsd -lXext -lX11
 
 LIB_SRC := libs/libft/libft.a libs/Libft2D/libarray.a libs/libx/libmlx.a
 LIB_DIRS := libft Libft2D libx
