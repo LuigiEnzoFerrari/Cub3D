@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:27:40 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:45:53 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2021/08/02 13:43:40 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	key_pressed(int event, t_vars *vars)
 	if (event == KEY_LEFT)
 		vars->player.tD = -1;
 	update(vars);
-	render(vars);
 	return (0);
 }
 
