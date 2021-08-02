@@ -13,9 +13,37 @@ INC_PATH := $(LIB_PATH) include
 INC := $(addprefix -I , $(INC_PATH))
 HEADERS := $(foreach dir, $(INC_PATH), $(wildcard $(dir)/*.h))
 
-SRC_DIR := settings initialization mlx_extension render input update
-SRC_PATH := $(addprefix srcs/, $(SRC_DIR)) srcs
-SRC := $(foreach dir, $(SRC_PATH), $(wildcard $(dir)/*.c))
+RENDER := map_rays.c map_player.c projection.c map.c background.c
+RENDER_PATH := $(addprefix render/, $(RENDER))
+
+UPDATE := ray_minimum.c ray_vertical.c raycasting.c update_util.c \
+		player.c ray_horizontal.c
+UPDATE_PATH := $(addprefix update/, $(UPDATE))
+
+SETTINGS := map_get_utils.c ele_init_val.c ele_check_rgb.c map_check_utils.c \
+		ele_get_r.c ele_get_utils.c ele_clear_spaces.c temp.c \
+		ele_check_res.c ele_check_tex.c ele_check_configs.c \
+		map_clear_spaces.c settings.c free_exit_elements.c \
+		map_check_map.c map_get.c map_clear_utils.c map_check_utils2.c \
+		ele_configs.c ele_check_args.c ele_get_tex.c ele_get_fc.c
+SETTINGS_PATH := $(addprefix settings/, $(SETTINGS))
+
+INPUT := input.c
+INPUT_PATH := $(addprefix input/, $(INPUT))
+
+MLX_E := mlx_get_line.c mlx_draw_fill_rect.c mlx_get_circle.c \
+		mlx_draw_circle.c mlx_set_render_color.c mlx_put_pixel.c \
+		mlx_trgb_to_hex.c mlx_render_present.c mlx_get_rect.c \
+		mlx_create_renderer.c mlx_draw_line.c
+
+MLX_E_PATH := $(addprefix mlx_extension/, $(MLX_E))
+
+INIT := set_player.c initialization.c
+INIT_PATH := $(addprefix initialization/, $(INIT))
+
+SRC_PATH := $(RENDER_PATH) $(UPDATE_PATH) $(SETTINGS_PATH) $(INPUT_PATH) $(MLX_E_PATH) $(INIT_PATH)
+
+SRC := $(addprefix srcs/, $(SRC_PATH)) srcs/main.c
 
 all: $(NAME)
 
