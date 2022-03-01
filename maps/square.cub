@@ -1,4 +1,4 @@
-R 600 600
+R 1280 720
 NO textures/mine/1.xpm		     
 SO ./textures/mine/2.xpm
 WE ./textures/mine/3.xpm

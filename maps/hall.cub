@@ -1,4 +1,4 @@
-R 600 600
+R 1280 720
 NO textures/harry/4.xpm		     
 SO ./textures/harry/8.xpm
 WE ./textures/harry/6.xpm
