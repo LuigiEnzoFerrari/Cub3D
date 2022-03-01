@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: install dependencies
         run: |
-          sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev sudo apt-get install libbsd-dev
+          sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
       - uses: actions/checkout@v2
       - name: make
         run: make
