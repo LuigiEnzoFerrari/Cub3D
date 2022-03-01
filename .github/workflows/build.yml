@@ -14,5 +14,9 @@ jobs:
         working-directory: ./
     steps:
       - uses: actions/checkout@v2
+      - name: install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev
+      - uses: actions/checkout@v2
       - name: make
         run: make
