@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 09:21:33 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 18:28:13 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:30:48 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	set_tile_color(t_xRenderer *renderer, char c)
+static void	set_tile_color(t_xrenderer *renderer, char c)
 {
 	if (c == '1')
 		mlx_set_render_color(renderer, 0x00ffffff);
@@ -20,7 +20,7 @@ static void	set_tile_color(t_xRenderer *renderer, char c)
 		mlx_set_render_color(renderer, 0x00000000);
 }
 
-static void	paintRow(t_xRenderer *renderer, char *map, int y)
+static void	paint_row(t_xrenderer *renderer, char *map, int y)
 {
 	size_t	i;
 	int		x;
@@ -47,7 +47,7 @@ static void	paintRow(t_xRenderer *renderer, char *map, int y)
 	}
 }
 
-static void	minimap(t_xRenderer *renderer, char **map, t_set set)
+static void	minimap(t_xrenderer *renderer, char **map, t_set set)
 {
 	int	y;
 
@@ -55,7 +55,7 @@ static void	minimap(t_xRenderer *renderer, char **map, t_set set)
 	set.map_size.x = 0;
 	while (*(map + y))
 	{
-		paintRow(renderer, *(map + y), y);
+		paint_row(renderer, *(map + y), y);
 		y++;
 	}
 }
@@ -64,5 +64,5 @@ void	map(t_vars *vars)
 {
 	minimap(&vars->renderer, vars->set.map, vars->set);
 	rays(vars);
-	playerPosition(vars);
+	player_position(vars);
 }

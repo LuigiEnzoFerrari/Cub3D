@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:22 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/31 21:46:12 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:43:37 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	set_foundWallVert(t_vars vars, t_rays *rays, t_inter *a)
+static void	set_found_wall_vert(t_vars vars, t_rays *rays, t_inter *a)
 {
 	a->intercept.x = floor(vars.player.x / TILE_SIZE) * TILE_SIZE;
 	if (rays->right)
@@ -29,23 +29,23 @@ static void	set_foundWallVert(t_vars vars, t_rays *rays, t_inter *a)
 		a->step.y = -a->step.y;
 }
 
-static void	lookingWall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
+static void	looking_wall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
 {
-	t_xFPoint	toCheck;
+	t_xfpoint	to_check;
 
 	while (a.intercept.x >= 0 && a.intercept.x <= TILE_SIZE * set.map_size.x
 		&& a.intercept.y >= 0 && a.intercept.y <= TILE_SIZE * set.map_size.y)
 	{
-		toCheck.x = a.intercept.x;
-		toCheck.y = a.intercept.y;
+		to_check.x = a.intercept.x;
+		to_check.y = a.intercept.y;
 		if (rays->left)
-			toCheck.x -= 1;
-		if (hasWall(set, toCheck.x, toCheck.y))
+			to_check.x -= 1;
+		if (has_wall(set, to_check.x, to_check.y))
 		{
-			cast->wallHit.x = a.intercept.x;
-			cast->wallHit.y = a.intercept.y;
-			cast->wallContent = set.map[(int)floor(toCheck.y / TILE_SIZE)]
-			[(int)floor(toCheck.x / TILE_SIZE)];
+			cast->wall_hit.x = a.intercept.x;
+			cast->wall_hit.y = a.intercept.y;
+			cast->wall_content = set.map[(int)floor(to_check.y / TILE_SIZE)]
+			[(int)floor(to_check.x / TILE_SIZE)];
 			cast->hit = 1;
 			break ;
 		}
@@ -57,14 +57,14 @@ static void	lookingWall(t_set set, t_rays *rays, t_casting *cast, t_inter a)
 	}
 }
 
-void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast)
+void	found_wall_vert(t_vars vars, t_rays *rays, t_casting *cast)
 {
 	t_inter	a;
 
 	cast->hit = 0;
-	cast->wallHit.x = 0;
-	cast->wallHit.y = 0;
-	cast->wallContent = 0;
-	set_foundWallVert(vars, rays, &a);
-	lookingWall(vars.set, rays, cast, a);
+	cast->wall_hit.x = 0;
+	cast->wall_hit.y = 0;
+	cast->wall_content = 0;
+	set_found_wall_vert(vars, rays, &a);
+	looking_wall(vars.set, rays, cast, a);
 }

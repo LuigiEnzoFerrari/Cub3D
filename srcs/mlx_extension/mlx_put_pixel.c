@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 20:47:04 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:47:05 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:48:07 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_extension.h"
 
-void	mlx_put_pixel(t_xRenderer *renderer, int x, int y)
+void	mlx_put_pixel(t_xrenderer *renderer, int x, int y)
 {
 	char	*dst;
 

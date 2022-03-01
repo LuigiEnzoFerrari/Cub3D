@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 20:46:42 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:57:51 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:48:07 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_extension.h"
 
-static void	mlx_put4_pixel(t_xRenderer *renderer, t_xPoint c, int x, int y)
+static void	mlx_put4_pixel(t_xrenderer *renderer, t_xpoint c, int x, int y)
 {
 	mlx_put_pixel(renderer, c.x + x, c.y + y);
 	if (x != 0)
@@ -23,16 +23,16 @@ static void	mlx_put4_pixel(t_xRenderer *renderer, t_xPoint c, int x, int y)
 		mlx_put_pixel(renderer, c.x - x, c.y - y);
 }
 
-static void	mlx_put8_pixel(t_xRenderer *renderer, t_xPoint c, int x, int y)
+static void	mlx_put8_pixel(t_xrenderer *renderer, t_xpoint c, int x, int y)
 {
 	mlx_put4_pixel(renderer, c, x, y);
 	if (x != y)
 		mlx_put4_pixel(renderer, c, y, x);
 }
 
-void	mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle)
+void	mlx_draw_circle(t_xrenderer *renderer, t_xcircle circle)
 {
-	t_xPoint	c;
+	t_xpoint	c;
 	int			error;
 	int			x;
 	int			y;

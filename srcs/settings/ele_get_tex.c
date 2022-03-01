@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:59 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 18:40:13 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:33:27 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static void	set_tex(char **tex, char **ptr, bool *v_tex, t_inv *cvalues)
 	*tex = *ptr;
 }
 
-void	get_TEX(t_sval *val)
+void	get_tex(t_sval *val)
 {
 	char	*str;
 	char	*ptr;
 
 	str = val->str;
 	ptr = get_values(str + 2);
-	if (!validate_TEX(ptr))
+	if (!validate_tex(ptr))
 	{
 		val->cvalues.inv.tex = true;
 		free(ptr);

@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:22 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:20:20 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:36:31 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	map_line(char *map_line)
 	return (1);
 }
 
-int	hasWhiteColomns(char **str)
+int	has_white_colomns(char **str)
 {
 	size_t	i;
 

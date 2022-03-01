@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 22:33:14 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 23:56:42 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:38:13 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ typedef struct s_check
 	t_inv	inv;
 }	t_check;
 
-typedef struct s_vRGB
+typedef struct s_vrgb
 {
 	size_t	comma;
 	size_t	digit;
 	bool	charac;
-}	t_vRGB;
+}	t_vrgb;
 
 typedef struct s_set_values
 {
@@ -72,9 +72,9 @@ void	save_configs(t_sval *val);
 int		isvalid(int c);
 void	init_val(t_sval *val);
 
-int		validate_RGB(char *str);
-int		validate_RES(char *str);
-int		validate_TEX(char *str);
+int		validate_rgb(char *str);
+int		validate_res(char *str);
+int		validate_tex(char *str);
 
 void	print_lst(t_list *lst);
 int		check_configs(t_sval *val, int fd);
@@ -82,9 +82,9 @@ void	exit_cub_settings(t_sval *val, t_inv inv, int fd);
 void	exit_elements(t_sval *val, int fd);
 void	free_textures(t_sval *val);
 
-void	get_TEX(t_sval *val);
-void	get_R(t_sval *val);
-void	get_FC(t_sval *val);
+void	get_tex(t_sval *val);
+void	get_r(t_sval *val);
+void	get_fc(t_sval *val);
 char	*get_values(char *str);
 int		istexture(char *str);
 
@@ -95,7 +95,7 @@ int		n_whitecolumn(char **str);
 void	check_map(t_sval *val, int fd);
 int		iswhite(char **str, int i);
 void	replace_map(char *map, char *ptr, size_t x);
-int		hasWhiteColomns(char **str);
+int		has_white_colomns(char **str);
 int		map_line(char *map_line);
 int		map_column(char **map);
 

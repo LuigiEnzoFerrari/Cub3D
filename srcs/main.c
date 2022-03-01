@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 22:06:04 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/02 13:38:32 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:41:54 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	input(t_vars *vars)
 void	update(t_vars *vars)
 {
 	player(vars);
-	raysCasting(vars);
+	rays_casting(vars);
 }
 
 int	render(t_vars *vars)

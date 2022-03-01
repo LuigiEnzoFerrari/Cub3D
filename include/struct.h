@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 22:33:27 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 22:35:22 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:22:15 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,28 @@
 # include "const.h"
 # include <stdint.h>
 
-typedef struct s_Resolution
+typedef struct s_resolution
 {
 	int	w;
 	int	h;
-}	t_RES;
+}	t_res;
 
-typedef struct s_TEX
+typedef struct s_tex
 {
 	char	*south;
 	char	*north;
 	char	*west;
 	char	*east;
-}	t_TEX;
+}	t_tex;
 
 typedef struct s_setting
 {
 	char		**map;
-	t_TEX		tex;
+	t_tex		tex;
 	int			cell;
 	int			floor;
-	t_RES		resolution;
-	t_xPoint	map_size;
+	t_res		resolution;
+	t_xpoint	map_size;
 	uint32_t	*pixel;
 }	t_set;
 
@@ -49,52 +49,52 @@ typedef struct s_player
 	double	x;
 	double	y;
 	int		r;
-	int		tD;
-	double	wDFB;
-	double	wDLR;
+	int		turn_direction;
+	double	walk_direction_fb;
+	double	walk_direction_lr;
 	double	fov;
-	double	rAngle;
+	double	rotation_angle;
 	double	dist;
-	double	wS;
-	double	tS;
+	double	walk_step;
+	double	turn_step;
 }	t_P1;
 
 typedef struct s_ray
 {
 	double	angle;
-	double	wallHitX;
-	double	wallHitY;
+	double	wall_hit_x;
+	double	wall_hit_y;
 	double	distance;
-	bool	isVert;
+	bool	is_vert;
 	bool	up;
 	bool	down;
 	bool	left;
 	bool	right;
-	int		wallHitContent;
+	int		wall_hit_content;
 }	t_rays;
 
-typedef struct s_rayCasting
+typedef struct s_raycasting
 {
 	bool		hit;
-	t_xFPoint	wallHit;
-	int			wallContent;
+	t_xfpoint	wall_hit;
+	int			wall_content;
 }	t_casting;
 
 typedef struct s_intercept
 {
-	t_xFPoint	intercept;
-	t_xFPoint	step;
+	t_xfpoint	intercept;
+	t_xfpoint	step;
 }	t_inter;
 
 typedef struct s_prjection
 {
-	double	perDistance;
+	double	per_distance;
 	double	distance;
 	double	height;
 
-	int		stripHeight;
-	int		topPixel;
-	int		bottomPixel;
+	int		strip_height;
+	int		top_pixel;
+	int		bottom_pixel;
 }	t_proj;
 
 #endif

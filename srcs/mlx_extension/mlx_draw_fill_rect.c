@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 20:46:47 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 20:55:53 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:48:07 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_extension.h"
 
-void	mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect rect)
+void	mlx_draw_fill_rect(t_xrenderer *renderer, t_xrect rect)
 {
 	int	dx;
 	int	dy;

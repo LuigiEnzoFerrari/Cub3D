@@ -6,16 +6,16 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:51 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:31:52 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:37:30 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static t_RES	get_RES(char *str)
+static t_res	get_res(char *str)
 {
 	char	*ptr;
-	t_RES	res;
+	t_res	res;
 
 	ptr = str;
 	str = ft_skipctype(str, ft_isdigit, 0);
@@ -28,13 +28,13 @@ static t_RES	get_RES(char *str)
 	return (res);
 }
 
-void	get_R(t_sval *val)
+void	get_r(t_sval *val)
 {
 	char	*str;
 
 	str = val->str;
 	str = get_values(val->str + 1);
-	if (!validate_RES(str))
+	if (!validate_res(str))
 	{
 		free(str);
 		val->cvalues.inv.res = true;
@@ -46,7 +46,7 @@ void	get_R(t_sval *val)
 	}
 	else
 	{
-		val->set.resolution = get_RES(str);
+		val->set.resolution = get_res(str);
 		val->cvalues.resol = true;
 	}
 }

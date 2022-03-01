@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:25 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:31:26 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:33:55 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ static bool	v_character(char *str)
 	return (false);
 }
 
-int	validate_RGB(char *str)
+int	validate_rgb(char *str)
 {
-	t_vRGB	rgb;
+	t_vrgb	rgb;
 
 	rgb.charac = false;
 	rgb.comma = 0;

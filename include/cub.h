@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 22:33:17 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/02 13:38:53 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:41:54 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_vars
 	t_set		set;
 	t_P1		player;
 	t_rays		*rays;
-	t_xRenderer	renderer;
+	t_xrenderer	renderer;
 	t_ximg		tex[4];
 }	t_vars;
 
@@ -64,15 +64,15 @@ int		key_pressed(int event, t_vars *vars);
 int		key_released(int event, t_vars *vars);
 int		key_exit(t_vars *vars);
 
-void	raysCasting(t_vars *vars);
-int		hasWall(t_set set, double x, double y);
+void	rays_casting(t_vars *vars);
+int		has_wall(t_set set, double x, double y);
 void	player(t_vars *vars);
-void	foundWallHoriz(t_vars vars, t_rays *rays, t_casting *cast);
-void	foundWallVert(t_vars vars, t_rays *rays, t_casting *cast);
-void	minimumDistance(t_vars vars, t_rays *rays, t_casting *cast);
+void	found_wall_horiz(t_vars vars, t_rays *rays, t_casting *cast);
+void	found_wall_vert(t_vars vars, t_rays *rays, t_casting *cast);
+void	minimum_distance(t_vars vars, t_rays *rays, t_casting *cast);
 
-void	background(t_xRenderer *renderer, t_set set);
-void	playerPosition(t_vars *vars);
+void	background(t_xrenderer *renderer, t_set set);
+void	player_position(t_vars *vars);
 void	rays(t_vars *vars);
 void	map(t_vars *vars);
 void	projection(t_vars *vars, t_rays *rays, t_P1 player, t_set set);

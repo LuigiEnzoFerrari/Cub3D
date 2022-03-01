@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 22:33:23 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 22:38:25 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:49:54 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,50 +18,50 @@
 
 # include "mlx.h"
 
-typedef struct mlx_Rect
+typedef struct mlx_rect
 {
 	int	x;
 	int	y;
 	int	w;
 	int	h;
-}	t_xRect;
+}	t_xrect;
 
-typedef struct mlx_Circle
+typedef struct mlx_circle
 {
 	int	x;
 	int	y;
 	int	r;
-}	t_xCircle;
+}	t_xcircle;
 
-typedef struct mlx_Point
+typedef struct mlx_point
 {
 	int	x;
 	int	y;
-}	t_xPoint;
+}	t_xpoint;
 
-typedef struct mlx_FPoint
+typedef struct mlx_fpoint
 {
 	double	x;
 	double	y;
-}	t_xFPoint;
+}	t_xfpoint;
 
-typedef struct mlx_Line
+typedef struct mlx_line
 {
 	int	x0;
 	int	y0;
 	int	x1;
 	int	y1;
-}	t_xLine;
+}	t_xline;
 
-typedef struct mlx_Color
+typedef struct mlx_color
 {
 	uint8_t	t;
 	uint8_t	r;
 	uint8_t	g;
 	uint8_t	b;
-}	t_xColor;
+}	t_xcolor;
 
-typedef struct mlx_Renderer
+typedef struct mlx_renderer
 {
 	void	*img;
 	char	*addr;
@@ -69,7 +69,7 @@ typedef struct mlx_Renderer
 	int		s_line;
 	int		endian;
 	int		color;
-}	t_xRenderer;
+}	t_xrenderer;
 
 typedef struct mlx_img
 {
@@ -81,7 +81,7 @@ typedef struct mlx_img
 	int		color;
 }	t_ximg;
 
-typedef struct s_Bresenham_line
+typedef struct s_bresenham_line
 {
 	int	dx;
 	int	dy;
@@ -89,19 +89,19 @@ typedef struct s_Bresenham_line
 	int	sy;
 	int	err;
 	int	e2;
-}	t_BLine;
+}	t_bline;
 
-void		mlx_put_pixel(t_xRenderer *renderer, int x, int y);
-void		mlx_draw_line(t_xRenderer *renderer, t_xLine line);
-void		mlx_draw_fill_rect(t_xRenderer *renderer, t_xRect rect);
-void		mlx_draw_circle(t_xRenderer *renderer, t_xCircle circle);
-void		mlx_set_render_color(t_xRenderer *renderer, int color);
+void		mlx_put_pixel(t_xrenderer *renderer, int x, int y);
+void		mlx_draw_line(t_xrenderer *renderer, t_xline line);
+void		mlx_draw_fill_rect(t_xrenderer *renderer, t_xrect rect);
+void		mlx_draw_circle(t_xrenderer *renderer, t_xcircle circle);
+void		mlx_set_render_color(t_xrenderer *renderer, int color);
 void		mlx_render_present(void *mlx, void *win, void *img);
 
-t_xLine		mlx_get_line(int x0, int y0, int x1, int y1);
-t_xRect		mlx_get_rect(int x, int y, int w, int h);
-t_xCircle	mlx_get_circle(int x, int y, int r);
-t_xRenderer	mlx_create_renderer(void *mlx, int size_x, int size_y);
+t_xline		mlx_get_line(int x0, int y0, int x1, int y1);
+t_xrect		mlx_get_rect(int x, int y, int w, int h);
+t_xcircle	mlx_get_circle(int x, int y, int r);
+t_xrenderer	mlx_create_renderer(void *mlx, int size_x, int size_y);
 
 int			mlx_get_hex_trgb(uint8_t t, uint8_t r, uint8_t g, uint8_t b);
 

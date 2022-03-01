@@ -6,19 +6,19 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:07 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 18:32:04 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:45:29 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_RES(t_RES *res)
+void	init_res(t_res *res)
 {
 	res->h = 0;
 	res->w = 0;
 }
 
-void	init_TEX(t_TEX *tex)
+void	init_tex(t_tex *tex)
 {
 	tex->east = NULL;
 	tex->south = NULL;
@@ -51,6 +51,6 @@ void	init_val(t_sval *val)
 	val->cmap.x_split = false;
 	val->cmap.y_split = false;
 	init_checkv(&val->cvalues);
-	init_TEX(&val->set.tex);
-	init_RES(&val->set.resolution);
+	init_tex(&val->set.tex);
+	init_res(&val->set.resolution);
 }

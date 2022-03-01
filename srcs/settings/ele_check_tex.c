@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:29 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:31:30 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:33:27 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	validate_TEX(char *str)
+int	validate_tex(char *str)
 {
 	while (*str)
 	{

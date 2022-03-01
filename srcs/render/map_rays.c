@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 10:55:51 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 03:12:39 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:19:21 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	rays(t_vars *vars)
 			mlx_get_line(
 				MINIMAP_SCALE * vars->player.x,
 				MINIMAP_SCALE * vars->player.y,
-				MINIMAP_SCALE * vars->rays[i].wallHitX,
-				MINIMAP_SCALE * vars->rays[i].wallHitY));
+				MINIMAP_SCALE * vars->rays[i].wall_hit_x,
+				MINIMAP_SCALE * vars->rays[i].wall_hit_y));
 		i += 16;
 	}
 }

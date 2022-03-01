@@ -6,13 +6,13 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 11:53:36 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/08/01 22:04:48 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:35:02 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static double	normalizeAngle(double angle)
+static double	normalize_angle(double angle)
 {
 	angle = remainder(angle, TWO_PI);
 	if (angle < 0)
@@ -20,26 +20,26 @@ static double	normalizeAngle(double angle)
 	return (angle);
 }
 
-static void	rayDirection(double rayAngle, t_rays *rays)
+static void	ray_direction(double ray_angle, t_rays *rays)
 {
-	rays->angle = normalizeAngle(rayAngle);
-	rays->down = rays->angle > 0 && rays->angle < PI;
+	rays->angle = normalize_angle(ray_angle);
+	rays->down = (rays->angle > 0 && rays->angle < PI);
 	rays->up = !rays->down;
-	rays->right = rays->angle < 0.5 * PI || rays->angle > 1.5 * PI;
+	rays->right = (rays->angle < 0.5 * PI || rays->angle > 1.5 * PI);
 	rays->left = !rays->right;
 }
 
-static void	rayCasting(t_vars vars, double rayAngle, t_rays *rays)
+static void	ray_casting(t_vars vars, double ray_angle, t_rays *rays)
 {
 	t_casting	cast[2];
 
-	rayDirection(rayAngle, rays);
-	foundWallHoriz(vars, rays, &cast[0]);
-	foundWallVert(vars, rays, &cast[1]);
-	minimumDistance(vars, rays, cast);
+	ray_direction(ray_angle, rays);
+	found_wall_horiz(vars, rays, &cast[0]);
+	found_wall_vert(vars, rays, &cast[1]);
+	minimum_distance(vars, rays, cast);
 }
 
-void	raysCasting(t_vars *vars)
+void	rays_casting(t_vars *vars)
 {
 	double	angle;
 	int		i;
@@ -47,9 +47,9 @@ void	raysCasting(t_vars *vars)
 	i = 0;
 	while (i < vars->set.resolution.w)
 	{
-		angle = vars->player.rAngle + atan((i - (vars->set.resolution.w >> 1))
-				/ vars->player.dist);
-		rayCasting(*vars, angle, &vars->rays[i]);
+		angle = vars->player.rotation_angle
+			+ atan((i - (vars->set.resolution.w >> 1)) / vars->player.dist);
+		ray_casting(*vars, angle, &vars->rays[i]);
 		angle += vars->player.fov / vars->set.resolution.w;
 		i++;
 	}

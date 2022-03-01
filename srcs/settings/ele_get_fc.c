@@ -6,15 +6,15 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:31:46 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:31:47 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:37:17 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static int	get_RGB(char *str)
+static int	get_rgb(char *str)
 {
-	t_xColor	rgb;
+	t_xcolor	rgb;
 	char		*ptr;
 
 	ptr = str;
@@ -31,7 +31,7 @@ static int	get_RGB(char *str)
 	return (mlx_get_hex_trgb(rgb.t, rgb.r, rgb.g, rgb.b));
 }
 
-static void	set_FC(char *str, bool *rgb, t_check *cvalues, int *trgb)
+static void	set_fc(char *str, bool *rgb, t_check *cvalues, int *trgb)
 {
 	if (*rgb == true)
 	{
@@ -39,23 +39,23 @@ static void	set_FC(char *str, bool *rgb, t_check *cvalues, int *trgb)
 		free(str);
 		return ;
 	}
-	*trgb = get_RGB(str);
+	*trgb = get_rgb(str);
 	*rgb = true;
 }
 
-void	get_FC(t_sval *val)
+void	get_fc(t_sval *val)
 {
 	char	*str;
 
 	str = val->str;
 	str = get_values(val->str + 1);
-	if (!validate_RGB(str))
+	if (!validate_rgb(str))
 	{
 		val->cvalues.inv.rgb = true;
 		free(str);
 	}
 	else if (*val->str == 'F')
-		set_FC(str, &val->cvalues.floor, &val->cvalues, &val->set.floor);
+		set_fc(str, &val->cvalues.floor, &val->cvalues, &val->set.floor);
 	else if (*val->str == 'C')
-		set_FC(str, &val->cvalues.color, &val->cvalues, &val->set.cell);
+		set_fc(str, &val->cvalues.color, &val->cvalues, &val->set.cell);
 }

@@ -6,7 +6,7 @@
 /*   By: lenzo-pe <lenzo-pe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 10:32:18 by lenzo-pe          #+#    #+#             */
-/*   Updated: 2021/07/29 10:32:19 by lenzo-pe         ###   ########.fr       */
+/*   Updated: 2022/03/01 11:58:11 by lenzo-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	map_lines(char **map)
 	return (1);
 }
 
-int	Close(char **map, size_t a)
+int	closing(char **map, size_t a)
 {
 	size_t	i;
 	char	**ptr;
@@ -51,14 +51,14 @@ int	Close(char **map, size_t a)
 	return (1);
 }
 
-int	isClose(char **map)
+int	is_close(char **map)
 {
 	size_t	a;
 
 	a = 0;
 	while (*((*map) + a))
 	{
-		if (!Close(map, a))
+		if (!closing(map, a))
 			return (0);
 		a++;
 	}
@@ -67,12 +67,12 @@ int	isClose(char **map)
 
 static int	map_colomns(char **map)
 {
-	if (hasWhiteColomns(map))
+	if (has_white_colomns(map))
 	{
 		ft_putendl_fd("Splited Map", 0);
 		return (0);
 	}
-	if (!isClose(map))
+	if (!is_close(map))
 	{
 		ft_putendl_fd("Invalid Map", 0);
 		return (0);
