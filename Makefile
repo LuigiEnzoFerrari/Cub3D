@@ -51,6 +51,7 @@ $(NAME): $(SRC) $(LIB_SRC) $(HEADERS)
 	@$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB_LINK) $(INC) $(MLX_FLAGS) -o $@
 
 $(LIB_SRC):
+	git submodule update --init
 	@make -C libs/libft
 	@make -C libs/Libft2D
 	@make -C libs/libx
