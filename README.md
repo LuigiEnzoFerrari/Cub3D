@@ -67,7 +67,7 @@ A binary file named cub should appers in the repository. Now execute the cub fil
 ![ghost_map](https://raw.githubusercontent.com/LuigiEnzoFerrari/Cub3D/master/.github/images/in_game.png)  
 
 
-![mine_map](https://raw.githubusercontent.com/LuigiEnzoFerrari/Cub3D/master/.github/images/minegif.png)  
+![mine_map](https://raw.githubusercontent.com/LuigiEnzoFerrari/Cub3D/master/.github/images/minegif.gif)  
 
 
 
