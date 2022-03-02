@@ -3,6 +3,7 @@ CC := clang
 SANIT := -g -fsanitize=address
 CFLAGS := -Wall -Wextra -Werror
 MLX_FLAGS := -lm -lbsd -lXext -lX11
+OPT = -O3
 
 LIB_SRC := libs/libft/libft.a libs/Libft2D/libarray.a libs/libx/libmlx.a
 LIB_DIRS := libft Libft2D libx
@@ -48,7 +49,7 @@ SRC := $(addprefix srcs/, $(SRC_PATH)) srcs/main.c
 all: $(NAME)
 
 $(NAME): $(SRC) $(LIB_SRC) $(HEADERS)
-	@$(CC) $(CFLAGS) $(SANIT) $(SRC) $(LIB_LINK) $(INC) $(MLX_FLAGS) -o $@
+	@$(CC) $(OPT) $(CFLAGS) $(SANIT) $(SRC) $(LIB_LINK) $(INC) $(MLX_FLAGS) -o $@
 
 $(LIB_SRC):
 	git submodule update --init

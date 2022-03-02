@@ -3,7 +3,8 @@ NO textures/mine/1.xpm
 SO ./textures/mine/2.xpm
 WE ./textures/mine/3.xpm
 EA ./textures/mine/4.xpm
-F 107,73,132			     
+F 050,050,050			     
+		     
 C 43,47,119			     
 
 

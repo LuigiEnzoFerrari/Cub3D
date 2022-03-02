@@ -3,8 +3,8 @@ NO textures/tile.xpm
 SO ./textures/tile.xpm
 WE ./textures/tile.xpm
 EA ./textures/tile.xpm
-F 107,73,132			     
-C 43,47,119			     
+F 020,020,020			     
+C 0,203,254			     
 
 
 1111111111111111111111111111111
