@@ -2,7 +2,8 @@
 ![build](https://github.com/LuigiEnzoFerrari/Cub3D/actions/workflows/build.yml/badge.svg)
   
 # CUB 3D  
-The objective of this project was to use raycasting algorithm and create a enviroment inspired by world-famous 90’s game [Wolfeninstein][Wolfeninstein] 3D using pure C language.  
+
+The objective of this project was to use a raycasting algorithm and create an environment inspired by the world-famous ’90s game [Wolfenstein][Wolfenstein] 3D using pure C language.  
 
 # How to use
 
@@ -30,7 +31,7 @@ You can create or modify a file .cub with the follow keys bellow.
 
 ### The Map  
 
-The map must be a shape made with 0, 1, colosed by 1 even inside the shape, and must have one Key letter to represents the player position and direction.  
+The map must be a shape made with 0, 1, closed by 1, even inside the shape, and must have one Key letter to represent the player position and direction.  
 
 | Keys | Description |
 |-|-|
@@ -51,12 +52,13 @@ exemple
 
 ## Execute and play
 
-Inside the repository use make command
+Inside the repository use the make command  
 
 ```sh
 make
 ```  
-A binary file named cub should appers in the repository. Now execute the cub file with a map of your choose in the folder maps or make  your own map with following the [file settings](#file-settings) guide.  
+A binary file named cub should appear in the repository. Now execute the cub file with a map of your choice in the folder maps or make your map with following the [file settings](#file-settings) guide.
+
 
 ```sh
 ./cub maps/square.cub
@@ -71,4 +73,4 @@ A binary file named cub should appers in the repository. Now execute the cub fil
 
 
 
-[Wolfeninstein]: http://users.atw.hu/wolf3d/  
+[Wolfenstein]: http://users.atw.hu/wolf3d/  
